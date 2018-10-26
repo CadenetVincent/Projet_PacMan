@@ -4,8 +4,14 @@
 	<stdlib.h>
 	<allegro.h>
 
-1540564586 source:c:\users\guill\documents\projet_pacman\main.c
+1540568825 source:c:\users\guill\documents\projet_pacman\main.c
 	<stdio.h>
 	<stdlib.h>
 	<allegro.h>
+	"prototypes.h"
+
+1540568747 c:\users\guill\documents\projet_pacman\prototypes.h
+
+1540568825 source:c:\users\guill\documents\projet_pacman\monstres.c
+	"prototypes.h"
 

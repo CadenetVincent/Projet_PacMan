@@ -1,40 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <allegro.h>
+#include "prototypes.h"
 
 
-typedef struct enemy
-{
-    int dtx;
-    int dty;
-    int ddeplacement;
-    int ddirection;
-    int dposx;
-    int dposy;
-    int alive;
-    int resetdir;
-    int compteur_enemy;
-
-} t_enemy;
-
-t_enemy * initialiserenemy()
-{
-    t_enemy *mmonstre;
-    mmonstre=(t_enemy*) malloc(1 * sizeof(t_enemy));
-
-    mmonstre->dposx= 0;
-    mmonstre->dposy= 0;
-    mmonstre->ddeplacement=2;
-    mmonstre->ddirection = rand()%4;
-    mmonstre->alive = 1;
-    mmonstre->dtx=25;
-    mmonstre->dty=25;
-    mmonstre->resetdir=0;
-    mmonstre->compteur_enemy = 0;
+t_enemy * initialiserenemy();
+void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy);
 
 
-    return mmonstre;
-}
 
 void lancerAllegro()
 {
@@ -50,102 +23,7 @@ void lancerAllegro()
     }
 }
 
-void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy)
-{
 
-    if(monenemy->alive == 1)
-    {
-        if(monenemy->ddirection == 0)
-        {
-
-        if(monenemy->resetdir !=1 && getpixel(dbbuffer,monenemy->dposx,monenemy->dposy-monenemy->ddeplacement-5) != makecol(121,255,63))
-        {
-            monenemy->ddirection= rand()%4;
-            monenemy->resetdir=1;
-
-        }else if (getpixel(dbbuffer,monenemy->dposx,monenemy->dposy-monenemy->ddeplacement ) != makecol(255,00,00))
-        {
-            monenemy->dposy = monenemy->dposy-monenemy->ddeplacement;
-        }else
-        {
-            monenemy->ddirection = 2;
-            monenemy->resetdir=0;
-
-        }
-
-        }
-
-        if(monenemy->ddirection == 1)
-        {
-
-        if(monenemy->resetdir !=1 && getpixel(dbbuffer,monenemy->dposx,monenemy->dposy+monenemy->dty+monenemy->ddeplacement+5) != makecol(121,255,63))
-        {
-            monenemy->ddirection= rand()%4;
-            monenemy->resetdir=1;
-
-        }else if(getpixel(dbbuffer,monenemy->dposx,monenemy->dposy+monenemy->dty+monenemy->ddeplacement) != makecol(255,00,00))
-        {
-
-          monenemy->dposy = monenemy->dposy+monenemy->ddeplacement;
-
-
-        }else
-        {
-            monenemy->ddirection = 3;
-            monenemy->resetdir=0;
-        }
-
-        }
-
-        if(monenemy->ddirection == 2)
-        {
-
-        if(monenemy->resetdir !=1 && getpixel(dbbuffer,monenemy->dposx-monenemy->ddeplacement-5,monenemy->dposy) != makecol(121,255,63))
-        {
-            monenemy->ddirection= rand()%4;
-            monenemy->resetdir=1;
-
-        }else if (getpixel(dbbuffer,monenemy->dposx-monenemy->ddeplacement,monenemy->dposy) != makecol(255,00,00))
-        {
-            monenemy->dposx = monenemy->dposx-monenemy->ddeplacement; // mouvement négatif en abscisses
-        }else
-        {
-            monenemy->ddirection = 0;
-            monenemy->resetdir=0;
-        }
-
-        }
-
-        if(monenemy->ddirection == 3)
-        {
-
-        if(monenemy->resetdir !=1 && getpixel(dbbuffer,monenemy->dposx+monenemy->dtx+monenemy->ddeplacement+5,monenemy->dposy) != makecol(121,255,63))
-        {
-            monenemy->ddirection= rand()%4;
-            monenemy->resetdir=1;
-
-        }else if (getpixel(dbbuffer,monenemy->dposx+monenemy->dtx+monenemy->ddeplacement,monenemy->dposy) != makecol(255,00,00))
-        {
-            monenemy->dposx = monenemy->dposx+monenemy->ddeplacement; // mouvement négatif en abscisses
-        }else
-        {
-            monenemy->ddirection = 1;
-            monenemy->resetdir=0;
-        }
-        }
-
-    }
-printf("%d",monenemy->resetdir);
-
-        if (monenemy->dposx+monenemy->dtx<0)
-            monenemy->dposx = SCREEN_W+monenemy->dposx+monenemy->dtx;
-        if (monenemy->dposx>=SCREEN_W)
-            monenemy->dposx = monenemy->dposx-SCREEN_W-monenemy->dtx;
-        if (monenemy->dposy+monenemy->dty<0)
-            monenemy->dposy = SCREEN_H+monenemy->dposy+monenemy->dty;
-        if (monenemy->dposy>=SCREEN_H)
-            monenemy->dposy = monenemy->dposy-SCREEN_H-monenemy->dty;
-}
 
 
 
@@ -249,7 +127,7 @@ monenemy[i]->dposy= pos_enemy[1][i];
             a = 4;
         }
 
-        if ( a == 1 && getpixel(map,posx,posy-deplacement ) != makecol(255,00,00))
+        if ( a == 1 && getpixel(dbbuffer,posx,posy-deplacement ) != makecol(255,00,00))
         {
             posy = posy-deplacement;// mouvement négatif en ordonnées
         }
@@ -257,7 +135,7 @@ monenemy[i]->dposy= pos_enemy[1][i];
         {
             posy = posy;
         }
-        if (a == 2 && getpixel(map,posx,posy+ty+deplacement ) != makecol(255,00,00))
+        if (a == 2 && getpixel(dbbuffer,posx,posy+ty+deplacement ) != makecol(255,00,00))
         {
             posy = posy+deplacement;// mouvement positif en ordonnées
 
@@ -266,7 +144,7 @@ monenemy[i]->dposy= pos_enemy[1][i];
         {
             posy = posy;
         }
-        if (a == 3 && getpixel(map,posx-deplacement,posy) != makecol(255,00,00))
+        if (a == 3 && getpixel(dbbuffer,posx-deplacement,posy) != makecol(255,00,00))
         {
             posx = posx-deplacement; // mouvement négatif en abscisses
         }
@@ -274,7 +152,7 @@ monenemy[i]->dposy= pos_enemy[1][i];
         {
             posx = posx;
         }
-        if (a == 4 && getpixel(map,posx+tx+deplacement,posy ) != makecol(255,00,00))
+        if (a == 4 && getpixel(dbbuffer,posx+tx+deplacement,posy ) != makecol(255,00,00))
         {
             posx = posx+deplacement; // mouvement positif en abscisses
         }
@@ -330,3 +208,101 @@ monenemy[i]->dposy= pos_enemy[1][i];
     return 0;
 }
 END_OF_MAIN();
+
+void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy)
+{
+
+    if(monenemy->alive == 1)
+    {
+        if(monenemy->ddirection == 0)
+        {
+
+        if(monenemy->resetdir !=1 && getpixel(dbbuffer,monenemy->dposx,monenemy->dposy-monenemy->ddeplacement-5) != makecol(121,255,63))
+        {
+            monenemy->ddirection= rand()%4;
+            monenemy->resetdir=1;
+
+        }else if (getpixel(dbbuffer,monenemy->dposx,monenemy->dposy-monenemy->ddeplacement ) != makecol(255,00,00))
+        {
+            monenemy->dposy = monenemy->dposy-monenemy->ddeplacement;
+        }else
+        {
+            monenemy->ddirection = 2;
+            monenemy->resetdir=0;
+
+        }
+
+        }
+
+        if(monenemy->ddirection == 1)
+        {
+
+        if(monenemy->resetdir !=1 && getpixel(dbbuffer,monenemy->dposx,monenemy->dposy+monenemy->dty+monenemy->ddeplacement+5) != makecol(121,255,63))
+        {
+            monenemy->ddirection= rand()%4;
+            monenemy->resetdir=1;
+
+        }else if(getpixel(dbbuffer,monenemy->dposx,monenemy->dposy+monenemy->dty+monenemy->ddeplacement) != makecol(255,00,00))
+        {
+
+          monenemy->dposy = monenemy->dposy+monenemy->ddeplacement;
+
+
+        }else
+        {
+            monenemy->ddirection = 3;
+            monenemy->resetdir=0;
+        }
+
+        }
+
+        if(monenemy->ddirection == 2)
+        {
+
+        if(monenemy->resetdir !=1 && getpixel(dbbuffer,monenemy->dposx-monenemy->ddeplacement-5,monenemy->dposy) != makecol(121,255,63))
+        {
+            monenemy->ddirection= rand()%4;
+            monenemy->resetdir=1;
+
+        }else if (getpixel(dbbuffer,monenemy->dposx-monenemy->ddeplacement,monenemy->dposy) != makecol(255,00,00))
+        {
+            monenemy->dposx = monenemy->dposx-monenemy->ddeplacement; // mouvement négatif en abscisses
+        }else
+        {
+            monenemy->ddirection = 0;
+            monenemy->resetdir=0;
+        }
+
+        }
+
+        if(monenemy->ddirection == 3)
+        {
+
+        if(monenemy->resetdir !=1 && getpixel(dbbuffer,monenemy->dposx+monenemy->dtx+monenemy->ddeplacement+5,monenemy->dposy) != makecol(121,255,63))
+        {
+            monenemy->ddirection= rand()%4;
+            monenemy->resetdir=1;
+
+        }else if (getpixel(dbbuffer,monenemy->dposx+monenemy->dtx+monenemy->ddeplacement,monenemy->dposy) != makecol(255,00,00))
+        {
+            monenemy->dposx = monenemy->dposx+monenemy->ddeplacement; // mouvement négatif en abscisses
+        }else
+        {
+            monenemy->ddirection = 1;
+            monenemy->resetdir=0;
+        }
+        }
+
+    }
+printf("%d",monenemy->resetdir);
+
+        if (monenemy->dposx+monenemy->dtx<0)
+            monenemy->dposx = SCREEN_W+monenemy->dposx+monenemy->dtx;
+        if (monenemy->dposx>=SCREEN_W)
+            monenemy->dposx = monenemy->dposx-SCREEN_W-monenemy->dtx;
+        if (monenemy->dposy+monenemy->dty<0)
+            monenemy->dposy = SCREEN_H+monenemy->dposy+monenemy->dty;
+        if (monenemy->dposy>=SCREEN_H)
+            monenemy->dposy = monenemy->dposy-SCREEN_H-monenemy->dty;
+}
+
