@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1540202587 source:c:\users\guill\documents\test_allegro\main.c
+	<stdio.h>
+	<stdlib.h>
+	<allegro.h>
+
+1540564586 source:c:\users\guill\documents\projet_pacman\main.c
+	<stdio.h>
+	<stdlib.h>
+	<allegro.h>
+
