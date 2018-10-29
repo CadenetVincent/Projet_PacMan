@@ -43,12 +43,26 @@ int main()
     BITMAP * dbbuffer;
     lancerAllegro();
     int a = 0;
+    int compteur = 0;
 
-    tx=25;
+    /*tx=25;
     ty=25;
     posx=SCREEN_W/2-tx/2;
     posy=SCREEN_H/2-ty/2;
-    deplacement=4;
+    deplacement=4;*/
+
+    t_PacMan *bob;
+    t_PacMan PacMan;
+    bob = &PacMan;
+
+    intialisationPacMan(bob);
+
+
+    /*PacMan.tx = 25;
+    PacMan.ty = 25;
+    PacMan.posx = SCREEN_W/2-PacMan.tx/2;
+    PacMan.posy = SCREEN_H/2-PacMan.ty/2;
+    PacMan.deplacement = 4;*/
 
 
 
@@ -79,12 +93,17 @@ monenemy[i]->dposy= pos_enemy[1][i];
 
         //stretch_blit(test, map, 0,0,test->w,test->h,0,0,SCREEN_W,SCREEN_H);
 
+        rectfill(dbbuffer, PacMan.posx,PacMan.posy, PacMan.posx+25, PacMan.posy+22, makecol(255,255,255));
+
         stretch_blit(front, map, 0,0,front->w,front->h,0,0,SCREEN_W,SCREEN_H);
 
-        masked_blit(map1, map, 0,0,posx,posy,map1->w,map1->h);
 
 
 
+        masked_blit(map1, map, 0,0,PacMan.posx,PacMan.posy,map1->w,map1->h);
+ //mort(&monenemy, &PacMan, &compteur,dbbuffer);
+
+/// 47-40
 
         for(i=0; i<4; i++)
         {
@@ -95,9 +114,10 @@ monenemy[i]->dposy= pos_enemy[1][i];
         {
         monenemy[i]->resetdir=0;
         monenemy[i]->compteur_enemy=0;
+        //mort(&monenemy[i], &PacMan, &compteur, dbbuffer);
         }
 
-        call_monster(dbbuffer,enemy,monenemy[i]);
+        call_monster(dbbuffer,enemy,monenemy[i], &PacMan, &compteur);
 
 
         masked_blit(enemy, map, 0,0,monenemy[i]->dposx,monenemy[i]->dposy,enemy->w,enemy->h);
@@ -106,102 +126,18 @@ monenemy[i]->dposy= pos_enemy[1][i];
 
          blit(map, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
 
+ deplacementPacMan(dbbuffer, &PacMan, &a);
 
 
-        if (key[KEY_UP])
-        {
-            a = 1;
-        }
-        if (key[KEY_DOWN])
-        {
-            a = 2;
-        }
-        if (key[KEY_LEFT])
-        {
-            a = 3;
-        }
-        if (key[KEY_RIGHT])
-        {
-            a = 4;
-        }
-
-        if ( a == 1 && getpixel(dbbuffer,posx,posy-deplacement ) != makecol(255,00,00))
-        {
-            posy = posy-deplacement;// mouvement négatif en ordonnées
-        }
-        else
-        {
-            posy = posy;
-        }
-        if (a == 2 && getpixel(dbbuffer,posx,posy+ty+deplacement ) != makecol(255,00,00))
-        {
-            posy = posy+deplacement;// mouvement positif en ordonnées
-
-        }
-        else
-        {
-            posy = posy;
-        }
-        if (a == 3 && getpixel(dbbuffer,posx-deplacement,posy) != makecol(255,00,00))
-        {
-            posx = posx-deplacement; // mouvement négatif en abscisses
-        }
-        else
-        {
-            posx = posx;
-        }
-        if (a == 4 && getpixel(dbbuffer,posx+tx+deplacement,posy ) != makecol(255,00,00))
-        {
-            posx = posx+deplacement; // mouvement positif en abscisses
-        }
-        else
-        {
-         posx = posx;
-        }
-
-        // contrôle des bords
-        if (posx+tx<0)
-            posx = SCREEN_W+posx+tx;
-        if (posx>=SCREEN_W)
-            posx = posx-SCREEN_W-tx;
-        if (posy+ty<0)
-            posy = SCREEN_H+posy+ty;
-        if (posy>=SCREEN_H)
-            posy = posy-SCREEN_H-ty;
-
-        // 3) AFFICHAGE NOUVELLE POSITION
-        //rectfill(screen,posx,posy,posx+tx,posy+ty,makecol(255,128,128));
 
 
-        // 4) ON FAIT UNE PETITE PAUSE à chaque fois sinon ça va trop vite...
+
         rest(20);
 
 
 
-/*
-        if (getpixel(map,posx,posy-deplacement ) == makecol(255,0,0))
-        {
-            printf("%d \n", i);
-            i++;
-        }
-*/
 
     }
-    // paramètres de l'élément à animer
-
-
-
-
-    // initialisation des variables de la forme
-
-    // tailles et position initiale au centre
-
-
-    // mouvements :
-    // se déplacera de 5 pixels à chaque étape de déplacement
-
-
-    // Boucle interactive
 
     return 0;
 }
