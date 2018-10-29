@@ -1,7 +1,9 @@
 #ifndef PROTOTYPES_H_INCLUDED
 #define PROTOTYPES_H_INCLUDED
 
-//#include <allegro.h>
+#include <allegro.h>
+
+
 
 typedef struct enemy
 {
@@ -17,7 +19,8 @@ typedef struct enemy
 
 } t_enemy;
 
-
+t_enemy * initialiserenemy();
+void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy);
 
 
 #endif // PROTOTYPES_H_INCLUDED
