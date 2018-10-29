@@ -4,14 +4,27 @@
 	<stdlib.h>
 	<allegro.h>
 
-1540565876 source:c:\users\guill\documents\projet_pacman\main.c
-	<stdio.h>
-	<stdlib.h>
+1540834199 source:c:\users\guill\documents\projet_pacman\main.c
 	"prototypes.h"
 
-1540818528 c:\users\guill\documents\projet_pacman\prototypes.h
+1540833334 c:\users\guill\documents\projet_pacman\prototypes.h
+	<stdlib.h>
+	<stdio.h>
 	<allegro.h>
 
-1540565225 source:c:\users\guill\documents\projet_pacman\monstres.c
+1540834447 source:c:\users\guill\documents\projet_pacman\monstres.c
+	"prototypes.h"
+
+1540847683 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\monstres.c
+	"prototypes.h"
+
+1540847683 c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\prototypes.h
+	<stdlib.h>
+	<stdio.h>
+	<allegro.h>
+	<stdlib.h>
+	<stdio.h>
+
+1540847683 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\main.c
 	"prototypes.h"
 

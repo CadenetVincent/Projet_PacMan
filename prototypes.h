@@ -2,6 +2,8 @@
 #define PROTOTYPES_H_INCLUDED
 
 #include <allegro.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 
 
@@ -19,8 +21,26 @@ typedef struct enemy
 
 } t_enemy;
 
+typedef struct PacMan
+{
+    int tx ;
+    int ty;
+    int deplacement;
+    int posx;
+    int posy;
+    int vies;
+
+}t_PacMan;
+
 t_enemy * initialiserenemy();
+<<<<<<< HEAD
+
 void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy);
+=======
+void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy, t_PacMan *PacMan, int *compteur);
+void deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a);
+void mort(t_enemy *monenemy, t_PacMan * PacMan, int * compteur, BITMAP *dbbuffer);
+>>>>>>> 52e983c643a985477563cb62ecca2f0fd837ac61
 
 
 #endif // PROTOTYPES_H_INCLUDED
