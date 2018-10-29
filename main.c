@@ -126,7 +126,7 @@ monenemy[i]->dposy= pos_enemy[1][i];
 
  deplacementPacMan(dbbuffer, &PacMan, &a);
 
-
+//test
 
 
 
