@@ -20,7 +20,7 @@ t_enemy * initialiserenemy()
     return mmonstre;
 }
 
-void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy, t_PacMan *PacMan, int *compteur )
+void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy, t_PacMan *PacMan)
 {
 
     if(monenemy->alive == 1)
@@ -113,7 +113,7 @@ void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy, t_PacMan *Pa
     }
 /*printf("%d",monenemy->resetdir);*/
 
-mort(&monenemy, &PacMan, &compteur, dbbuffer);
+//mort(&monenemy, &PacMan, &compteur, dbbuffer);
 
         if (monenemy->dposx+monenemy->dtx<0)
             monenemy->dposx = SCREEN_W+monenemy->dposx+monenemy->dtx;
@@ -208,10 +208,31 @@ void intialisationPacMan(t_PacMan *PacMan)
     PacMan->vies = 5;
 }
 
+int death(t_enemy *monenemy[4], t_PacMan *PacMan, int compteur, BITMAP *dbbuffer)
+{
+
+int i;
+
+for(i=0; i<4; i++)
+{
+if((compteur>=100) && ( monenemy[i]->dposx - PacMan->posx < 15 ) && ( monenemy[i]->dposx - PacMan->posx > -15 ) && ( monenemy[i]->dposy - PacMan->posy <15 ) && ( monenemy[i]->dposy - PacMan->posy > -15 ))
+{
+    PacMan->vies = PacMan->vies-1;
+    return 0;
+}
+printf("compteur : %d \n",compteur);
+printf("Vie restante : %d \n",PacMan->vies);
+}
+
+return compteur;
+
+
+}
+
 void mort(t_enemy *monenemy, t_PacMan *PacMan, int *compteur, BITMAP *dbbuffer)
 {
 
-    if(getpixel(dbbuffer,monenemy->dposx-5,monenemy->dposy) == makecol(255,255,255) || getpixel(dbbuffer,monenemy->dposx+5,monenemy->dposy) == makecol(255,255,255) || getpixel(dbbuffer,monenemy->dposx,monenemy->dposy+5) == makecol(255,255,255) ||getpixel(dbbuffer,monenemy->dposx,monenemy->dposy-5) == makecol(255,255,255)  && *compteur == 0)
+if(getpixel(dbbuffer,monenemy->dposx-5,monenemy->dposy) == makecol(255,255,255) || getpixel(dbbuffer,monenemy->dposx+5,monenemy->dposy) == makecol(255,255,255) || getpixel(dbbuffer,monenemy->dposx,monenemy->dposy+5) == makecol(255,255,255) ||getpixel(dbbuffer,monenemy->dposx,monenemy->dposy-5) == makecol(255,255,255)  && *compteur == 0)
       PacMan->vies = 4;
 else if(getpixel(dbbuffer, monenemy->dposx, monenemy->dposy)!= makecol(255,255,255) && PacMan->vies == 4)
     *compteur = 1;
@@ -232,7 +253,7 @@ else if(getpixel(dbbuffer,monenemy->dposx-5,monenemy->dposy) == makecol(255,255,
 
 //    printf("%d  \n", compteur);
 
-printf("%d \n", PacMan->vies);
+//printf("%d \n", PacMan->vies);
 }
 
 

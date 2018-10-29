@@ -34,9 +34,11 @@ typedef struct PacMan
 
 t_enemy * initialiserenemy();
 
-void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy, t_PacMan *PacMan, int *compteur);
+void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy, t_PacMan *PacMan);
 void deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a);
 void mort(t_enemy *monenemy, t_PacMan * PacMan, int * compteur, BITMAP *dbbuffer);
+//Version fonctionnelle
+int death(t_enemy *monenemy[4], t_PacMan *PacMan, int compteur, BITMAP *dbbuffer);
 
 
 #endif // PROTOTYPES_H_INCLUDED

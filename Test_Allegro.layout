@@ -2,46 +2,19 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-<<<<<<< HEAD
-	<File name="Monstres.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Monstres.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="25" topLine="0" />
-=======
-	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2526" topLine="106" />
->>>>>>> vies
+			<Cursor1 position="431" topLine="61" />
 		</Cursor>
-		<Folding>
-			<Collapse line="4" />
-			<Collapse line="23" />
-			<Collapse line="149" />
-			<Collapse line="221" />
-			<Collapse line="231" />
-		</Folding>
 	</File>
-<<<<<<< HEAD
-	<File name="prototypes.h" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="274" topLine="7" />
-=======
+			<Cursor1 position="2840" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="prototypes.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="755" topLine="22" />
->>>>>>> vies
+			<Cursor1 position="396" topLine="0" />
 		</Cursor>
-	</File>
-	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-<<<<<<< HEAD
-			<Cursor1 position="92" topLine="0" />
-=======
-			<Cursor1 position="7677" topLine="123" />
->>>>>>> vies
-		</Cursor>
-		<Folding>
-			<Collapse line="4" />
-			<Collapse line="129" />
-		</Folding>
 	</File>
 </CodeBlocks_layout_file>

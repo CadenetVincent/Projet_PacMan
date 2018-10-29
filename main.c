@@ -41,7 +41,7 @@ int main()
     BITMAP * dbbuffer;
     lancerAllegro();
     int a = 0;
-    int compteur = 0;
+    int compteur_death = 80;
 
     /*tx=25;
     ty=25;
@@ -115,7 +115,7 @@ monenemy[i]->dposy= pos_enemy[1][i];
         //mort(&monenemy[i], &PacMan, &compteur, dbbuffer);
         }
 
-        call_monster(dbbuffer,enemy,monenemy[i], &PacMan, &compteur);
+        call_monster(dbbuffer,enemy,monenemy[i], &PacMan);
 
 
         masked_blit(enemy, map, 0,0,monenemy[i]->dposx,monenemy[i]->dposy,enemy->w,enemy->h);
@@ -126,7 +126,11 @@ monenemy[i]->dposy= pos_enemy[1][i];
 
  deplacementPacMan(dbbuffer, &PacMan, &a);
 
-//test
+ compteur_death++;
+
+ compteur_death = death(monenemy, &PacMan, compteur_death,dbbuffer);
+
+
 
 
 
