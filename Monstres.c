@@ -8,7 +8,7 @@ t_enemy * initialiserenemy()
 
     mmonstre->dposx= 0;
     mmonstre->dposy= 0;
-    mmonstre->ddeplacement=2;
+    mmonstre->ddeplacement=3;
     mmonstre->ddirection = rand()%4;
     mmonstre->alive = 1;
     mmonstre->dtx=25;
@@ -164,17 +164,18 @@ BITMAP * call_monster(BITMAP*dbbuffer,t_enemy * monenemy, t_PacMan *PacMan)
 
     if((monenemy->alive == 1))
     {
-        if((monenemy->dposx - PacMan->posx > -100) && (monenemy->dposy - PacMan->posy > -100) && (monenemy->dposx - PacMan->posx < 100) && (monenemy->dposy - PacMan->posy < 100))
+        if((monenemy->dposx - PacMan->posx > -150) && (monenemy->dposy - PacMan->posy > -150) && (monenemy->dposx - PacMan->posx < 150) && (monenemy->dposy - PacMan->posy < 150))
         {
             enemy = load_bitmap("enemy_follow.bmp",NULL);
+
+            monenemy->ddeplacement = 4;
 
             follow_monster(monenemy, PacMan, dbbuffer);
 
         }
         else
         {
-
-
+            monenemy->ddeplacement = 3;
 
             if(monenemy->ddirection == 0)
             {
