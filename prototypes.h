@@ -11,6 +11,8 @@ typedef struct gestion_map
     BITMAP * buffer_pc_nb[4];
     BITMAP * map_pac_man[4];
     BITMAP * noborder_pac_man[4];
+    BITMAP * actual_front;
+    BITMAP * actual_test;
     int choix;
     int border;
 } t_map;
@@ -52,7 +54,7 @@ typedef struct PacMan
 t_enemy * initialiserenemy();
 t_map * initialisermap();
 
-BITMAP* choix_map(t_map * changemap);
+t_map * choix_map(t_map * changemap);
 BITMAP* call_monster(BITMAP*dbbuffer,t_enemy * monenemy, t_PacMan *PacMan);
 BITMAP* deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a);
 BITMAP* action_sprite_pacman(t_PacMan*PacMan, BITMAP*mabitmap[], int taille_max);

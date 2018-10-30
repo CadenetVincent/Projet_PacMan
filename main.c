@@ -71,18 +71,20 @@ int main()
 
     map = create_bitmap(SCREEN_W,SCREEN_H);
     dbbuffer = create_bitmap(SCREEN_W,SCREEN_H);
-    front = load_bitmap("map_pac_man.bmp",NULL);
+    //front = load_bitmap("map_pac_man.bmp",NULL);
     //perso_img = load_bitmap("bonhomme_pc.bmp",NULL);
-    test = load_bitmap("bufferpc.bmp",NULL);
+    //test = load_bitmap("bufferpc.bmp",NULL);
     menu = load_bitmap("menu.bmp", NULL);
     menubuffer = load_bitmap("menubuffer.bmp", NULL);
 
+    gestion_map = initialisermap();
 
+    //Choisir sa map avec ou sans bordure
 
-    if(!test)
-    {
-        printf("Erreur buffer !");
-    }
+    gestion_map->choix=3;
+    gestion_map->border=0;
+
+    gestion_map = choix_map(gestion_map);
 
 for(i=0; i<4; i++)
 {
@@ -91,9 +93,6 @@ monenemy[i]->dposx= pos_enemy[0][i];
 monenemy[i]->dposy= pos_enemy[1][i];
 }
 
-gestion_map = initialisermap();
-
-mapbuffer[2] = choix_map(gestion_map);
 
     while(!key[KEY_ESC])
     {
@@ -105,13 +104,13 @@ mapbuffer[2] = choix_map(gestion_map);
         {
             while(PacMan.vies != 0)
             {
-                stretch_blit(test, dbbuffer,0,0,test->w,test->h,0,0,SCREEN_W,SCREEN_H);
+        stretch_blit(gestion_map->actual_test, dbbuffer,0,0,gestion_map->actual_test->w,gestion_map->actual_test->h,0,0,SCREEN_W,SCREEN_H);
 
         //stretch_blit(test, map, 0,0,test->w,test->h,0,0,SCREEN_W,SCREEN_H);
 
         rectfill(dbbuffer, PacMan.posx,PacMan.posy, PacMan.posx+25, PacMan.posy+22, makecol(255,255,255));
 
-        stretch_blit(front, map, 0,0,front->w,front->h,0,0,SCREEN_W,SCREEN_H);
+        stretch_blit(gestion_map->actual_front, map, 0,0,gestion_map->actual_front->w,gestion_map->actual_front->h,0,0,SCREEN_W,SCREEN_H);
 
 
        perso_img = deplacementPacMan(dbbuffer, &PacMan, &a);

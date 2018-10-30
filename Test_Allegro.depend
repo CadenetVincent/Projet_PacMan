@@ -21,7 +21,7 @@
 1540924446 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\monstres.c
 	"prototypes.h"
 
-1540935144 c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\prototypes.h
+1540943337 c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\prototypes.h
 	<allegro.h>
 	<stdlib.h>
 	<stdio.h>
@@ -34,6 +34,9 @@
 	<stdio.h>
 	"prototypes.h"
 
-1540935072 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\main.c
+1540943257 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\main.c
+	"prototypes.h"
+
+1540943290 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\map.c
 	"prototypes.h"
 
