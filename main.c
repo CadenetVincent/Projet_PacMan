@@ -21,19 +21,16 @@ void lancerAllegro()
      show_mouse(screen);
 }
 
-
-
-
-
 int main()
 {
-    int posx,posy;    // coordonnées
-    int tx,ty;        // taille (largeur et hauteur)
-    int deplacement;  // amplitude absolu des déplacements
+    //int posx,posy;    // coordonnées
+    //int tx,ty;        // taille (largeur et hauteur)
+    //int deplacement;  // amplitude absolu des déplacements
     int pos_enemy[2][4]={{255,497,255,497},{283,283,640,640}};
     int i = 0;
 
     t_enemy * monenemy[4];
+    t_map * gestion_map;
 
     BITMAP *test;
     BITMAP *map;
@@ -43,6 +40,7 @@ int main()
     BITMAP * dbbuffer;
     BITMAP * menu;
     BITMAP * menubuffer;
+    BITMAP * mapbuffer[2];
 
     lancerAllegro();
     int a = 0;
@@ -92,6 +90,10 @@ monenemy[i] = initialiserenemy();
 monenemy[i]->dposx= pos_enemy[0][i];
 monenemy[i]->dposy= pos_enemy[1][i];
 }
+
+gestion_map = initialisermap();
+
+mapbuffer[2] = choix_map(gestion_map);
 
     while(!key[KEY_ESC])
     {
