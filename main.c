@@ -35,7 +35,7 @@ int main()
 
     BITMAP *test;
     BITMAP *map;
-    BITMAP *map1;
+    BITMAP *perso_img;
     BITMAP * enemy;
     BITMAP * front;
     BITMAP * dbbuffer;
@@ -69,9 +69,21 @@ int main()
     map = create_bitmap(SCREEN_W,SCREEN_H);
     dbbuffer = create_bitmap(SCREEN_W,SCREEN_H);
     front = load_bitmap("map_pac_man.bmp",NULL);
-    map1 = load_bitmap("bonhomme_pc.bmp",NULL);
+    perso_img = load_bitmap("bonhomme_pc.bmp",NULL);
     test = load_bitmap("bufferpc.bmp",NULL);
     enemy = load_bitmap("enemy.bmp",NULL);
+
+    /*
+    for(i=1; i<3; i++)
+    {
+        sprintf(nomfichier,"pacman_bot_%d.bmp",i);
+        mesimages->moon[j]=load_bitmap(nomfichier,NULL);
+        if (!mesimages->moon[j])
+        {
+            allegro_message("PRB d'ouverture = %s",nomfichier);
+        }
+    }
+    */
 
     if(!test)
     {
@@ -97,8 +109,7 @@ monenemy[i]->dposy= pos_enemy[1][i];
 
 
 
-
-        masked_blit(map1, map, 0,0,PacMan.posx,PacMan.posy,map1->w,map1->h);
+        masked_blit(perso_img, map, 0,0,PacMan.posx,PacMan.posy,perso_img->w,perso_img->h);
  //mort(&monenemy, &PacMan, &compteur,dbbuffer);
 
 /// 47-40
