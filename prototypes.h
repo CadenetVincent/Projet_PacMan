@@ -36,7 +36,6 @@ typedef struct PacMan
 
     //Sprites change
     int compteur;
-    int compteur2;
     int temporiseur;
     int image_actuelle;
 
@@ -44,8 +43,8 @@ typedef struct PacMan
 
 t_enemy * initialiserenemy();
 
-void call_monster(BITMAP*dbbuffer, BITMAP*enemy,t_enemy * monenemy, t_PacMan *PacMan);
-BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a);
+BITMAP* call_monster(BITMAP*dbbuffer,t_enemy * monenemy, t_PacMan *PacMan);
+BITMAP* deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a);
 BITMAP* action_sprite_pacman(t_PacMan*PacMan, BITMAP*mabitmap[], int taille_max);
 void mort(t_enemy *monenemy, t_PacMan * PacMan, int * compteur, BITMAP *dbbuffer);
 //Version fonctionnelle

@@ -72,7 +72,6 @@ int main()
     front = load_bitmap("map_pac_man.bmp",NULL);
     //perso_img = load_bitmap("bonhomme_pc.bmp",NULL);
     test = load_bitmap("bufferpc.bmp",NULL);
-    enemy = load_bitmap("enemy.bmp",NULL);
 
     if(!test)
     {
@@ -117,7 +116,7 @@ monenemy[i]->dposy= pos_enemy[1][i];
         //mort(&monenemy[i], &PacMan, &compteur, dbbuffer);
         }
 
-        call_monster(dbbuffer,enemy,monenemy[i],&PacMan);
+        enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
 
 
         masked_blit(enemy, map, 0,0,monenemy[i]->dposx,monenemy[i]->dposy,enemy->w,enemy->h);
