@@ -39,6 +39,7 @@ int main()
     BITMAP * enemy;
     BITMAP * front;
     BITMAP * dbbuffer;
+
     lancerAllegro();
     int a = 0;
     int compteur_death = 80;
@@ -69,21 +70,9 @@ int main()
     map = create_bitmap(SCREEN_W,SCREEN_H);
     dbbuffer = create_bitmap(SCREEN_W,SCREEN_H);
     front = load_bitmap("map_pac_man.bmp",NULL);
-    perso_img = load_bitmap("bonhomme_pc.bmp",NULL);
+    //perso_img = load_bitmap("bonhomme_pc.bmp",NULL);
     test = load_bitmap("bufferpc.bmp",NULL);
     enemy = load_bitmap("enemy.bmp",NULL);
-
-    /*
-    for(i=1; i<3; i++)
-    {
-        sprintf(nomfichier,"pacman_bot_%d.bmp",i);
-        mesimages->moon[j]=load_bitmap(nomfichier,NULL);
-        if (!mesimages->moon[j])
-        {
-            allegro_message("PRB d'ouverture = %s",nomfichier);
-        }
-    }
-    */
 
     if(!test)
     {
@@ -108,8 +97,10 @@ monenemy[i]->dposy= pos_enemy[1][i];
         stretch_blit(front, map, 0,0,front->w,front->h,0,0,SCREEN_W,SCREEN_H);
 
 
+       perso_img = deplacementPacMan(dbbuffer, &PacMan, &a);
 
-        masked_blit(perso_img, map, 0,0,PacMan.posx,PacMan.posy,perso_img->w,perso_img->h);
+       masked_blit(perso_img, map, 0,0,PacMan.posx,PacMan.posy,perso_img->w,perso_img->h);
+       //draw_sprite(map,perso_img,PacMan.posx,PacMan.posy);
  //mort(&monenemy, &PacMan, &compteur,dbbuffer);
 
 /// 47-40
@@ -126,20 +117,20 @@ monenemy[i]->dposy= pos_enemy[1][i];
         //mort(&monenemy[i], &PacMan, &compteur, dbbuffer);
         }
 
-        call_monster(dbbuffer,enemy,monenemy[i], &PacMan);
+        call_monster(dbbuffer,enemy,monenemy[i],&PacMan);
 
 
         masked_blit(enemy, map, 0,0,monenemy[i]->dposx,monenemy[i]->dposy,enemy->w,enemy->h);
 
         }
 
-         blit(map, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
-
- deplacementPacMan(dbbuffer, &PacMan, &a);
+ blit(map, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
 
  compteur_death++;
 
  compteur_death = death(monenemy, &PacMan, compteur_death,dbbuffer);
+
+
 
 
 
