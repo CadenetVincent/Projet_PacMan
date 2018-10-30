@@ -403,7 +403,7 @@ void intialisationPacMan(t_PacMan *PacMan)
     PacMan->ty = 15;
     PacMan->posx = SCREEN_W/2-PacMan->tx/2;
     PacMan->posy = SCREEN_H/2-PacMan->ty/2;
-    PacMan->deplacement = 4;
+    PacMan->deplacement = 7;
     PacMan->vies = 5;
 
     //Traitement image sprites

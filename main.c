@@ -9,6 +9,7 @@ void lancerAllegro()
 {
     allegro_init();
     install_keyboard();
+    install_mouse();
 
     set_color_depth(desktop_color_depth());
     if (set_gfx_mode(GFX_AUTODETECT_WINDOWED,800,600,0,0)!=0)
@@ -17,6 +18,7 @@ void lancerAllegro()
         allegro_exit();
         exit(EXIT_FAILURE);
     }
+     show_mouse(screen);
 }
 
 
@@ -39,6 +41,8 @@ int main()
     BITMAP * enemy;
     BITMAP * front;
     BITMAP * dbbuffer;
+    BITMAP * menu;
+    BITMAP * menubuffer;
 
     lancerAllegro();
     int a = 0;
@@ -72,6 +76,10 @@ int main()
     front = load_bitmap("map_pac_man.bmp",NULL);
     //perso_img = load_bitmap("bonhomme_pc.bmp",NULL);
     test = load_bitmap("bufferpc.bmp",NULL);
+    menu = load_bitmap("menu.bmp", NULL);
+    menubuffer = load_bitmap("menubuffer.bmp", NULL);
+
+
 
     if(!test)
     {
@@ -87,7 +95,15 @@ monenemy[i]->dposy= pos_enemy[1][i];
 
     while(!key[KEY_ESC])
     {
-        stretch_blit(test, dbbuffer,0,0,test->w,test->h,0,0,SCREEN_W,SCREEN_H);
+        blit(menubuffer, dbbuffer,0,0,0,0,SCREEN_W,SCREEN_H);
+
+        blit(dbbuffer, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
+
+        if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(255,0,0))
+        {
+            while(PacMan.vies != 0)
+            {
+                stretch_blit(test, dbbuffer,0,0,test->w,test->h,0,0,SCREEN_W,SCREEN_H);
 
         //stretch_blit(test, map, 0,0,test->w,test->h,0,0,SCREEN_W,SCREEN_H);
 
@@ -136,6 +152,22 @@ monenemy[i]->dposy= pos_enemy[1][i];
 
 
         rest(20);
+            }
+
+
+        }
+        else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(76,255,0))
+            printf("SP \n");
+        else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(0,38,255))
+            printf("R \n");
+        else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(255,0,110))
+            printf("VIT \n");
+        else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(0,127,14))
+            printf("B \n");
+        else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(128,128,128))
+            exit(0);
+
+
 
 
 
