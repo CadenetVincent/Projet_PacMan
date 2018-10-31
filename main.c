@@ -59,7 +59,7 @@ int main()
     gestion_map = initialisermap();
 
     //Choisir sa map avec ou sans bordure
-    gestion_map->choix=2;
+    gestion_map->choix=3;
     gestion_map->border=0;
 
     gestion_map = choix_map(gestion_map);
