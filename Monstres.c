@@ -296,25 +296,23 @@ BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
     if (key[KEY_UP] && getpixel(dbbuffer,PacMan->posx,PacMan->posy-PacMan->deplacement -7 ) != makecol(255,0,0) && getpixel(dbbuffer,PacMan->posx+25,PacMan->posy-PacMan->deplacement - 7 ) != makecol(255,0,0) )
     {
         *a = 1;
-
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_up, 3);
     }
     if (key[KEY_DOWN] && getpixel(dbbuffer,PacMan->posx,PacMan->posy+PacMan->ty+PacMan->deplacement + 13 ) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx + 25,PacMan->posy+PacMan->ty+PacMan->deplacement+13 ) != makecol(255,00,00))
     {
         *a = 2;
-
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
     }
     if (key[KEY_LEFT] && getpixel(dbbuffer,PacMan->posx-PacMan->deplacement -20,PacMan->posy) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx-PacMan->deplacement - 20,PacMan->posy + 22) != makecol(255,00,00))
     {
         *a = 3;
-
+        PacMan->turn_img = 1;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
     }
     if (key[KEY_RIGHT] && getpixel(dbbuffer,PacMan->posx+PacMan->tx+PacMan->deplacement +25,PacMan->posy ) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx+PacMan->tx+PacMan->deplacement + 25,PacMan->posy + 22) != makecol(255,00,00))
     {
         *a = 4;
-
+        PacMan->turn_img = 0;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
     }
 
@@ -332,8 +330,6 @@ BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
     {
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
         PacMan->posy = PacMan->posy+PacMan->deplacement;// mouvement positif en ordonnées
-
-
     }
     else
     {
@@ -342,6 +338,7 @@ BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
     }
     if (*a == 3 && getpixel(dbbuffer,PacMan->posx-PacMan->deplacement,PacMan->posy) != makecol(255,00,00))
     {
+        PacMan->turn_img = 1;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
         PacMan->posx = PacMan->posx-PacMan->deplacement; // mouvement négatif en abscisses
     }
@@ -351,6 +348,7 @@ BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
     }
     if (*a == 4 && getpixel(dbbuffer,PacMan->posx+PacMan->tx+PacMan->deplacement + 25,PacMan->posy  ) != makecol(255,00,00))
     {
+        PacMan->turn_img = 0;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
         PacMan->posx = PacMan->posx+PacMan->deplacement; // mouvement positif en abscisses
     }
@@ -405,6 +403,7 @@ void intialisationPacMan(t_PacMan *PacMan)
     PacMan->posy = SCREEN_H/2-PacMan->ty/2;
     PacMan->deplacement = 7;
     PacMan->vies = 5;
+    PacMan->turn_img = 0;
 
     //Traitement image sprites
     PacMan->compteur = 0;
@@ -460,8 +459,7 @@ int death(t_enemy *monenemy[], t_PacMan *PacMan, int compteur, BITMAP *dbbuffer)
             PacMan->vies = PacMan->vies-1;
             return 0;
         }
-        printf("compteur : %d \n",compteur);
-        printf("Vie restante : %d \n",PacMan->vies);
+
     }
 
     return compteur;

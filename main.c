@@ -23,9 +23,6 @@ void lancerAllegro()
 
 int main()
 {
-    //int posx,posy;    // coordonnées
-    //int tx,ty;        // taille (largeur et hauteur)
-    //int deplacement;  // amplitude absolu des déplacements
     int pos_enemy[2][4]={{255,497,255,497},{283,283,640,640}};
     int i = 0;
 
@@ -46,42 +43,23 @@ int main()
     int a = 0;
     int compteur_death = 80;
 
-    /*tx=25;
-    ty=25;
-    posx=SCREEN_W/2-tx/2;
-    posy=SCREEN_H/2-ty/2;
-    deplacement=4;*/
-
     t_PacMan *bob;
     t_PacMan PacMan;
     bob = &PacMan;
 
     intialisationPacMan(bob);
 
-
-    /*PacMan.tx = 25;
-    PacMan.ty = 25;
-    PacMan.posx = SCREEN_W/2-PacMan.tx/2;
-    PacMan.posy = SCREEN_H/2-PacMan.ty/2;
-    PacMan.deplacement = 4;*/
-
-
-
     srand(time(NULL));
 
     map = create_bitmap(SCREEN_W,SCREEN_H);
     dbbuffer = create_bitmap(SCREEN_W,SCREEN_H);
-    //front = load_bitmap("map_pac_man.bmp",NULL);
-    //perso_img = load_bitmap("bonhomme_pc.bmp",NULL);
-    //test = load_bitmap("bufferpc.bmp",NULL);
     menu = load_bitmap("menu.bmp", NULL);
     menubuffer = load_bitmap("menubuffer.bmp", NULL);
 
     gestion_map = initialisermap();
 
     //Choisir sa map avec ou sans bordure
-
-    gestion_map->choix=3;
+    gestion_map->choix=2;
     gestion_map->border=0;
 
     gestion_map = choix_map(gestion_map);
@@ -115,7 +93,15 @@ monenemy[i]->dposy= pos_enemy[1][i];
 
        perso_img = deplacementPacMan(dbbuffer, &PacMan, &a);
 
-       masked_blit(perso_img, map, 0,0,PacMan.posx,PacMan.posy,perso_img->w,perso_img->h);
+       if(PacMan.turn_img == 0)
+       {
+       draw_sprite(map,perso_img,PacMan.posx,PacMan.posy);
+       }else
+       {
+       draw_sprite_h_flip(map,perso_img,PacMan.posx,PacMan.posy);
+       }
+
+       //masked_blit(perso_img, map, 0,0,PacMan.posx,PacMan.posy,perso_img->w,perso_img->h);
        //draw_sprite(map,perso_img,PacMan.posx,PacMan.posy);
  //mort(&monenemy, &PacMan, &compteur,dbbuffer);
 

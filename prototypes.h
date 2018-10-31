@@ -48,6 +48,7 @@ typedef struct PacMan
     int compteur;
     int temporiseur;
     int image_actuelle;
+    int turn_img;
 
 }t_PacMan;
 
