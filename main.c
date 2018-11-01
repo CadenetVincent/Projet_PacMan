@@ -28,6 +28,7 @@ int main()
 
     t_enemy * monenemy[4];
     t_map * gestion_map;
+    t_Diamant * Diamant[4];
 
     BITMAP *test;
     BITMAP *map;
@@ -38,10 +39,12 @@ int main()
     BITMAP * menu;
     BITMAP * menubuffer;
     BITMAP * mapbuffer[2];
+    BITMAP * Diamants;
 
     lancerAllegro();
     int a = 0;
     int compteur_death = 80;
+    int stop = 0;
 
     t_PacMan *bob;
     t_PacMan PacMan;
@@ -55,6 +58,7 @@ int main()
     dbbuffer = create_bitmap(SCREEN_W,SCREEN_H);
     menu = load_bitmap("menu.bmp", NULL);
     menubuffer = load_bitmap("menubuffer.bmp", NULL);
+    Diamants = load_bitmap("diamant.bmp",NULL);
 
     gestion_map = initialisermap();
 
@@ -69,6 +73,8 @@ for(i=0; i<4; i++)
 monenemy[i] = initialiserenemy();
 monenemy[i]->dposx= pos_enemy[0][i];
 monenemy[i]->dposy= pos_enemy[1][i];
+Diamant[i] = initialiserDiamants();
+
 }
 
 
@@ -120,9 +126,17 @@ monenemy[i]->dposy= pos_enemy[1][i];
         }
 
         enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
+        gestionDiamant(dbbuffer, Diamant[i], front, &stop);
 
 
         masked_blit(enemy, map, 0,0,monenemy[i]->dposx,monenemy[i]->dposy,enemy->w,enemy->h);
+
+        suppressionDiamant(dbbuffer,Diamant[i]);
+
+        if(Diamant[i]->boolean != 1)
+        {
+            masked_blit(Diamants, map,0,0, Diamant[i]->posx, Diamant[i]->posy, SCREEN_W,SCREEN_H);
+        }
 
         }
 

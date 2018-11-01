@@ -494,6 +494,18 @@ void mort(t_enemy *monenemy, t_PacMan *PacMan, int *compteur, BITMAP *dbbuffer)
 //printf("%d \n", PacMan->vies);
 }
 
+t_Diamant * initialiserDiamants()
+{
+    t_Diamant *Diamant;
+    Diamant=(t_Diamant*) malloc(1 * sizeof(t_Diamant));
+
+    Diamant->posx = 0;
+    Diamant->posy = 0;
+    Diamant->boolean = 0;
+
+    return Diamant;
+}
+
 void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int * stop)
 {
     int compteur = 1;
