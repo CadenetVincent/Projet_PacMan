@@ -77,8 +77,8 @@ t_map * initialisermap()
     t_map *gestion_map;
     gestion_map = (t_map*) malloc(1 * sizeof(t_map));
 
-    gestion_map->border=0;
-    gestion_map->choix=0;
+    gestion_map->border= 0;
+    gestion_map->choix= 0;
 
     gestion_map->actual_front=NULL;
     gestion_map->actual_test=NULL;

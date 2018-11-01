@@ -4,18 +4,18 @@
 	<stdlib.h>
 	<allegro.h>
 
-1541079677 source:c:\users\guill\documents\projet_pacman\main.c
+1541082084 source:c:\users\guill\documents\projet_pacman\main.c
 	"prototypes.h"
 
 1540833334 D
 	"prototypes.h"
 
-1541079668 c:\users\guill\documents\projet_pacman\prototypes.h
+1541082084 c:\users\guill\documents\projet_pacman\prototypes.h
 	<allegro.h>
 	<stdlib.h>
 	<stdio.h>
 
-1541079727 source:c:\users\guill\documents\projet_pacman\monstres.c
+1541082203 source:c:\users\guill\documents\projet_pacman\monstres.c
 	"prototypes.h"
 
 1540946589 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\monstres.c
@@ -40,6 +40,6 @@
 1540943714 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\map.c
 	"prototypes.h"
 
-1541076229 source:c:\users\guill\documents\projet_pacman\map.c
+1541081227 source:c:\users\guill\documents\projet_pacman\map.c
 	"prototypes.h"
 

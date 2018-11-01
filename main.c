@@ -18,12 +18,12 @@ void lancerAllegro()
         allegro_exit();
         exit(EXIT_FAILURE);
     }
-     show_mouse(screen);
+    show_mouse(screen);
 }
 
 int main()
 {
-    int pos_enemy[2][4]={{255,497,255,497},{283,283,640,640}};
+    int pos_enemy[2][4]= {{255,497,255,497},{283,283,640,640}};
     int i = 0;
 
     t_enemy * monenemy[4];
@@ -46,6 +46,9 @@ int main()
     int compteur_death = 80;
     int compteur_score = 0;
     int stop = 0;
+    int niveau = 0;
+    //int border = 0;
+    //int choix = 0;
 
     t_PacMan *bob;
     t_PacMan PacMan;
@@ -64,19 +67,19 @@ int main()
     gestion_map = initialisermap();
 
     //Choisir sa map avec ou sans bordure
-    gestion_map->choix=3;
+    gestion_map->choix=0;
     gestion_map->border=0;
 
     gestion_map = choix_map(gestion_map);
 
-for(i=0; i<4; i++)
-{
-monenemy[i] = initialiserenemy();
-monenemy[i]->dposx= pos_enemy[0][i];
-monenemy[i]->dposy= pos_enemy[1][i];
-Diamant[i] = initialiserDiamants();
+    for(i=0; i<4; i++)
+    {
+        monenemy[i] = initialiserenemy();
+        monenemy[i]->dposx= pos_enemy[0][i];
+        monenemy[i]->dposy= pos_enemy[1][i];
+        Diamant[i] = initialiserDiamants();
 
-}
+    }
 
 
     while(!key[KEY_ESC])
@@ -89,69 +92,70 @@ Diamant[i] = initialiserDiamants();
         {
             while(PacMan.vies != 0)
             {
-                while(PacMan.score != 4)
-{
+                while(PacMan.score != 4 && PacMan.vies != 0 )
+                {
 
-               stretch_blit(gestion_map->actual_test, dbbuffer,0,0,gestion_map->actual_test->w,gestion_map->actual_test->h,0,0,SCREEN_W,SCREEN_H);
+                    stretch_blit(gestion_map->actual_test, dbbuffer,0,0,gestion_map->actual_test->w,gestion_map->actual_test->h,0,0,SCREEN_W,SCREEN_H);
 
-        //stretch_blit(test, map, 0,0,test->w,test->h,0,0,SCREEN_W,SCREEN_H);
+                    //stretch_blit(test, map, 0,0,test->w,test->h,0,0,SCREEN_W,SCREEN_H);
 
-        rectfill(dbbuffer, PacMan.posx,PacMan.posy, PacMan.posx+25, PacMan.posy+22, makecol(255,255,255));
+                    rectfill(dbbuffer, PacMan.posx,PacMan.posy, PacMan.posx+25, PacMan.posy+22, makecol(255,255,255));
 
-        stretch_blit(gestion_map->actual_front, map, 0,0,gestion_map->actual_front->w,gestion_map->actual_front->h,0,0,SCREEN_W,SCREEN_H);
+                    stretch_blit(gestion_map->actual_front, map, 0,0,gestion_map->actual_front->w,gestion_map->actual_front->h,0,0,SCREEN_W,SCREEN_H);
 
 
-       perso_img = deplacementPacMan(dbbuffer, &PacMan, &a);
+                    perso_img = deplacementPacMan(dbbuffer, &PacMan, &a);
 
-       if(PacMan.turn_img == 0)
-       {
-       draw_sprite(map,perso_img,PacMan.posx,PacMan.posy);
-       }else
-       {
-       draw_sprite_h_flip(map,perso_img,PacMan.posx,PacMan.posy);
-       }
+                    if(PacMan.turn_img == 0)
+                    {
+                        draw_sprite(map,perso_img,PacMan.posx,PacMan.posy);
+                    }
+                    else
+                    {
+                        draw_sprite_h_flip(map,perso_img,PacMan.posx,PacMan.posy);
+                    }
 
-       //masked_blit(perso_img, map, 0,0,PacMan.posx,PacMan.posy,perso_img->w,perso_img->h);
-       //draw_sprite(map,perso_img,PacMan.posx,PacMan.posy);
- //mort(&monenemy, &PacMan, &compteur,dbbuffer);
+                    //masked_blit(perso_img, map, 0,0,PacMan.posx,PacMan.posy,perso_img->w,perso_img->h);
+                    //draw_sprite(map,perso_img,PacMan.posx,PacMan.posy);
+//mort(&monenemy, &PacMan, &compteur,dbbuffer);
 
 /// 47-40
 
-        for(i=0; i<4; i++)
-        {
+                    for(i=0; i<4; i++)
+                    {
 
-        monenemy[i]->compteur_enemy++;
+                        monenemy[i]->compteur_enemy++;
 
-        if(monenemy[i]->compteur_enemy == 100)
-        {
-        monenemy[i]->resetdir=0;
-        monenemy[i]->compteur_enemy=0;
-        //mort(&monenemy[i], &PacMan, &compteur, dbbuffer);
-        }
+                        if(monenemy[i]->compteur_enemy == 100)
+                        {
+                            monenemy[i]->resetdir=0;
+                            monenemy[i]->compteur_enemy=0;
+                            //mort(&monenemy[i], &PacMan, &compteur, dbbuffer);
+                        }
 
-        enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
-        gestionDiamant(dbbuffer, Diamant[i], front, &stop);
-
-
-        masked_blit(enemy, map, 0,0,monenemy[i]->dposx,monenemy[i]->dposy,enemy->w,enemy->h);
-
-        suppressionDiamant(dbbuffer,Diamant[i],&PacMan);
+                        enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
+                        gestionDiamant(dbbuffer, Diamant[i], front, &stop);
 
 
-        if(Diamant[i]->boolean != 1)
-        {
-            masked_blit(Diamants, map,0,0, Diamant[i]->posx, Diamant[i]->posy, SCREEN_W,SCREEN_H);
-        }
+                        masked_blit(enemy, map, 0,0,monenemy[i]->dposx,monenemy[i]->dposy,enemy->w,enemy->h);
 
-        }
+                        suppressionDiamant(dbbuffer,Diamant[i],&PacMan);
 
- blit(map, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
- score(&Diamant,&PacMan,&compteur_score);
- compteur_death++;
- //compteur_score++;
+
+                        if(Diamant[i]->boolean != 1)
+                        {
+                            masked_blit(Diamants, map,0,0, Diamant[i]->posx, Diamant[i]->posy, SCREEN_W,SCREEN_H);
+                        }
+
+                    }
+
+                    blit(map, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
+                    score(&Diamant,&PacMan,&compteur_score, niveau);
+                    compteur_death++;
+//compteur_score++;
 //printf("%d \n\n", compteur_score);
- compteur_death = death(monenemy, &PacMan, compteur_death,dbbuffer);
- //compteur_score = score(Diamant,&PacMan,compteur_score,dbbuffer);
+                    compteur_death = death(monenemy, &PacMan, compteur_death,dbbuffer);
+//compteur_score = score(Diamant,&PacMan,compteur_score,dbbuffer);
 
 
 
@@ -159,13 +163,101 @@ Diamant[i] = initialiserDiamants();
 
 
 
-        rest(20);}
+
+                    rest(20);
+                }
+stop = 0;
+for(i=0; i<4; i++)
+    {
+        Diamant[i] = initialiserDiamants();
+
+    }
+
+
+printf("fghjklkjhgfdcvbn \n\n");
+                while(PacMan.score != 8 && PacMan.vies != 0)
+                {
+niveau = 1;
+
+
+                    gestion_map->choix = 1;
+                    gestion_map = choix_map(gestion_map);
+
+                    stretch_blit(gestion_map->actual_test, dbbuffer,0,0,gestion_map->actual_test->w,gestion_map->actual_test->h,0,0,SCREEN_W,SCREEN_H);
+
+                    //stretch_blit(test, map, 0,0,test->w,test->h,0,0,SCREEN_W,SCREEN_H);
+
+                    rectfill(dbbuffer, PacMan.posx,PacMan.posy, PacMan.posx+25, PacMan.posy+22, makecol(255,255,255));
+
+                    stretch_blit(gestion_map->actual_front, map, 0,0,gestion_map->actual_front->w,gestion_map->actual_front->h,0,0,SCREEN_W,SCREEN_H);
+
+
+                    perso_img = deplacementPacMan(dbbuffer, &PacMan, &a);
+
+                    if(PacMan.turn_img == 0)
+                    {
+                        draw_sprite(map,perso_img,PacMan.posx,PacMan.posy);
+                    }
+                    else
+                    {
+                        draw_sprite_h_flip(map,perso_img,PacMan.posx,PacMan.posy);
+                    }
+
+                    //masked_blit(perso_img, map, 0,0,PacMan.posx,PacMan.posy,perso_img->w,perso_img->h);
+                    //draw_sprite(map,perso_img,PacMan.posx,PacMan.posy);
+//mort(&monenemy, &PacMan, &compteur,dbbuffer);
+
+/// 47-40
+
+                    for(i=0; i<4; i++)
+                    {
+
+                        monenemy[i]->compteur_enemy++;
+
+                        if(monenemy[i]->compteur_enemy == 100)
+                        {
+                            monenemy[i]->resetdir=0;
+                            monenemy[i]->compteur_enemy=0;
+                            //mort(&monenemy[i], &PacMan, &compteur, dbbuffer);
+                        }
+
+                        enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
+                        gestionDiamant(dbbuffer, Diamant[i], front, &stop);
+
+
+                        masked_blit(enemy, map, 0,0,monenemy[i]->dposx,monenemy[i]->dposy,enemy->w,enemy->h);
+
+                        suppressionDiamant(dbbuffer,Diamant[i],&PacMan);
+
+
+                        if(Diamant[i]->boolean != 1)
+                        {
+                            masked_blit(Diamants, map,0,0, Diamant[i]->posx, Diamant[i]->posy, SCREEN_W,SCREEN_H);
+                        }
+
+                    }
+
+                    blit(map, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
+                    score(&Diamant,&PacMan,&compteur_score, niveau);
+                    compteur_death++;
+//compteur_score++;
+//printf("%d \n\n", compteur_score);
+                    compteur_death = death(monenemy, &PacMan, compteur_death,dbbuffer);
+//compteur_score = score(Diamant,&PacMan,compteur_score,dbbuffer);
 
 
 
-                 blit(menubuffer, dbbuffer,0,0,0,0,SCREEN_W,SCREEN_H);
 
-        blit(dbbuffer, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
+
+
+
+
+                    rest(20);
+
+
+
+                }
+
 
             }
 

@@ -527,10 +527,10 @@ void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int * 
 
 
         if(getpixel(dbbuffer, Diamant->posx+30, Diamant->posy+30) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx+15, Diamant->posy+15) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx, Diamant->posy+30) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx, Diamant->posy+15) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx+30, Diamant->posy) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx, Diamant->posy) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx+15, Diamant->posy) == makecol(255,0,0))
-                {
-                    compteur2++;
-                    printf("ERTYU\n");
-                }
+        {
+            compteur2++;
+            printf("ERTYU\n");
+        }
 
 
 
@@ -556,32 +556,44 @@ void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int * 
 
 void suppressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant, t_PacMan * PacMan)
 {
-    if(getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy) == makecol(255,255,255) ||getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy+30) == makecol(255,255,255)||getpixel(dbbuffer, Diamant->posx , Diamant->posy+15) == makecol(255,255,255)||getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy+30  ) == makecol(255,255,255))
-        {
-            Diamant->boolean = 1;
-            //PacMan->score = PacMan->score + 1;
-            printf("%d\n", PacMan->score);
+    if(getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy) == makecol(255,255,255) ||getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy+30) == makecol(255,255,255)||getpixel(dbbuffer, Diamant->posx, Diamant->posy+15) == makecol(255,255,255)||getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy+30  ) == makecol(255,255,255))
+    {
+        Diamant->boolean = 1;
+        //PacMan->score = PacMan->score + 1;
+        printf("%d\n", PacMan->score);
 
-        }
+    }
 
 
 
 
 }
 
-void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur)
+void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur, int niveau)
 {
-    *compteur = 0;
- for(int i = 0; i < 4; i++)
+    if(niveau == 0)
+    {
+        *compteur = 0;
+    }
+    else if(niveau == 1)
+    {
+        *compteur = 4;
+    }
+    else if(niveau == 2)
+    {
+        *compteur = 8;
+    }
+    for(int i = 0; i < 4; i++)
     {
         if(Diamant[i]->boolean == 1)
         {
             *compteur = *compteur + 1;
-            printf("%d \n", *compteur);
         }
     }
 
     PacMan->score = *compteur;
+
+    printf("%d zsdfghgfdsdfgh \n\n", PacMan->score);
 
 }
 
