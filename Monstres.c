@@ -298,7 +298,7 @@ BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
         *a = 1;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_up, 3);
     }
-    if (key[KEY_DOWN] && getpixel(dbbuffer,PacMan->posx,PacMan->posy+PacMan->ty+PacMan->deplacement + 13 ) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx + 25,PacMan->posy+PacMan->ty+PacMan->deplacement+13 ) != makecol(255,00,00))
+    if (key[KEY_DOWN] && getpixel(dbbuffer,PacMan->posx,PacMan->posy+PacMan->ty+PacMan->deplacement + 7 ) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx + 25,PacMan->posy+PacMan->ty+PacMan->deplacement+7 ) != makecol(255,00,00))
     {
         *a = 2;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
@@ -316,7 +316,7 @@ BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
     }
 
-    if ( *a == 1 && getpixel(dbbuffer,PacMan->posx,PacMan->posy-PacMan->deplacement ) != makecol(255,00,00))
+    if ( *a == 1 && getpixel(dbbuffer,PacMan->posx,PacMan->posy-PacMan->deplacement  ) != makecol(255,00,00))
     {
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_up, 3);
         PacMan->posy = PacMan->posy-PacMan->deplacement;// mouvement négatif en ordonnées
@@ -326,7 +326,7 @@ BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
     {
         PacMan->posy = PacMan->posy;
     }
-    if (*a == 2 && getpixel(dbbuffer,PacMan->posx,PacMan->posy+PacMan->ty+PacMan->deplacement + 13 ) != makecol(255,0,0))
+    if (*a == 2 && getpixel(dbbuffer,PacMan->posx,PacMan->posy+PacMan->ty+PacMan->deplacement + 7 ) != makecol(255,0,0))
     {
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
         PacMan->posy = PacMan->posy+PacMan->deplacement;// mouvement positif en ordonnées
@@ -597,4 +597,22 @@ void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur, int niveau)
 
 }
 
+void sauvegarde1(t_enemy *enemy[], t_PacMan * PacMan, t_map * gestion_map)
+{
+    FILE * fichier = NULL;
+    fichier = fopen("sauvegardes.txt", "w");
 
+
+    if (fichier != NULL)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            fprintf(fichier, "%d \n %d \n ",enemy[i]->dposx, enemy[i]->dposy);
+        }
+        fprintf(fichier, "%d \n%d \n%d \n%d \n%d \n%d" ,PacMan->posx, PacMan->posy, PacMan->vies,PacMan->score, gestion_map->choix, gestion_map->border );
+        fclose(fichier);
+    }
+
+
+
+}

@@ -5,6 +5,8 @@
 
 //Test push
 
+
+/// NE PAS OUBLIER DE MODIFIER LES DIAMANTS POUR EN METTRE 5 !!!!!!
 void lancerAllegro()
 {
     allegro_init();
@@ -20,7 +22,7 @@ void lancerAllegro()
     }
     show_mouse(screen);
 }
-
+/// NE PAS OUBLIER DE MODIFIER LES DIAMANTS POUR EN METTRE 5 !!!!!!
 int main()
 {
     int pos_enemy[2][4]= {{255,497,255,497},{283,283,640,640}};
@@ -85,7 +87,7 @@ int main()
 
     }
 
-
+/// NE PAS OUBLIER DE MODIFIER LES DIAMANTS POUR EN METTRE 5 !!!!!!
     while(!key[KEY_ESC])
     {
         blit(menubuffer, dbbuffer,0,0,0,0,SCREEN_W,SCREEN_H);
@@ -107,7 +109,7 @@ int main()
             PacMan.posy = SCREEN_H/2-PacMan.ty/2-10;
 
 
-            while(PacMan.score != 4 && PacMan.vies != 0 )
+            while(PacMan.score != 4 && PacMan.vies != 0 && !key[KEY_S])
             {
                 niveau = 0;
                 gestion_map->choix = 0;
@@ -179,7 +181,10 @@ int main()
 
 
 
-
+ if(key[KEY_S])
+            {
+                sauvegarde1( &monenemy,&PacMan, gestion_map);
+            }
 
                 rest(20);
             }
@@ -193,7 +198,7 @@ int main()
             PacMan.posy = SCREEN_H/2-PacMan.ty/2;
 
 
-            while(PacMan.score != 8 && PacMan.vies != 0)
+            while(PacMan.score != 8 && PacMan.vies != 0 && !key[KEY_S])
             {
                 niveau = 1;
 
@@ -267,7 +272,10 @@ int main()
 
 
 
-
+ if(key[KEY_S])
+            {
+                sauvegarde1( &monenemy,&PacMan, gestion_map);
+            }
 
 
                 rest(20);
@@ -285,7 +293,7 @@ int main()
             PacMan.posx = SCREEN_W/2-PacMan.tx/2;
             PacMan.posy = SCREEN_H/2-PacMan.ty/2;
 
-            while(PacMan.score != 12 && PacMan.vies != 0)
+            while(PacMan.score != 12 && PacMan.vies != 0 && !key[KEY_S])
             {
                 niveau = 2;
 
@@ -359,7 +367,10 @@ int main()
 
 
 
-
+ if(key[KEY_S])
+            {
+                sauvegarde1( &monenemy,&PacMan, gestion_map);
+            }
 
 
 
@@ -369,6 +380,10 @@ int main()
 
             }
 
+            if(key[KEY_S])
+            {
+                sauvegarde1( &monenemy,&PacMan, gestion_map);
+            }
 
             /*blit(menubuffer, dbbuffer,0,0,0,0,SCREEN_W,SCREEN_H);
 
@@ -378,12 +393,12 @@ int main()
         else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(76,255,0))
             printf("SP \n");
         else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(0,38,255))
-            {
-                while(!key[KEY_SPACE])
+        {
+            while(!key[KEY_SPACE])
             {
                 blit(regles, screen,0,0,0,0,SCREEN_W,SCREEN_H);
             }
-}
+        }
         else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(255,0,110))
             printf("VIT \n");
         else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(0,127,14))
@@ -400,7 +415,7 @@ int main()
 
                 if(key[KEY_SPACE])
                 {
-                     boolean = 1;
+                    boolean = 1;
                     gestion_map->border = 0;
                 }
 
@@ -410,7 +425,7 @@ int main()
         else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(128,128,128))
             exit(0);
 
-
+/// NE PAS OUBLIER DE MODIFIER LES DIAMANTS POUR EN METTRE 5 !!!!!!
 
 
 
