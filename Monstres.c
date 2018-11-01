@@ -444,6 +444,7 @@ void intialisationPacMan(t_PacMan *PacMan)
     }
 
 
+    PacMan->score = 0;
 
 }
 
@@ -553,13 +554,35 @@ void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int * 
 
 }
 
-void suppressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant)
+void suppressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant, t_PacMan * PacMan)
 {
     if(getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy) == makecol(255,255,255) ||getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy+30) == makecol(255,255,255)||getpixel(dbbuffer, Diamant->posx , Diamant->posy+15) == makecol(255,255,255)||getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy+30  ) == makecol(255,255,255))
         {
             Diamant->boolean = 1;
+            //PacMan->score = PacMan->score + 1;
+            printf("%d\n", PacMan->score);
+
         }
+
+
+
+
 }
 
+void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur)
+{
+    *compteur = 0;
+ for(int i = 0; i < 4; i++)
+    {
+        if(Diamant[i]->boolean == 1)
+        {
+            *compteur = *compteur + 1;
+            printf("%d \n", *compteur);
+        }
+    }
+
+    PacMan->score = *compteur;
+
+}
 
 

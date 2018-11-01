@@ -50,6 +50,8 @@ typedef struct PacMan
     int image_actuelle;
     int turn_img;
 
+    int score;
+
 }t_PacMan;
 
 typedef struct Diamant
@@ -63,7 +65,7 @@ t_Diamant * initialiserDiamants();
 
 void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int *stop);
 
-void supressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant);
+void supressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant,t_PacMan * PacMan);
 
 
 t_enemy * initialiserenemy();
@@ -78,6 +80,7 @@ void mort(t_enemy *monenemy, t_PacMan * PacMan, int * compteur, BITMAP *dbbuffer
 
 //Version fonctionnelle
 int death(t_enemy *monenemy[4], t_PacMan *PacMan, int compteur, BITMAP *dbbuffer);
+void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur);
 
 
 

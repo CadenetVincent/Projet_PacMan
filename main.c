@@ -44,6 +44,7 @@ int main()
     lancerAllegro();
     int a = 0;
     int compteur_death = 80;
+    int compteur_score = 0;
     int stop = 0;
 
     t_PacMan *bob;
@@ -88,7 +89,10 @@ Diamant[i] = initialiserDiamants();
         {
             while(PacMan.vies != 0)
             {
-        stretch_blit(gestion_map->actual_test, dbbuffer,0,0,gestion_map->actual_test->w,gestion_map->actual_test->h,0,0,SCREEN_W,SCREEN_H);
+                while(PacMan.score != 4)
+{
+
+               stretch_blit(gestion_map->actual_test, dbbuffer,0,0,gestion_map->actual_test->w,gestion_map->actual_test->h,0,0,SCREEN_W,SCREEN_H);
 
         //stretch_blit(test, map, 0,0,test->w,test->h,0,0,SCREEN_W,SCREEN_H);
 
@@ -131,7 +135,8 @@ Diamant[i] = initialiserDiamants();
 
         masked_blit(enemy, map, 0,0,monenemy[i]->dposx,monenemy[i]->dposy,enemy->w,enemy->h);
 
-        suppressionDiamant(dbbuffer,Diamant[i]);
+        suppressionDiamant(dbbuffer,Diamant[i],&PacMan);
+
 
         if(Diamant[i]->boolean != 1)
         {
@@ -141,10 +146,12 @@ Diamant[i] = initialiserDiamants();
         }
 
  blit(map, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
-
+ score(&Diamant,&PacMan,&compteur_score);
  compteur_death++;
-
+ //compteur_score++;
+//printf("%d \n\n", compteur_score);
  compteur_death = death(monenemy, &PacMan, compteur_death,dbbuffer);
+ //compteur_score = score(Diamant,&PacMan,compteur_score,dbbuffer);
 
 
 
@@ -152,7 +159,14 @@ Diamant[i] = initialiserDiamants();
 
 
 
-        rest(20);
+        rest(20);}
+
+
+
+                 blit(menubuffer, dbbuffer,0,0,0,0,SCREEN_W,SCREEN_H);
+
+        blit(dbbuffer, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
+
             }
 
 
