@@ -494,5 +494,60 @@ void mort(t_enemy *monenemy, t_PacMan *PacMan, int *compteur, BITMAP *dbbuffer)
 //printf("%d \n", PacMan->vies);
 }
 
+void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int * stop)
+{
+    int compteur = 1;
+    int compteur2 = 0;
+
+
+
+    while(Diamant->posx == 0 || Diamant->posy == 0 || compteur == 1 && *stop != 4)
+    {
+
+        compteur2 = 0;
+        Diamant->posx = (rand() % (760 - 20 + 1)) + 20;
+        Diamant->posy = (rand() % (560 - 20 + 1)) + 20;
+
+        printf("%d\n", Diamant->posx);
+        printf("%d\n", Diamant->posy);
+
+
+
+        if(getpixel(dbbuffer, Diamant->posx+30, Diamant->posy+30) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx+15, Diamant->posy+15) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx, Diamant->posy+30) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx, Diamant->posy+15) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx+30, Diamant->posy) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx, Diamant->posy) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx+15, Diamant->posy) == makecol(255,0,0))
+                {
+                    compteur2++;
+                    printf("ERTYU\n");
+                }
+
+
+
+        if(compteur2 == 0)
+        {
+            compteur = 0;
+            (*stop)++;
+            //printf("423456787654\n");
+        }
+        /*else
+        {
+            compteur = 1;
+        }*/
+
+
+    }
+
+    //printf("%d \n", *stop);
+
+
+
+}
+
+void suppressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant)
+{
+    if(getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy) == makecol(255,255,255) ||getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy+30) == makecol(255,255,255)||getpixel(dbbuffer, Diamant->posx , Diamant->posy+15) == makecol(255,255,255)||getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy+30  ) == makecol(255,255,255))
+        {
+            Diamant->boolean = 1;
+        }
+}
+
 
 

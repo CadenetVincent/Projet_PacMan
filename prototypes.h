@@ -52,6 +52,20 @@ typedef struct PacMan
 
 }t_PacMan;
 
+typedef struct Diamant
+{
+    int posx;
+    int posy;
+    int boolean;
+}t_Diamant;
+
+t_Diamant * initialiserDiamants();
+
+void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int *stop);
+
+void supressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant);
+
+
 t_enemy * initialiserenemy();
 t_map * initialisermap();
 
