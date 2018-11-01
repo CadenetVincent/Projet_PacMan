@@ -607,12 +607,28 @@ void sauvegarde1(t_enemy *enemy[], t_PacMan * PacMan, t_map * gestion_map)
     {
         for(int i = 0; i < 4; i++)
         {
-            fprintf(fichier, "%d \n %d \n ",enemy[i]->dposx, enemy[i]->dposy);
+            fprintf(fichier, "%d %d ",enemy[i]->dposx, enemy[i]->dposy);
         }
-        fprintf(fichier, "%d \n%d \n%d \n%d \n%d \n%d" ,PacMan->posx, PacMan->posy, PacMan->vies,PacMan->score, gestion_map->choix, gestion_map->border );
+        fprintf(fichier, "%d %d %d %d %d %d" ,PacMan->posx, PacMan->posy, PacMan->vies,PacMan->score, gestion_map->choix, gestion_map->border );
         fclose(fichier);
     }
 
 
 
+}
+
+void recuperation(t_enemy *enemy[], t_PacMan * PacMan, t_map * gestion_map)
+{
+     FILE * fichier = NULL;
+            fichier = fopen("sauvegardes.txt", "r");
+
+            if (fichier != NULL)
+            {
+                for(int i = 0; i < 4 ; i++)
+                {
+                    fscanf(fichier, "%d %d ", enemy[i]->dposx, enemy[i]->dposy);
+                }
+                fscanf(fichier, "%d %d %d %d %d %d ", PacMan->posx, PacMan->posy,PacMan->vies, PacMan->score, gestion_map->choix,gestion_map->border);
+                fclose(fichier);
+            }
 }

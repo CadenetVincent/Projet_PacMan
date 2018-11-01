@@ -152,7 +152,7 @@ int main()
                         //mort(&monenemy[i], &PacMan, &compteur, dbbuffer);
                     }
 
-                    // enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
+                     enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
                     gestionDiamant(dbbuffer, Diamant[i], front, &stop);
 
 
@@ -181,10 +181,10 @@ int main()
 
 
 
- if(key[KEY_S])
-            {
-                sauvegarde1( &monenemy,&PacMan, gestion_map);
-            }
+                if(key[KEY_S])
+                {
+                    sauvegarde1( &monenemy,&PacMan, gestion_map);
+                }
 
                 rest(20);
             }
@@ -244,7 +244,7 @@ int main()
                         //mort(&monenemy[i], &PacMan, &compteur, dbbuffer);
                     }
 
-                    // enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
+                    enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
                     gestionDiamant(dbbuffer, Diamant[i], front, &stop);
 
 
@@ -272,10 +272,10 @@ int main()
 
 
 
- if(key[KEY_S])
-            {
-                sauvegarde1( &monenemy,&PacMan, gestion_map);
-            }
+                if(key[KEY_S])
+                {
+                    sauvegarde1( &monenemy,&PacMan, gestion_map);
+                }
 
 
                 rest(20);
@@ -340,7 +340,7 @@ int main()
                         //mort(&monenemy[i], &PacMan, &compteur, dbbuffer);
                     }
 
-                    //enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
+                    enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
                     gestionDiamant(dbbuffer, Diamant[i], front, &stop);
 
 
@@ -367,10 +367,10 @@ int main()
 
 
 
- if(key[KEY_S])
-            {
-                sauvegarde1( &monenemy,&PacMan, gestion_map);
-            }
+                if(key[KEY_S])
+                {
+                    sauvegarde1( &monenemy,&PacMan, gestion_map);
+                }
 
 
 
@@ -380,10 +380,6 @@ int main()
 
             }
 
-            if(key[KEY_S])
-            {
-                sauvegarde1( &monenemy,&PacMan, gestion_map);
-            }
 
             /*blit(menubuffer, dbbuffer,0,0,0,0,SCREEN_W,SCREEN_H);
 
@@ -391,7 +387,12 @@ int main()
 
         }
         else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(76,255,0))
-            printf("SP \n");
+        {
+           //recuperation(&monenemy,&PacMan, gestion_map);
+
+
+
+        }
         else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(0,38,255))
         {
             while(!key[KEY_SPACE])
