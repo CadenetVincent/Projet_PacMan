@@ -652,8 +652,8 @@ void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur, int niveau)
 
 }
 
-void sauvegarde1(t_enemy *enemy[], t_PacMan * PacMan, t_map * gestion_map)
-{
+void sauvegarde1(t_enemy *monenemy[], t_PacMan * PacMan, t_map * gestion_map)
+{printf("reussite\n");
     FILE * fichier = NULL;
     fichier = fopen("sauvegardes.txt", "w");
 
@@ -663,15 +663,18 @@ void sauvegarde1(t_enemy *enemy[], t_PacMan * PacMan, t_map * gestion_map)
     if (fichier != NULL)
     {
 
+
         fprintf(fichier, "%d %d %d %d %d %d" ,PacMan->posx, PacMan->posy, PacMan->vies,PacMan->score, gestion_map->choix, gestion_map->border );
         fclose(fichier);
     }
     if(fichier1 != NULL)
-    {
+    {printf("reussite1\n");
         for(int i = 0; i < 4; i++)
         {
-            fprintf(fichier1, "%d %d\n ",enemy[i]->dposx, enemy[i]->dposy);
+            fprintf(fichier1, "%d %d\n ",monenemy[i]->dposx, monenemy[i]->dposy);
         }
+
+        fclose(fichier1);
     }
 
 

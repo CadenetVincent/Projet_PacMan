@@ -86,7 +86,7 @@ void mort(t_enemy *monenemy, t_PacMan * PacMan, int * compteur, BITMAP *dbbuffer
 //Version fonctionnelle
 int death(t_enemy *monenemy[4], t_PacMan *PacMan, int compteur, BITMAP *dbbuffer);
 void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur, int niveau);
-void sauvegarde1( t_enemy *enemy[],t_PacMan * PacMan, t_map * gestion_map);
+void sauvegarde1( t_enemy *monenemy[],t_PacMan * PacMan, t_map * gestion_map);
 void recuperation(t_enemy *enemy[], t_PacMan * PacMan, t_map * gestion_map);
 
 
