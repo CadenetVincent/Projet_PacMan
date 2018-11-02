@@ -657,15 +657,21 @@ void sauvegarde1(t_enemy *enemy[], t_PacMan * PacMan, t_map * gestion_map)
     FILE * fichier = NULL;
     fichier = fopen("sauvegardes.txt", "w");
 
+    FILE * fichier1 = NULL;
+    fichier1 = fopen("sauvegarde1.txt", "w");
 
     if (fichier != NULL)
     {
-        for(int i = 0; i < 4; i++)
-        {
-            fprintf(fichier, "%d %d ",enemy[i]->dposx, enemy[i]->dposy);
-        }
+
         fprintf(fichier, "%d %d %d %d %d %d" ,PacMan->posx, PacMan->posy, PacMan->vies,PacMan->score, gestion_map->choix, gestion_map->border );
         fclose(fichier);
+    }
+    if(fichier1 != NULL)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            fprintf(fichier1, "%d %d\n ",enemy[i]->dposx, enemy[i]->dposy);
+        }
     }
 
 
@@ -677,13 +683,21 @@ void recuperation(t_enemy *enemy[], t_PacMan * PacMan, t_map * gestion_map)
      FILE * fichier = NULL;
             fichier = fopen("sauvegardes.txt", "r");
 
+    FILE * fichier1 = NULL;
+    fichier1 = fopen("sauvegarde1.txt", "r");
+
             if (fichier != NULL)
+            {
+
+                fscanf(fichier, "%d %d %d %d %d %d ", &PacMan->posx, &PacMan->posy,&PacMan->vies, &PacMan->score, &gestion_map->choix,&gestion_map->border);
+                fclose(fichier);
+            }
+
+            if(fichier1 != NULL)
             {
                 for(int i = 0; i < 4 ; i++)
                 {
-                    fscanf(fichier, "%d %d ", enemy[i]->dposx, enemy[i]->dposy);
+                    fscanf(fichier, "%d %d ", &enemy[i]->dposx, &enemy[i]->dposy);
                 }
-                fscanf(fichier, "%d %d %d %d %d %d ", PacMan->posx, PacMan->posy,PacMan->vies, PacMan->score, gestion_map->choix,gestion_map->border);
-                fclose(fichier);
             }
 }
