@@ -296,65 +296,56 @@ BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
     if (key[KEY_UP] && getpixel(dbbuffer,PacMan->posx,PacMan->posy-PacMan->deplacement -7 ) != makecol(255,0,0) && getpixel(dbbuffer,PacMan->posx+25,PacMan->posy-PacMan->deplacement - 7 ) != makecol(255,0,0) )
     {
         *a = 1;
+        PacMan->direction=1;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_up, 3);
     }
     if (key[KEY_DOWN] && getpixel(dbbuffer,PacMan->posx,PacMan->posy+PacMan->ty+PacMan->deplacement + 7 ) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx + 25,PacMan->posy+PacMan->ty+PacMan->deplacement+7 ) != makecol(255,00,00))
     {
         *a = 2;
-        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
+        PacMan->direction=2;
+        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
     }
     if (key[KEY_LEFT] && getpixel(dbbuffer,PacMan->posx-PacMan->deplacement -20,PacMan->posy) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx-PacMan->deplacement - 20,PacMan->posy + 22) != makecol(255,00,00))
     {
         *a = 3;
+        PacMan->direction=3;
         PacMan->turn_img = 1;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
     }
     if (key[KEY_RIGHT] && getpixel(dbbuffer,PacMan->posx+PacMan->tx+PacMan->deplacement +25,PacMan->posy ) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx+PacMan->tx+PacMan->deplacement + 25,PacMan->posy + 22) != makecol(255,00,00))
     {
         *a = 4;
+        PacMan->direction=4;
         PacMan->turn_img = 0;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
     }
 
     if ( *a == 1 && getpixel(dbbuffer,PacMan->posx,PacMan->posy-PacMan->deplacement  ) != makecol(255,00,00))
     {
+        PacMan->direction=1;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_up, 3);
         PacMan->posy = PacMan->posy-PacMan->deplacement;// mouvement négatif en ordonnées
         //printf("%d \n", a);
-    }
-    else
+    }else if (*a == 2 && getpixel(dbbuffer,PacMan->posx,PacMan->posy+PacMan->ty+PacMan->deplacement + 7 ) != makecol(255,0,0))
     {
-        PacMan->posy = PacMan->posy;
-    }
-    if (*a == 2 && getpixel(dbbuffer,PacMan->posx,PacMan->posy+PacMan->ty+PacMan->deplacement + 7 ) != makecol(255,0,0))
-    {
-        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
+        PacMan->direction=2;
+        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
         PacMan->posy = PacMan->posy+PacMan->deplacement;// mouvement positif en ordonnées
-    }
-    else
+    }else if (*a == 3 && getpixel(dbbuffer,PacMan->posx-PacMan->deplacement,PacMan->posy) != makecol(255,00,00))
     {
-        PacMan->posy = PacMan->posy;
-
-    }
-    if (*a == 3 && getpixel(dbbuffer,PacMan->posx-PacMan->deplacement,PacMan->posy) != makecol(255,00,00))
-    {
+        PacMan->direction= 3;
         PacMan->turn_img = 1;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
         PacMan->posx = PacMan->posx-PacMan->deplacement; // mouvement négatif en abscisses
-    }
-    else
+    }else if (*a == 4 && getpixel(dbbuffer,PacMan->posx+PacMan->tx+PacMan->deplacement + 25,PacMan->posy  ) != makecol(255,00,00))
     {
-        PacMan->posx = PacMan->posx;
-    }
-    if (*a == 4 && getpixel(dbbuffer,PacMan->posx+PacMan->tx+PacMan->deplacement + 25,PacMan->posy  ) != makecol(255,00,00))
-    {
+        PacMan->direction= 4;
         PacMan->turn_img = 0;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
         PacMan->posx = PacMan->posx+PacMan->deplacement; // mouvement positif en abscisses
-    }
-    else
+    }else
     {
-        PacMan->posx = PacMan->posx;
+        PacMan->direction= 0;
     }
 
     // contrôle des bords
@@ -370,7 +361,6 @@ BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
     return sprite_pacman;
 
 
-    //printf("%d \n", PacMan->vies);
 }
 
 BITMAP* action_sprite_pacman(t_PacMan*PacMan, BITMAP*mabitmap[], int taille_max)
@@ -397,6 +387,7 @@ void intialisationPacMan(t_PacMan *PacMan)
 {
     int i;
     char nomfichier[100];
+
     PacMan->tx = 15;
     PacMan->ty = 15;
     PacMan->posx = SCREEN_W/2-PacMan->tx/2;
@@ -404,6 +395,10 @@ void intialisationPacMan(t_PacMan *PacMan)
     PacMan->deplacement = 7;
     PacMan->vies = 5;
     PacMan->turn_img = 0;
+    PacMan->last_posx = 0;
+    PacMan->last_posy = 0;
+    PacMan->direction = 0;
+    PacMan->last_direction = 0;
 
     //Traitement image sprites
     PacMan->compteur = 0;
@@ -448,6 +443,72 @@ void intialisationPacMan(t_PacMan *PacMan)
 
 }
 
+
+t_PacMan * intialisationSubPacMan()
+{
+    t_PacMan *PacMan;
+    PacMan=(t_PacMan*) malloc(1 * sizeof(t_PacMan));
+
+    int i;
+    char nomfichier[100];
+    PacMan->tx = 15;
+    PacMan->ty = 15;
+    PacMan->posx = 0;
+    PacMan->posy = 0;
+    PacMan->deplacement = 7;
+    PacMan->vies = 5;
+    PacMan->turn_img = 0;
+    PacMan->last_posx = 0;
+    PacMan->last_posy = 0;
+    PacMan->direction = 0;
+    PacMan->last_direction = 0;
+
+    //Traitement image sprites
+    PacMan->compteur = 0;
+    PacMan->temporiseur = 8;
+    PacMan->image_actuelle = 0;
+
+    //Image bottom
+    for(i=0; i<2; i++)
+    {
+        sprintf(nomfichier,"pacman_sprites/pacman_bot_%d.bmp",i);
+        PacMan->pacman_bot[i]=load_bitmap(nomfichier,NULL);
+        if (!PacMan->pacman_bot[i])
+        {
+            allegro_message("PRB d'ouverture = %s",nomfichier);
+        }
+    }
+
+    //Image right
+    for(i=0; i<8; i++)
+    {
+        sprintf(nomfichier,"pacman_sprites/pacman_right_%d.bmp",i);
+        PacMan->pacman_right[i]=load_bitmap(nomfichier,NULL);
+        if (!PacMan->pacman_right[i])
+        {
+            allegro_message("PRB d'ouverture = %s",nomfichier);
+        }
+    }
+
+    //Image up
+    for(i=0; i<3; i++)
+    {
+        sprintf(nomfichier,"pacman_sprites/pacman_up_%d.bmp",i);
+        PacMan->pacman_up[i]=load_bitmap(nomfichier,NULL);
+        if (!PacMan->pacman_up[i])
+        {
+            allegro_message("PRB d'ouverture = %s",nomfichier);
+        }
+    }
+
+
+    PacMan->score = 0;
+
+    return PacMan;
+
+}
+
+
 int death(t_enemy *monenemy[], t_PacMan *PacMan, int compteur, BITMAP *dbbuffer)
 {
 
@@ -467,7 +528,7 @@ int death(t_enemy *monenemy[], t_PacMan *PacMan, int compteur, BITMAP *dbbuffer)
 
 
 }
-
+/*
 void mort(t_enemy *monenemy, t_PacMan *PacMan, int *compteur, BITMAP *dbbuffer)
 {
 
@@ -493,7 +554,7 @@ void mort(t_enemy *monenemy, t_PacMan *PacMan, int *compteur, BITMAP *dbbuffer)
 //    printf("%d  \n", compteur);
 
 //printf("%d \n", PacMan->vies);
-}
+}*/
 
 t_Diamant * initialiserDiamants()
 {
@@ -521,15 +582,9 @@ void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int * 
         Diamant->posx = (rand() % (760 - 20 + 1)) + 20;
         Diamant->posy = (rand() % (560 - 20 + 1)) + 20;
 
-        printf("%d\n", Diamant->posx);
-        printf("%d\n", Diamant->posy);
-
-
-
         if(getpixel(dbbuffer, Diamant->posx+30, Diamant->posy+30) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx+15, Diamant->posy+15) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx, Diamant->posy+30) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx, Diamant->posy+15) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx+30, Diamant->posy) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx, Diamant->posy) == makecol(255,0,0) || getpixel(dbbuffer, Diamant->posx+15, Diamant->posy) == makecol(255,0,0))
         {
             compteur2++;
-            printf("ERTYU\n");
         }
 
 
@@ -560,14 +615,13 @@ void suppressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant, t_PacMan * PacMa
     {
         Diamant->boolean = 1;
         //PacMan->score = PacMan->score + 1;
-        printf("%d\n", PacMan->score);
-
     }
 
 
 
 
 }
+
 
 void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur, int niveau)
 {
@@ -582,6 +636,9 @@ void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur, int niveau)
     else if(niveau == 2)
     {
         *compteur = 8;
+    }else if(niveau == 3)
+    {
+        *compteur = 14;
     }
     for(int i = 0; i < 4; i++)
     {
@@ -592,8 +649,6 @@ void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur, int niveau)
     }
 
     PacMan->score = *compteur;
-
-    printf("%d zsdfghgfdsdfgh \n\n", PacMan->score);
 
 }
 

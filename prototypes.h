@@ -42,6 +42,8 @@ typedef struct PacMan
     int deplacement;
     int posx;
     int posy;
+    int last_posx;
+    int last_posy;
     int vies;
 
     //Sprites change
@@ -49,6 +51,8 @@ typedef struct PacMan
     int temporiseur;
     int image_actuelle;
     int turn_img;
+    int direction;
+    int last_direction;
 
     int score;
 
@@ -70,8 +74,9 @@ void supressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant,t_PacMan * PacMan)
 
 t_enemy * initialiserenemy();
 t_map * initialisermap();
-
 t_map * choix_map(t_map * changemap);
+t_PacMan * intialisationSubPacMan();
+
 BITMAP* call_monster(BITMAP*dbbuffer,t_enemy * monenemy, t_PacMan *PacMan);
 BITMAP* deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a);
 BITMAP* action_sprite_pacman(t_PacMan*PacMan, BITMAP*mabitmap[], int taille_max);

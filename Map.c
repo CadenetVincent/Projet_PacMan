@@ -3,6 +3,8 @@
 t_map * choix_map(t_map * change_map)
 {
 
+
+
     switch(change_map->choix)
     {
 
