@@ -352,7 +352,7 @@ int main()
                                     else
                                     {*/
                                         Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
-                                        Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                        Sub_Pac[i]->posx = PacMan.posx;
                                         Sub_Pac[i]->posy = Sub_Pac[i]->posy+Sub_Pac[i]->deplacement;
                                     /*}*/
                                 }
@@ -375,7 +375,8 @@ int main()
                                     {*/
                                         Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
                                         Sub_Pac[i]->posx = Sub_Pac[i]->posx+Sub_Pac[i]->deplacement;
-                                        Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        Sub_Pac[i]->posy = PacMan.posy;
+
                                    /* }*/
                                 }
                                 else if(PacMan.posx-Sub_Pac[i]->posx+position_sub<0)
@@ -397,7 +398,7 @@ int main()
                                     {*/
                                         Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
                                         Sub_Pac[i]->posx = Sub_Pac[i]->posx-Sub_Pac[i]->deplacement;
-                                        Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        Sub_Pac[i]->posy = PacMan.posy;
                                     /*}*/
                                 }
                                 else if(PacMan.posy-Sub_Pac[i]->posy+position_sub<0)
@@ -418,7 +419,7 @@ int main()
                                     else
                                     {*/
                                         Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
-                                        Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                        Sub_Pac[i]->posx = PacMan.posx;
                                         Sub_Pac[i]->posy = Sub_Pac[i]->posy-Sub_Pac[i]->deplacement;
                                    /* }*/
                                 }
@@ -451,7 +452,7 @@ int main()
                                     {
                                     */
                                         Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
-                                        Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                        Sub_Pac[i]->posx = Sub_Pac[i-1]->posx;
                                         Sub_Pac[i]->posy = Sub_Pac[i]->posy+Sub_Pac[i]->deplacement;
                                         /*
                                     }*/
@@ -475,7 +476,7 @@ int main()
                                     {*/
                                         Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
                                         Sub_Pac[i]->posx = Sub_Pac[i]->posx+Sub_Pac[i]->deplacement;
-                                        Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        Sub_Pac[i]->posy = Sub_Pac[i-1]->posy;
                                     /*}*/
                                 }
                                 else if(Sub_Pac[i-1]->posx-Sub_Pac[i]->posx+position_sub<0)
@@ -497,7 +498,7 @@ int main()
                                     {*/
                                         Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
                                         Sub_Pac[i]->posx = Sub_Pac[i]->posx-Sub_Pac[i]->deplacement;
-                                        Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        Sub_Pac[i]->posy = Sub_Pac[i-1]->posy;
                                     /*}*/
                                 }
                                 else if(Sub_Pac[i-1]->posy-Sub_Pac[i]->posy+position_sub<0)
@@ -518,7 +519,7 @@ int main()
                                     else
                                     {*/
                                         Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
-                                        Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                        Sub_Pac[i]->posx = Sub_Pac[i-1]->posx;
                                         Sub_Pac[i]->posy = Sub_Pac[i]->posy-Sub_Pac[i]->deplacement;
                                     /*}*/
                                 }
