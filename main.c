@@ -956,14 +956,16 @@ while(PacMan.score != 20 && PacMan.vies != 0 && fermeture != 1)
 
             stop = 0;
              fermeture = 0;
+             PacMan.vies = 5;
 
             for(i=0; i<4; i++)
             {
                 Diamant[i] = initialiserDiamants();
             }
-            printf("%d \n", PacMan.score);
+             PacMan.posx = SCREEN_W/2-PacMan.tx/2;
+            PacMan.posy = SCREEN_H/2-PacMan.ty/2;
 
-            while(PacMan.score <= 4 && PacMan.vies != 0 && fermeture != 1)
+            while(PacMan.score < 4 && PacMan.vies != 0 && fermeture != 1)
             {
                 niveau = 0;
                 gestion_map->choix = 0;
@@ -1053,12 +1055,12 @@ while(PacMan.score != 20 && PacMan.vies != 0 && fermeture != 1)
             }
             PacMan.posx = SCREEN_W/2-PacMan.tx/2;
             PacMan.posy = SCREEN_H/2-PacMan.ty/2;
-             fermeture = 0;
+             //fermeture = 0;
 
 
 
             //score != 8, niveau 1, choix_map 1,
-            while(PacMan.score <= 8 && PacMan.score >= 4 && PacMan.vies != 0 && fermeture != 1)
+            while(PacMan.score < 8 && PacMan.score >= 4 && PacMan.vies != 0 && fermeture != 1)
             {
                 niveau = 1;
 
@@ -1145,7 +1147,7 @@ while(PacMan.score != 20 && PacMan.vies != 0 && fermeture != 1)
 
             }
 
-             fermeture = 0;
+
             stop = 0;
             for(i=0; i<4; i++)
             {
@@ -1155,7 +1157,7 @@ while(PacMan.score != 20 && PacMan.vies != 0 && fermeture != 1)
             PacMan.posx = SCREEN_W/2-PacMan.tx/2;
             PacMan.posy = SCREEN_H/2-PacMan.ty/2;
 
-            while(PacMan.score <= 12  && PacMan.score >= 8 &&PacMan.vies != 0 && fermeture != 1)
+            while(PacMan.score < 12  && PacMan.score >= 8 &&PacMan.vies != 0 && fermeture != 1)
             {
                 niveau = 2;
 
@@ -1240,8 +1242,380 @@ while(PacMan.score != 20 && PacMan.vies != 0 && fermeture != 1)
 
 
             }
-             //fermeture = 0;
 
+            stop = 0;
+            for(i=0; i<4; i++)
+            {
+                Diamant[i] = initialiserDiamants();
+
+            }
+            PacMan.posx = SCREEN_W/2-PacMan.tx/2;
+            PacMan.posy = SCREEN_H/2-PacMan.ty/2;
+
+while(PacMan.score < 20 &&PacMan.score >= 12 && PacMan.vies != 0 && fermeture != 1)
+            {
+                niveau = 3;
+                gestion_map->choix = 3;
+                gestion_map = choix_map(gestion_map);
+
+                stretch_blit(gestion_map->actual_test, dbbuffer,0,0,gestion_map->actual_test->w,gestion_map->actual_test->h,0,0,SCREEN_W,SCREEN_H);
+
+                rectfill(dbbuffer, PacMan.posx,PacMan.posy, PacMan.posx+25, PacMan.posy+22, makecol(255,255,255));
+
+                stretch_blit(gestion_map->actual_front, map, 0,0,gestion_map->actual_front->w,gestion_map->actual_front->h,0,0,SCREEN_W,SCREEN_H);
+
+
+                perso_img = deplacementPacMan(dbbuffer, &PacMan, &a);
+
+                if(PacMan.turn_img == 0)
+                {
+                    draw_sprite(map,perso_img,PacMan.posx,PacMan.posy);
+                }
+                else
+                {
+                    draw_sprite_h_flip(map,perso_img,PacMan.posx,PacMan.posy);
+                }
+
+                for(i=0; i<4; i++)
+                {
+
+                    monenemy[i]->compteur_enemy++;
+
+                    if(monenemy[i]->compteur_enemy == 100)
+                    {
+                        monenemy[i]->resetdir=0;
+                        monenemy[i]->compteur_enemy=0;
+                        //mort(&monenemy[i], &PacMan, &compteur, dbbuffer);
+                    }
+
+                    enemy = call_monster(dbbuffer,monenemy[i],&PacMan);
+                    gestionDiamant(dbbuffer, Diamant[i], front, &stop);
+
+
+                    masked_blit(enemy, map, 0,0,monenemy[i]->dposx,monenemy[i]->dposy,enemy->w,enemy->h);
+
+                    suppressionDiamant(dbbuffer,Diamant[i],&PacMan);
+
+
+                    if(Diamant[i]->boolean != 1)
+                    {
+                        masked_blit(Diamants, map,0,0, Diamant[i]->posx, Diamant[i]->posy, SCREEN_W,SCREEN_H);
+                    }
+
+                }
+
+                score(&Diamant,&PacMan,&compteur_score, niveau);
+                diff_final_score = PacMan.score - 14;
+
+                if(diff_final_score > 0)
+                {
+
+                    for(i=0; i<diff_final_score; i++)
+                    {
+                        position_sub = 30;
+
+                        if(Sub_Pac[i]->posx == 0 && Sub_Pac[i]->posy == 0)
+                        {
+
+                            if(i == 0)
+                            {
+                                Sub_Pac[i]->direction = PacMan.direction;
+                                if(PacMan.direction == 2)
+                                {
+                                    Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
+                                    Sub_Pac[i]->posx = PacMan.posx;
+                                    Sub_Pac[i]->posy = PacMan.posy-position_sub;
+                                }
+                                if(PacMan.direction == 4)
+                                {
+                                    Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                    Sub_Pac[i]->posx = PacMan.posx-position_sub;
+                                    Sub_Pac[i]->posy = PacMan.posy;
+
+                                }
+                                if(PacMan.direction == 3)
+                                {
+                                    Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                    Sub_Pac[i]->posx = PacMan.posx+position_sub;
+                                    Sub_Pac[i]->posy = PacMan.posy;
+
+                                }
+                                if(PacMan.direction == 1)
+                                {
+                                    Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
+                                    Sub_Pac[i]->posx = PacMan.posx;
+                                    Sub_Pac[i]->posy = PacMan.posy+position_sub;
+                                }
+
+                            }
+                            else
+                            {
+
+                                Sub_Pac[i]->direction = Sub_Pac[i-1]->direction;
+                                if(Sub_Pac[i-1]->direction == 2)
+                                {
+                                    Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
+                                    Sub_Pac[i]->posx = Sub_Pac[i-1]->posx;
+                                    Sub_Pac[i]->posy = Sub_Pac[i-1]->posy-position_sub;
+                                }
+                                if(Sub_Pac[i-1]->direction == 4)
+                                {
+                                    Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                    Sub_Pac[i]->posx = Sub_Pac[i-1]->posx-position_sub;
+                                    Sub_Pac[i]->posy = Sub_Pac[i-1]->posy;
+
+                                }
+                                if(Sub_Pac[i-1]->direction == 3)
+                                {
+                                    Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                    Sub_Pac[i]->posx = Sub_Pac[i-1]->posx+position_sub;
+                                    Sub_Pac[i]->posy = Sub_Pac[i-1]->posy;
+
+                                }
+                                if(Sub_Pac[i-1]->direction == 1)
+                                {
+                                    Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
+                                    Sub_Pac[i]->posx = Sub_Pac[i-1]->posx;
+                                    Sub_Pac[i]->posy = Sub_Pac[i-1]->posy+position_sub;
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            if(i==0)
+                            {
+                                if(PacMan.posy-Sub_Pac[i]->posy-position_sub>0)
+                                {
+                                    //UP
+                                    /*if(getpixel(dbbuffer,Sub_Pac[i]->posx,Sub_Pac[i]->posy-Sub_Pac[i]->deplacement -7 ) != makecol(255,0,0) && getpixel(dbbuffer,Sub_Pac[i]->posx+25,Sub_Pac[i]->posy-Sub_Pac[i]->deplacement - 7 ) != makecol(255,0,0))
+                                    {
+                                        if(PacMan.posx-Sub_Pac[i]->posx+position_sub<0)
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx+Sub_Pac[i]->deplacement;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        }
+                                        else
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx-Sub_Pac[i]->deplacement;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        }
+                                    }
+                                    else
+                                    {*/
+                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
+                                        Sub_Pac[i]->posx = PacMan.posx;
+                                        Sub_Pac[i]->posy = Sub_Pac[i]->posy+Sub_Pac[i]->deplacement;
+                                    /*}*/
+                                }
+                                else if(PacMan.posx-Sub_Pac[i]->posx-position_sub>0)
+                                {
+                                    /*if(getpixel(dbbuffer,Sub_Pac[i]->posx+Sub_Pac[i]->tx+Sub_Pac[i]->deplacement +25,Sub_Pac[i]->posy ) != makecol(255,00,00)&& getpixel(dbbuffer,Sub_Pac[i]->posx+Sub_Pac[i]->tx+Sub_Pac[i]->deplacement + 25,Sub_Pac[i]->posy + 22) != makecol(255,00,00))
+                                    {
+                                        if(PacMan.posy-Sub_Pac[i]->posy-position_sub>0)
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy+Sub_Pac[i]->deplacement;
+                                        }
+                                        else
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy-Sub_Pac[i]->deplacement;
+                                        }
+                                    }
+                                    else
+                                    {*/
+                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                        Sub_Pac[i]->posx = Sub_Pac[i]->posx+Sub_Pac[i]->deplacement;
+                                        Sub_Pac[i]->posy = PacMan.posy;
+
+                                   /* }*/
+                                }
+                                else if(PacMan.posx-Sub_Pac[i]->posx+position_sub<0)
+                                {
+                                    /*if(getpixel(dbbuffer,Sub_Pac[i]->posx-Sub_Pac[i]->deplacement -20,Sub_Pac[i]->posy) != makecol(255,00,00)&& getpixel(dbbuffer,Sub_Pac[i]->posx-Sub_Pac[i]->deplacement - 20,Sub_Pac[i]->posy + 22) != makecol(255,00,00))
+                                    {
+                                        if(PacMan.posy-Sub_Pac[i]->posy-position_sub>0)
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy+Sub_Pac[i]->deplacement;
+                                        }
+                                        else
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy-Sub_Pac[i]->deplacement;
+                                        }
+                                    }
+                                    else
+                                    {*/
+                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                        Sub_Pac[i]->posx = Sub_Pac[i]->posx-Sub_Pac[i]->deplacement;
+                                        Sub_Pac[i]->posy = PacMan.posy;
+                                    /*}*/
+                                }
+                                else if(PacMan.posy-Sub_Pac[i]->posy+position_sub<0)
+                                {/*
+                                    if(getpixel(dbbuffer,Sub_Pac[i]->posx,Sub_Pac[i]->posy+Sub_Pac[i]->ty+Sub_Pac[i]->deplacement + 7 ) != makecol(255,00,00)&& getpixel(dbbuffer,Sub_Pac[i]->posx + 25,Sub_Pac[i]->posy+Sub_Pac[i]->ty+Sub_Pac[i]->deplacement+7 ) != makecol(255,00,00))
+                                    {
+                                        if(PacMan.posx-Sub_Pac[i]->posx+position_sub<0)
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx+Sub_Pac[i]->deplacement;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        }
+                                        else
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx-Sub_Pac[i]->deplacement;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        }
+                                    }
+                                    else
+                                    {*/
+                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
+                                        Sub_Pac[i]->posx = PacMan.posx;
+                                        Sub_Pac[i]->posy = Sub_Pac[i]->posy-Sub_Pac[i]->deplacement;
+                                   /* }*/
+                                }
+                                else
+                                {
+                                    Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                    Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                }
+                            }
+                            else
+                            {
+
+                                if(Sub_Pac[i-1]->posy-Sub_Pac[i]->posy-position_sub>0)
+                                {
+                                    /*
+                                    if(getpixel(dbbuffer,Sub_Pac[i]->posx,Sub_Pac[i]->posy-Sub_Pac[i]->deplacement -7 ) != makecol(255,0,0) && getpixel(dbbuffer,Sub_Pac[i]->posx+25,Sub_Pac[i]->posy-Sub_Pac[i]->deplacement - 7 ) != makecol(255,0,0))
+                                    {
+                                        if(Sub_Pac[i-1]->posx-Sub_Pac[i]->posx+position_sub<0)
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx+Sub_Pac[i]->deplacement;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        }
+                                        else
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx-Sub_Pac[i]->deplacement;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        }
+                                    }
+                                    else
+                                    {
+                                    */
+                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
+                                        Sub_Pac[i]->posx = Sub_Pac[i-1]->posx;
+                                        Sub_Pac[i]->posy = Sub_Pac[i]->posy+Sub_Pac[i]->deplacement;
+                                        /*
+                                    }*/
+                                }
+                                else if(Sub_Pac[i-1]->posx-Sub_Pac[i]->posx-position_sub>0)
+                                {/*
+                                    if(getpixel(dbbuffer,Sub_Pac[i]->posx+Sub_Pac[i]->tx+Sub_Pac[i]->deplacement +25,Sub_Pac[i]->posy ) != makecol(255,00,00)&& getpixel(dbbuffer,Sub_Pac[i]->posx+Sub_Pac[i]->tx+Sub_Pac[i]->deplacement + 25,Sub_Pac[i]->posy + 22) != makecol(255,00,00))
+                                    {
+                                        if(Sub_Pac[i-1]->posy-Sub_Pac[i]->posy-position_sub>0)
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy+Sub_Pac[i]->deplacement;
+                                        }
+                                        else
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy-Sub_Pac[i]->deplacement;
+                                        }
+                                    }
+                                    else
+                                    {*/
+                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                        Sub_Pac[i]->posx = Sub_Pac[i]->posx+Sub_Pac[i]->deplacement;
+                                        Sub_Pac[i]->posy = Sub_Pac[i-1]->posy;
+                                    /*}*/
+                                }
+                                else if(Sub_Pac[i-1]->posx-Sub_Pac[i]->posx+position_sub<0)
+                                {
+                                    /*if(getpixel(dbbuffer,Sub_Pac[i]->posx-Sub_Pac[i]->deplacement -20,Sub_Pac[i]->posy) != makecol(255,00,00)&& getpixel(dbbuffer,Sub_Pac[i]->posx-Sub_Pac[i]->deplacement - 20,Sub_Pac[i]->posy + 22) != makecol(255,00,00))
+                                    {
+                                        if(Sub_Pac[i-1]->posy-Sub_Pac[i]->posy-position_sub>0)
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy+Sub_Pac[i]->deplacement;
+                                        }
+                                        else
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy-Sub_Pac[i]->deplacement;
+                                        }
+                                    }
+                                    else
+                                    {*/
+                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                        Sub_Pac[i]->posx = Sub_Pac[i]->posx-Sub_Pac[i]->deplacement;
+                                        Sub_Pac[i]->posy = Sub_Pac[i-1]->posy;
+                                    /*}*/
+                                }
+                                else if(Sub_Pac[i-1]->posy-Sub_Pac[i]->posy+position_sub<0)
+                                {
+                                    /*if(getpixel(dbbuffer,Sub_Pac[i]->posx,Sub_Pac[i]->posy+Sub_Pac[i]->ty+Sub_Pac[i]->deplacement + 7 ) != makecol(255,00,00)&& getpixel(dbbuffer,Sub_Pac[i]->posx + 25,Sub_Pac[i]->posy+Sub_Pac[i]->ty+Sub_Pac[i]->deplacement+7 ) != makecol(255,00,00))
+                                    {
+                                        if(Sub_Pac[i-1]->posx-Sub_Pac[i]->posx+position_sub<0)
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx+Sub_Pac[i]->deplacement;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        }
+                                        else
+                                        {
+                                            Sub_Pac[i]->posx = Sub_Pac[i]->posx-Sub_Pac[i]->deplacement;
+                                            Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                        }
+                                    }
+                                    else
+                                    {*/
+                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
+                                        Sub_Pac[i]->posx = Sub_Pac[i-1]->posx;
+                                        Sub_Pac[i]->posy = Sub_Pac[i]->posy-Sub_Pac[i]->deplacement;
+                                    /*}*/
+                                }
+                                else
+                                {
+                                    Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                                    Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                                }
+
+                            }
+
+
+
+
+                        }
+
+
+                        if(Sub_Pac[i]->turn_img == 0)
+                        {
+                            draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy);
+                        }
+                        else
+                        {
+                            draw_sprite_h_flip(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy);
+                        }
+
+                    }
+
+                }
+
+                blit(map, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
+
+                compteur_death++;
+                compteur_death = death(monenemy, &PacMan, compteur_death,dbbuffer);
+
+                if(key[KEY_S])
+                {
+                    sauvegarde1( &monenemy,&PacMan, gestion_map);
+                     fermeture = 1;
+                }
+
+                rest(20);
+
+            }
 
 
 
