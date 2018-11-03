@@ -4,6 +4,7 @@
 #include <allegro.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
 typedef struct gestion_map
 {
@@ -53,6 +54,7 @@ typedef struct PacMan
     int turn_img;
     int direction;
     int last_direction;
+    int get_Sun;
 
     int score;
 
@@ -65,13 +67,22 @@ typedef struct Diamant
     int boolean;
 }t_Diamant;
 
+typedef struct Sun
+{
+    BITMAP * SOLEIL[6];
+    BITMAP * actuel_map;
+    int posx;
+    int posy;
+    int boolean;
+}t_Sun;
+
 t_Diamant * initialiserDiamants();
 
 void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int *stop);
 
 void supressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant,t_PacMan * PacMan);
 
-
+t_Sun * initialiserSun();
 t_enemy * initialiserenemy();
 t_map * initialisermap();
 t_map * choix_map(t_map * changemap);
@@ -82,6 +93,7 @@ BITMAP* deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a);
 BITMAP* action_sprite_pacman(t_PacMan*PacMan, BITMAP*mabitmap[], int taille_max);
 void follow_monster(t_enemy * monenemy, t_PacMan *PacMan, BITMAP*dbbuffer);
 void mort(t_enemy *monenemy, t_PacMan * PacMan, int * compteur, BITMAP *dbbuffer);
+time_t gestionSun(BITMAP* map,BITMAP * dbbuffer, t_Sun* Sun, t_PacMan* PacMan, BITMAP*front, time_t start);
 
 //Version fonctionnelle
 int death(t_enemy *monenemy[4], t_PacMan *PacMan, int compteur, BITMAP *dbbuffer);

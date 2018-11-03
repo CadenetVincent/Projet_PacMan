@@ -18,13 +18,14 @@
 1541157768 source:c:\users\guill\documents\projet_pacman\monstres.c
 	"prototypes.h"
 
-1541117609 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\monstres.c
+1541197656 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\monstres.c
 	"prototypes.h"
 
-1541113529 c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\prototypes.h
+1541191211 c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\prototypes.h
 	<allegro.h>
 	<stdlib.h>
 	<stdio.h>
+	<time.h>
 
 1540834447 983c643a985477563cb62ecca2f0fd837ac61
 	<stdlib.h>
@@ -34,7 +35,7 @@
 	<stdio.h>
 	"prototypes.h"
 
-1541153118 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\main.c
+1541196925 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\main.c
 	"prototypes.h"
 
 1541102330 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\map.c
