@@ -37,10 +37,16 @@
 		<Unit filename="Monstres.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="boucle de jeu.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="prototypes.h" />
+		<Unit filename="sauvegarde.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />
