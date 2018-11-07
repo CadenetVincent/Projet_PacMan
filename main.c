@@ -38,7 +38,7 @@ int main()
     t_Diamant * Diamant[4];
     t_PacMan * Sub_Pac[20];
     t_Sun * Sun;
-    t_PacMan **PacMan1;
+   // t_PacMan **PacMan1;
 
 //    PacMan1 = &PacMan;
 
@@ -132,7 +132,7 @@ int main()
             fermeture = 0;
             PacMan.vies = 5;
 
-            while(PacMan.vies != 0 && fermeture != 1)
+            while(PacMan.vies > 0 && fermeture != 1)
             {
 
 
@@ -152,7 +152,8 @@ int main()
 
                 load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, PacMan, monenemy, gestion_map, &Diamant,&fermeture);
 
-                printf("%d\n", fermeture);
+
+                printf("%d\n", PacMan.vies);
 
                 stop = 0;
                 for(i=0; i<4; i++)

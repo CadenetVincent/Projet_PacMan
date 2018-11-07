@@ -12,7 +12,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
         stretch_blit(gestion_map->actual_test, dbbuffer,0,0,gestion_map->actual_test->w,gestion_map->actual_test->h,0,0,SCREEN_W,SCREEN_H);
 
 
-        rectfill(dbbuffer, PacMan.posx,PacMan.posy, PacMan.posx+25, PacMan.posy+22, makecol(255,255,255));
+        rectfill(dbbuffer, PacMan.posx,PacMan.posy, PacMan.posx+22, PacMan.posy+20, makecol(255,255,255));
 
         stretch_blit(gestion_map->actual_front, map, 0,0,gestion_map->actual_front->w,gestion_map->actual_front->h,0,0,SCREEN_W,SCREEN_H);
 
@@ -70,16 +70,14 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
             *fermeture = 1;
         }
         rest(20);
+        printf("%d", PacMan.vies);
     }
 }
 
 
 void load_map1(int i,int niveau, int choise_map, int score_limit, int score_max, int * a, int stop, int  compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan  PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[], int *fermeture)
 {
-    /* PacMan.posx = SCREEN_W/2-PacMan.tx/2-10;
-    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-10;*/
 
-    //printf("%d\n %d\n",PacMan.posx, PacMan.posy);
 
     while(PacMan.score < score_limit && PacMan.score >= score_max && PacMan.vies != 0 && *fermeture != 1)
     {
