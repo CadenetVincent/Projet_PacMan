@@ -30,7 +30,45 @@ void lancerAllegro()
 
 int main()
 {
-    int pos_enemy[2][4]= {{255,497,255,497},{283,283,640,640}};
+
+    FILE * fichier = NULL;
+    fichier = fopen("map1.txt", "r");
+
+    int tab[20][50];
+
+    if(fichier != NULL)
+    {
+        for(int i = 0; i < 20; i++)
+        {
+            for(int j = 0; j < 50; j ++)
+            {
+                 fscanf(fichier,"%d", &tab[i][j]);
+
+            }
+        }
+    }
+    else
+    {
+        printf("impossible d'ouvrir le fichier \n");
+    }
+
+     for(int i = 0; i < 20; i++)
+        {
+            for(int j = 0; j < 50; j ++)
+            {
+                if(tab[i][j] == 0)
+                {
+                    printf(" ");
+                }
+                else
+                {
+                    printf("%d", tab[i][j]);
+                }
+
+            }
+            printf("\n");
+        }
+    /*int pos_enemy[2][4]= {{255,497,255,497},{283,283,640,640}};
     int i = 0;
 
     t_enemy * monenemy[4];
@@ -378,11 +416,11 @@ int main()
                                         }
                                         else
                                         {*/
-                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
+                                       /* Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
                                         Sub_Pac[i]->posx = PacMan.posx;
                                         Sub_Pac[i]->posy = Sub_Pac[i]->posy+Sub_Pac[i]->deplacement;
                                         /*}*/
-                                    }
+                                  /*  }
                                     else if(PacMan.posx-Sub_Pac[i]->posx-position_sub>0)
                                     {
                                         /*if(getpixel(dbbuffer,Sub_Pac[i]->posx+Sub_Pac[i]->tx+Sub_Pac[i]->deplacement +25,Sub_Pac[i]->posy ) != makecol(255,00,00)&& getpixel(dbbuffer,Sub_Pac[i]->posx+Sub_Pac[i]->tx+Sub_Pac[i]->deplacement + 25,Sub_Pac[i]->posy + 22) != makecol(255,00,00))
@@ -400,12 +438,12 @@ int main()
                                         }
                                         else
                                         {*/
-                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                      /*  Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
                                         Sub_Pac[i]->posx = Sub_Pac[i]->posx+Sub_Pac[i]->deplacement;
                                         Sub_Pac[i]->posy = PacMan.posy;
 
                                         /* }*/
-                                    }
+                                   /* }
                                     else if(PacMan.posx-Sub_Pac[i]->posx+position_sub<0)
                                     {
                                         /*if(getpixel(dbbuffer,Sub_Pac[i]->posx-Sub_Pac[i]->deplacement -20,Sub_Pac[i]->posy) != makecol(255,00,00)&& getpixel(dbbuffer,Sub_Pac[i]->posx-Sub_Pac[i]->deplacement - 20,Sub_Pac[i]->posy + 22) != makecol(255,00,00))
@@ -423,11 +461,11 @@ int main()
                                         }
                                         else
                                         {*/
-                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                   /*     Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
                                         Sub_Pac[i]->posx = Sub_Pac[i]->posx-Sub_Pac[i]->deplacement;
                                         Sub_Pac[i]->posy = PacMan.posy;
                                         /*}*/
-                                    }
+                                 /*   }
                                     else if(PacMan.posy-Sub_Pac[i]->posy+position_sub<0)
                                     {
                                         /*
@@ -446,11 +484,11 @@ int main()
                                            }
                                            else
                                            {*/
-                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
+                                  /*      Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
                                         Sub_Pac[i]->posx = PacMan.posx;
                                         Sub_Pac[i]->posy = Sub_Pac[i]->posy-Sub_Pac[i]->deplacement;
                                         /* }*/
-                                    }
+                                  /*  }
                                     else
                                     {
                                         Sub_Pac[i]->posx = Sub_Pac[i]->posx;
@@ -479,12 +517,12 @@ int main()
                                         else
                                         {
                                         */
-                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
+                                      /*  Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
                                         Sub_Pac[i]->posx = Sub_Pac[i-1]->posx;
                                         Sub_Pac[i]->posy = Sub_Pac[i]->posy+Sub_Pac[i]->deplacement;
                                         /*
                                         }*/
-                                    }
+                                  /*  }
                                     else if(Sub_Pac[i-1]->posx-Sub_Pac[i]->posx-position_sub>0)
                                     {
                                         /*
@@ -503,11 +541,11 @@ int main()
                                            }
                                            else
                                            {*/
-                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                   /*     Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
                                         Sub_Pac[i]->posx = Sub_Pac[i]->posx+Sub_Pac[i]->deplacement;
                                         Sub_Pac[i]->posy = Sub_Pac[i-1]->posy;
                                         /*}*/
-                                    }
+                                   /* }
                                     else if(Sub_Pac[i-1]->posx-Sub_Pac[i]->posx+position_sub<0)
                                     {
                                         /*if(getpixel(dbbuffer,Sub_Pac[i]->posx-Sub_Pac[i]->deplacement -20,Sub_Pac[i]->posy) != makecol(255,00,00)&& getpixel(dbbuffer,Sub_Pac[i]->posx-Sub_Pac[i]->deplacement - 20,Sub_Pac[i]->posy + 22) != makecol(255,00,00))
@@ -525,11 +563,11 @@ int main()
                                         }
                                         else
                                         {*/
-                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                                     /*   Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
                                         Sub_Pac[i]->posx = Sub_Pac[i]->posx-Sub_Pac[i]->deplacement;
                                         Sub_Pac[i]->posy = Sub_Pac[i-1]->posy;
                                         /*}*/
-                                    }
+                                 /*   }
                                     else if(Sub_Pac[i-1]->posy-Sub_Pac[i]->posy+position_sub<0)
                                     {
                                         /*if(getpixel(dbbuffer,Sub_Pac[i]->posx,Sub_Pac[i]->posy+Sub_Pac[i]->ty+Sub_Pac[i]->deplacement + 7 ) != makecol(255,00,00)&& getpixel(dbbuffer,Sub_Pac[i]->posx + 25,Sub_Pac[i]->posy+Sub_Pac[i]->ty+Sub_Pac[i]->deplacement+7 ) != makecol(255,00,00))
@@ -547,11 +585,11 @@ int main()
                                         }
                                         else
                                         {*/
-                                        Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
+                                    /*    Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
                                         Sub_Pac[i]->posx = Sub_Pac[i-1]->posx;
                                         Sub_Pac[i]->posy = Sub_Pac[i]->posy-Sub_Pac[i]->deplacement;
                                         /*}*/
-                                    }
+                               /*     }
                                     else
                                     {
                                         /*
@@ -572,7 +610,7 @@ int main()
                                         Sub_Pac[i]->posx = Sub_Pac[i-1]->posx;
                                         Sub_Pac[i]->posy = Sub_Pac[i-1]->posy-position_sub;
                                         }*/
-                                    }
+                               /*     }
 
                                 }
 
@@ -706,7 +744,7 @@ printf("%d\n", PacMan.score);
 
 
     }
-
+*/
     return 0;
 }
 END_OF_MAIN();
