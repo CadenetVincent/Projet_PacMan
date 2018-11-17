@@ -333,6 +333,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
             }
             *stop = 5;
 
+<<<<<<< HEAD
             MAX = MAX + 5;
              MIN = MIN + 5;
             load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start,acc);
@@ -345,6 +346,15 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
             if(*bord == 1)
             {
                 nom = "map2.txt";
+=======
+                          break;
+                     default:
+                     choixMenu = affichageMenu();
+                     break;
+    }
+ system("cls");
+  //FIN CHOIX MENU
+>>>>>>> d2377b9bab56247f85170d8911e71dc0f56d715c
 
             }
             else if(*bord == 0)
