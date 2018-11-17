@@ -156,7 +156,7 @@ void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,
     for(int i = 0; i < 5 ;i++)
     {
         Diamant[i] = initialiserDiamants();
-gestionDiamantConsole(Diamant[i], &stop, tab );
+        gestionDiamantConsole(Diamant[i], &stop, tab );
 
     }
 
@@ -164,12 +164,12 @@ gestionDiamantConsole(Diamant[i], &stop, tab );
 
     while(PacMan->score != 5)
     {
-        printf("42");
 
-        if(kbhit())
+if(kbhit())
         {
             key = getch();
         }
+
         gotoligcol(25,0);
 
 
@@ -177,26 +177,25 @@ gestionDiamantConsole(Diamant[i], &stop, tab );
         gotoligcol(PacMan->posx,PacMan->posy);
         printf(" ");
 
-        consoleDeplacementPacMan(&a,&PacMan, key,bord, tab);
+        consoleDeplacementPacMan(&a,PacMan, key,bord, tab);
 
         gotoligcol(PacMan->posx,PacMan->posy);
-        Color(4,0);
+        Color(5,0);
         printf("X");
-        Color(15,0);
+       Color(15,0);
 
 
 
-
-        for(int i = 0; i < 5 ;i++)
+ for(int i = 0; i < 5 ;i++)
     {
-        suppressionDiamantConsole(Diamant[i], &PacMan);
+        suppressionDiamantConsole(Diamant[i], PacMan);
 
     }
 
 
 
-    score(Diamant,&PacMan,&compteur, niveau);
-    Sleep(vit);
+    score(Diamant,PacMan,&compteur, niveau);
+    Sleep(50);
     }
 
 }

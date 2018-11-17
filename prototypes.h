@@ -79,6 +79,8 @@ typedef struct enecons
     int AX;
     int AY;
     char ES;
+    int dep;
+    int intervalle;
 
 } t_enecons;
 
@@ -125,7 +127,7 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int score_max,
 /// mode console
 void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord, int * tab[20][50]);
 void gotoligcol( int lig, int col );
-void intialisationPacManConsole(t_PacMan *PacMan);
+void intialisationPacManConsole(t_PacMan *PacMan, int * tab[20][50]);
 void chargementMap(char nom[], int * tab[20][50], int * bord);
 
 void suppressionDiamantConsole( t_Diamant * Diamant, t_PacMan * PacMan);

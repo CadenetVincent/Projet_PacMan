@@ -50,7 +50,7 @@ int main()
 
 
     t_PacMan PacMan;
-    t_enecons * monenecons;
+    t_enecons * monenecons[4];
     t_Diamant * Diamant[5];
 
     PacMan.posx = 10;
@@ -59,9 +59,13 @@ int main()
 
 
 
-    intialisationPacManConsole(&PacMan);
+    intialisationPacManConsole(&PacMan,tab);
+
 
 load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit);
+
+
+
 
 printf("%d" ,PacMan.score);
 

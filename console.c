@@ -2,11 +2,11 @@
 
 void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int * tab[20][50])
 {
-//gotoligcol(PacMan->posx,PacManposy);
-//printf("%d", tab[PacMan->posx-1][PacMan->posy]);
-    if (key == 'z' && tab[PacMan->posx-1][PacMan->posy] != 1 )
+
+    if ( key == 'z' &&tab[PacMan->posx-1][PacMan->posy] != 1)
     {
         *a = 1;
+
 
     }
     else if (key == 's' && tab[PacMan->posx+1][PacMan->posy] != 1 )
@@ -114,15 +114,30 @@ void gotoligcol( int lig, int col )
     SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
 }
 
-void intialisationPacManConsole(t_PacMan *PacMan)
+void intialisationPacManConsole(t_PacMan *PacMan, int * tab[20][50])
 {
+    int compteur = 0;
     int i;
     char nomfichier[100];
 
     PacMan->tx = 15;
     PacMan->ty = 15;
-    PacMan->posx = (rand() % 19) + 1;
+    while(compteur != 1)
+    {
+
+
+        PacMan->posx = (rand() % 19) + 1;
     PacMan->posy = (rand() % 47) + 2;
+
+        if(tab[PacMan->posx][PacMan->posy] != 1)
+        {
+            compteur++;
+        }
+
+
+
+    }
+
     PacMan->deplacement = 7;
     PacMan->vies = 5;
     PacMan->turn_img = 0;
@@ -257,9 +272,9 @@ void suppressionDiamantConsole( t_Diamant * Diamant, t_PacMan * PacMan)
 
 }
 
-
 void Color(int t,int f)
 {
     HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(H,f*16+t);
 }
+
