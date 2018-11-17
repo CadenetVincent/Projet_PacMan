@@ -267,9 +267,60 @@ if(kbhit())
 
 }
 
+int affichageMenu()
+{
+     int choixMenu = 0;
+     printf("*****************************************\n" );
+     printf("*                                       *\n" );
+     printf("*               PACMAN                  *\n" );
+     printf("*                                       *\n" );
+     printf("*****************************************\n" );
+     printf("1. Jouer\n");
+     printf("2. Charger la sauvegarde du jeu\n");
+     printf("3. Instructions\n");
+     printf("5. Vitesse de jeu\n");
+     printf("5. Fermer le jeu\n");
+     printf("\nVotre choix?\n");
+     scanf("%d", &choixMenu);
+
+return choixMenu;
+}
+
+
+
 void boucle_totale(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start)
 {
     float acc = 1.0;
+
+    //DEBUT CHOIX MENU
+    int choixMenu = 0;
+
+    choixMenu = affichageMenu();
+
+    switch(choixMenu)
+    {
+                     case 1:
+
+                          break;
+                     case 2:
+
+                          break;
+                     case 3:
+
+                          break;
+                     case 4:
+
+                          break;
+                     case 5:
+
+                          break;
+                     default:
+                     choixMenu = affichageMenu();
+                     break;
+    }
+
+  system("PAUSE");
+  //FIN CHOIX MENU
 
     start = time(NULL);
     if(bord == 1)
