@@ -129,11 +129,8 @@ int main()
             fermeture = 0;
             PacMan.vies = 5;
 
-            while(PacMan.vies > 0 && fermeture != 1)
+            while(PacMan.vies > 0 && fermeture != 1 && PacMan.score != 12)
             {
-
-
-
                 PacMan.score = 0;
                 stop = 0;
                 niveau = 0;

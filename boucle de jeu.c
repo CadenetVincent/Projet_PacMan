@@ -150,7 +150,7 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int score_max,
     }
 }
 
-void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int *vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc)
+void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc)
 {
     int compt_time = 0;
     int scorep;
@@ -267,7 +267,7 @@ void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,
         }
 
 
-        Sleep(*vit);
+        Sleep(vit);
     }
 
 }
@@ -303,6 +303,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
     int variable = 0;
     //char key1 = 'm';
 
+    *vit = 100;
     choixMenu = affichageMenu();
 
     switch(choixMenu)
@@ -336,7 +337,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
             MAX = MAX + 5;
              MIN = MIN + 5;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
 
             system("cls");
             for(int i = 0 ; i < 5; i++)
@@ -365,7 +366,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
             int niveau1 = 1;
 
 
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
             system("cls");
             for(int i = 0 ; i < 5; i++)
             {
@@ -387,7 +388,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
             niveau1 = 2;
             acc = 1.1;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
             key = 'n';
         }
 
