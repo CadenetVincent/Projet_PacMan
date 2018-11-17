@@ -40,6 +40,9 @@
 		<Unit filename="boucle de jeu.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="diamants.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
