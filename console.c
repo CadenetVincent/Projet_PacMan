@@ -1,13 +1,11 @@
 #include "prototypes.h"
 
-void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int * tab[20][50])
+void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int * tab[20][50], float x)
 {
 
     if ( key == 'z' &&tab[PacMan->posx-1][PacMan->posy] != 1)
     {
         *a = 1;
-
-
     }
     else if (key == 's' && tab[PacMan->posx+1][PacMan->posy] != 1 )
     {
@@ -24,7 +22,7 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
 
     if ( *a == 1 && tab[PacMan->posx-1][PacMan->posy] != 1)
     {
-        PacMan->posx -= 1;
+        PacMan->posx -= x;
         if(bord == 1)
         {
             if(PacMan->posx < 1)
@@ -45,7 +43,7 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
     }
     else if (*a == 2 && tab[PacMan->posx + 1][PacMan->posy] != 1 )
     {
-        PacMan->posx+= 1;
+        PacMan->posx+= x;
         if(bord == 1)
         {
             if(PacMan->posx > 18)
@@ -57,14 +55,14 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
         {
             if(PacMan->posx > 18)
             {
-                PacMan->posx = 1;
+                PacMan->posx = 18;
             }
         }
 
     }
     else if (*a == 3 && tab[PacMan->posx][PacMan->posy+1] != 1 )
     {
-        PacMan->posy += 1;
+        PacMan->posy += x;
         if(bord == 1)
         {
             if(PacMan->posy > 48)
@@ -83,7 +81,7 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
     }
     else if (*a == 4 && tab[PacMan->posx][PacMan->posy-1] != 1 )
     {
-        PacMan->posy -= 1;
+        PacMan->posy -= x;
         if(bord == 1)
         {
             if(PacMan->posy< 1)
