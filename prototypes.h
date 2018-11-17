@@ -103,7 +103,6 @@ t_enemy * initialiserenemy();
 t_map * initialisermap();
 t_map * choix_map(t_map * changemap);
 t_PacMan * intialisationSubPacMan();
-t_enecons * initEnCons();
 
 BITMAP* call_monster(BITMAP*dbbuffer,t_enemy * monenemy, t_PacMan *PacMan);
 BITMAP* deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a);
@@ -120,12 +119,20 @@ void recuperation(t_enemy *enemy[], t_PacMan * PacMan, t_map * gestion_map,int c
 void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int stop, int * compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan  PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[], int *fermeture);
 void load_map1(int i,int niveau, int choise_map, int score_limit, int score_max, int * a, int stop, int  compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan  PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[], int *fermeture);
 
+
+//void load_map1(int i,int niveau, int choise_map, int score_limit , int score_max, int * a, int stop, int  compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan  PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[], int *fermeture);
+
 /// mode console
 void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord, int * tab[20][50]);
 void gotoligcol( int lig, int col );
 void intialisationPacManConsole(t_PacMan *PacMan);
 void chargementMap(char nom[], int * tab[20][50], int * bord);
+
 void sauvegardeConsole(t_PacMan * PacMan);
 void recuperationConsole(t_PacMan * PacMan);
+
+t_enecons * mouvementEnnemi(int * tab[][50],t_enecons * monscons);
+t_enecons * initEnCons();
+
 
 #endif // PROTOTYPES_H_INCLUDED

@@ -39,7 +39,7 @@ t_enecons * initEnCons()
 }
 
 
-void mouvementEnnemi(int tab[0][50],t_enecons * monscons)
+t_enecons * mouvementEnnemi(int * tab[][50],t_enecons * monscons)
 {
     int alea = rand()%10;
 
