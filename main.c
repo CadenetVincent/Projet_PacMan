@@ -47,6 +47,8 @@ int main()
     int niveau = 0;
     int  compteur = 0;
     int dead_mons = 0;
+    int MAX = 5;
+    int MIN = 0;
 
 
     t_PacMan PacMan;
@@ -59,52 +61,12 @@ int main()
 
 
 
-    intialisationPacManConsole(&PacMan);
-
-    chargementMap(nom, tab, &bord);
-    for(int i = 0; i < 5 ;i++)
-    {
-    Diamant[i] = initialiserDiamants();
-    gestionDiamantConsole(Diamant[i], &stop, tab );
-    }
-
-    for(int i = 0; i<4; i++)
-    {
-    monenecons[i] = initEnCons(tab);
-    }
-
-    while(PacMan.score != 5)
-    {
-
-        if(kbhit())
-        {
-            key = getch();
-        }
+    intialisationPacManConsole(&PacMan,tab);
 
 
+load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
 
 
-        init_table_mons(monenecons,tab,dead_mons,PacMan);
-
-        gotoligcol(PacMan.posx,PacMan.posy);
-        printf(" ");
-
-        consoleDeplacementPacMan(&a,&PacMan, key,bord, tab);
-
-        gotoligcol(PacMan.posx,PacMan.posy);
-        //Color(4,0);
-        printf("X");
-        //Color(15,0);
-        gotoligcol(200,400);
-
-    for(int i = 0; i<5 ;i++)
-    {
-        suppressionDiamantConsole(Diamant[i], &PacMan);
-    }
-
-    score(Diamant,&PacMan,&compteur, niveau);
-    Sleep(vit);
-    }
 
 
 printf("%d" ,PacMan.score);

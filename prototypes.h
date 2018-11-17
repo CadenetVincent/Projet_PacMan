@@ -127,7 +127,7 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int score_max,
 /// mode console
 void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord, int * tab[20][50]);
 void gotoligcol( int lig, int col );
-void intialisationPacManConsole(t_PacMan *PacMan);
+void intialisationPacManConsole(t_PacMan *PacMan, int * tab[20][50]);
 void chargementMap(char nom[], int * tab[20][50], int * bord);
 
 void suppressionDiamantConsole( t_Diamant * Diamant, t_PacMan * PacMan);
@@ -141,7 +141,7 @@ void gestionDiamantConsole(t_Diamant* Diamant, int * stop,int * tab[20][50]);
 t_enecons * mouvementEnnemi(int * tab[][50],t_enecons * monscons);
 t_enecons * initEnCons();
 void Color(int t,int f);
-
+void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN);
 
 
 #endif // PROTOTYPES_H_INCLUDED
