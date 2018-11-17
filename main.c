@@ -31,20 +31,21 @@ void lancerAllegro()
 
 int main()
 {
+
+
+
     srand(time(NULL));
     int x = 10,y = 25;
 
     char key = 'a';
     int compteurc = 0;
     int a = (rand() % 4) +1;
-    int vit = 60;
+    int vit = 80;
     char nom[30] = "map2.txt";
     int bord = 3;
-
     int * stop;
     int niveau = 0;
     int  compteur = 0;
-
     int dead_mons = 0;
 
 
@@ -57,6 +58,7 @@ int main()
     int *tab[20][50];
 
 
+
     intialisationPacManConsole(&PacMan);
 
     chargementMap(nom, tab, &bord);
@@ -66,17 +68,18 @@ int main()
     gestionDiamantConsole(Diamant[i], &stop, tab );
     }
 
+<<<<<<< HEAD
 
 
     for(int i = 0; i<4; i++)
     {
     monenecons[i] = initEnCons(tab);
     }
+=======
+    monenecons = initEnCons();
+>>>>>>> 9c642514581cff2b1f8c472c8893a4aff1b21e6d
 
-
-
-
-    while(key != 'p')
+    while(PacMan.score != 5)
     {
 
         if(kbhit())
@@ -85,10 +88,58 @@ int main()
         }
 
 
-        Sleep(vit);
 
+
+<<<<<<< HEAD
         // UNE SEULE FONCTION D'APPEl
         init_table_mons(monenecons,tab,dead_mons,PacMan);
+=======
+        gotoligcol(monenecons->EX,monenecons->EY);
+        if(monenecons->ED == 'V' && monenecons->ES=='G')
+        {
+            printf(" ",tab[monenecons->AX-1][monenecons->AY]);
+        }
+        else if(monenecons->ED == 'V' && monenecons->ES=='D')
+        {
+            printf(" ",tab[monenecons->AX+1][monenecons->AY]);
+        }
+        else if(monenecons->ED == 'H' && monenecons->ES=='G')
+        {
+            printf(" ",tab[monenecons->AX][monenecons->AY-1]);
+        }
+        else if(monenecons->ED == 'H' && monenecons->ES=='D')
+        {
+            printf(" ",tab[monenecons->AX][monenecons->AY+1]);
+        }
+        monenecons = mouvementEnnemi(tab,monenecons);
+        /*if(monenecons->ED == 'V' && monenecons->ES=='G')
+        {
+            printf(" ",tab[monenecons->AX-1][monenecons->AY]);
+        }
+        else if(monenecons->ED == 'V' && monenecons->ES=='D')
+        {
+            printf(" ",tab[monenecons->AX+1][monenecons->AY]);
+        }
+        else if(monenecons->ED == 'H' && monenecons->ES=='G')
+        {
+            printf(" ",tab[monenecons->AX][monenecons->AY-1]);
+        }
+        else if(monenecons->ED == 'H' && monenecons->ES=='D')
+        {
+            printf(" ",tab[monenecons->AX][monenecons->AY+1]);
+        }*/
+        gotoligcol(monenecons->EX,monenecons->EY);
+        Color(5,0);
+        printf("G");
+
+        gotoligcol(25,0);
+        dead_mons = collision_perso_mons_cons(&PacMan, monenecons);
+        if(dead_mons == 1)
+        {
+            printf("Le monstre vous attaque ,vous avez perdu une vie! \n");
+            dead_mons = 0;
+        }
+>>>>>>> 9c642514581cff2b1f8c472c8893a4aff1b21e6d
 
         gotoligcol(PacMan.posx,PacMan.posy);
         printf(" ");
@@ -96,7 +147,9 @@ int main()
         consoleDeplacementPacMan(&a,&PacMan, key,bord, tab);
 
         gotoligcol(PacMan.posx,PacMan.posy);
+        Color(4,0);
         printf("X");
+        Color(15,0);
         gotoligcol(200,400);
 
 
@@ -105,13 +158,12 @@ int main()
     {
         suppressionDiamantConsole(Diamant[i], &PacMan);
 
-
-
     }
 
 
 
     score(Diamant,&PacMan,&compteur, niveau);
+    Sleep(vit);
     }
 
 

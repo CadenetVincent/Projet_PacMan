@@ -58,6 +58,7 @@ void suppressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant, t_PacMan * PacMa
     if(getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy) == makecol(255,255,255) ||getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy+30) == makecol(255,255,255)||getpixel(dbbuffer, Diamant->posx, Diamant->posy+15) == makecol(255,255,255)||getpixel(dbbuffer, Diamant->posx + 15, Diamant->posy+30  ) == makecol(255,255,255))
     {
         Diamant->boolean = 1;
+
         //PacMan->score = PacMan->score + 1;
     }
 
@@ -88,7 +89,7 @@ void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur, int niveau)
         *compteur = *compteur + PacMan->get_Sun;
     }*/
 
-    for(int i = 0; i < 4; i++)
+    for(int i = 0; i < 5; i++)
     {
 
 

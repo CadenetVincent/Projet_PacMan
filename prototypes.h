@@ -140,6 +140,8 @@ void gestionDiamantConsole(t_Diamant* Diamant, int * stop,int * tab[20][50]);
 
 t_enecons * mouvementEnnemi(int * tab[][50],t_enecons * monscons);
 t_enecons * initEnCons();
+void Color(int t,int f);
+
 
 
 #endif // PROTOTYPES_H_INCLUDED
