@@ -141,7 +141,7 @@ void gestionDiamantConsole(t_Diamant* Diamant, int * stop,int * tab[20][50]);
 t_enecons * mouvementEnnemi(int * tab[][50],t_enecons * monscons);
 t_enecons * initEnCons();
 void Color(int t,int f);
-void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN);
+void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons);
 
 
 #endif // PROTOTYPES_H_INCLUDED

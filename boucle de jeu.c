@@ -150,16 +150,19 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int score_max,
     }
 }
 
-void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN)
+void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons)
 {
     chargementMap(nom, tab, &bord);
     for(int i = 0; i < 5 ;i++)
     {
         Diamant[i] = initialiserDiamants();
         gestionDiamantConsole(Diamant[i], &stop, tab );
-
     }
 
+    for(int i = 0; i<4; i++)
+    {
+        monenecons[i] = initEnCons();
+    }
 
 
     while(PacMan->score < MAX && PacMan->score >= MIN && PacMan->vies != 0)
@@ -173,6 +176,7 @@ if(kbhit())
         gotoligcol(25,0);
 
 
+        init_table_mons(monenecons,tab,dead_mons,PacMan);
 
         gotoligcol(PacMan->posx,PacMan->posy);
         printf(" ");
