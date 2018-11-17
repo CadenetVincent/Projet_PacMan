@@ -70,6 +70,18 @@ typedef struct Diamant
     int boolean;
 }t_Diamant;
 
+typedef struct enecons
+{
+    char ED;
+    char ECASE;
+    int EX;
+    int EY;
+    int AX;
+    int AY;
+    char ES;
+
+}t_enecons;
+
 typedef struct Sun
 {
     BITMAP * SOLEIL[6];
@@ -91,6 +103,7 @@ t_enemy * initialiserenemy();
 t_map * initialisermap();
 t_map * choix_map(t_map * changemap);
 t_PacMan * intialisationSubPacMan();
+t_enecons * initEnCons();
 
 BITMAP* call_monster(BITMAP*dbbuffer,t_enemy * monenemy, t_PacMan *PacMan);
 BITMAP* deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a);

@@ -42,21 +42,27 @@ int main()
     int bord = 3;
 
     t_PacMan PacMan;
+    t_enecons * monenecons;
 
     PacMan.posx = 10;
     PacMan.posy = 25;
     int *tab[20][50];
 
     intialisationPacManConsole(&PacMan);
+
     chargementMap(nom, tab, &bord);
 
 
+
+
+    monenecons = initEnCons();
 
 
 
 
     while(key != 'p')
     {
+
         if(kbhit())
         {
             key = getch();
@@ -82,11 +88,49 @@ else
 }
 x++;
  y++;*/
+
+ gotoligcol(monenecons->EX,monenecons->EY);
+  if(monenecons->ED == 'V' && monenecons->ES=='G')
+{
+     printf(" ",tab[monenecons->AX-1][monenecons->AY]);
+}else if(monenecons->ED == 'V' && monenecons->ES=='D')
+{
+    printf(" ",tab[monenecons->AX+1][monenecons->AY]);
+}else if(monenecons->ED == 'H' && monenecons->ES=='G')
+{
+    printf(" ",tab[monenecons->AX][monenecons->AY-1]);
+}else if(monenecons->ED == 'H' && monenecons->ES=='D')
+{
+    printf(" ",tab[monenecons->AX][monenecons->AY+1]);
+}
+ monenecons = mouvementEnnemi(tab,monenecons);
+   if(monenecons->ED == 'V' && monenecons->ES=='G')
+{
+     printf(" ",tab[monenecons->AX-1][monenecons->AY]);
+}else if(monenecons->ED == 'V' && monenecons->ES=='D')
+{
+    printf(" ",tab[monenecons->AX+1][monenecons->AY]);
+}else if(monenecons->ED == 'H' && monenecons->ES=='G')
+{
+    printf(" ",tab[monenecons->AX][monenecons->AY-1]);
+}else if(monenecons->ED == 'H' && monenecons->ES=='D')
+{
+    printf(" ",tab[monenecons->AX][monenecons->AY+1]);
+}
+gotoligcol(monenecons->EX,monenecons->EY);
+ printf("G");
+
  gotoligcol(PacMan.posx,PacMan.posy);
  printf(" ");
-consoleDeplacementPacMan(&a,&PacMan, key, bord, tab);
+
+ consoleDeplacementPacMan(&a,&PacMan, key,bord, tab);
+
  gotoligcol(PacMan.posx,PacMan.posy);
  gotoligcol(200,400);
+
+
+
+
 
 
 

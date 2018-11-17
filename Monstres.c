@@ -21,6 +21,101 @@ t_enemy * initialiserenemy()
     return mmonstre;
 }
 
+
+t_enecons * initEnCons()
+{
+    t_enecons * monscons;
+    monscons = (t_enecons*) malloc(1 * sizeof(t_enecons));
+
+    monscons->ED = 'H';
+    monscons->ECASE = 'a';
+    monscons->EX = 9;
+    monscons->EY = 10;
+    monscons->AX = -10;
+    monscons->AY = -10;
+    monscons->ES = 'G';
+
+    return monscons;
+}
+
+
+void mouvementEnnemi(int tab[0][50],t_enecons * monscons)
+{
+    int alea = rand()%10;
+
+    if(alea == 1 || alea == 2)
+    {
+        if(monscons->ED == 'V')
+        {
+            monscons->ED = 'H';
+        }else
+        {
+            monscons->ED = 'V';
+        }
+
+    }
+
+    monscons->AY = monscons->EY;
+    monscons->AX = monscons->EX;
+
+    if(monscons->ED == 'V')
+    {
+        if(monscons->ES=='G')
+        {
+            if (tab[monscons->EX-1][monscons->EY] != 1)
+            {
+                monscons->EX--;
+            }
+            else
+            {
+                monscons->ES='D';
+                monscons->EX++;
+            }
+        }
+        else if(monscons->ES=='D')
+        {
+            if (tab[monscons->EX+1][monscons->EY] != 1)
+            {
+                monscons->EX++;
+            }
+            else
+            {
+                monscons->ES='G';
+                monscons->EX--;
+            }
+        }
+    }
+    else if(monscons->ED=='H')
+    {
+        if(monscons->ES=='G')
+        {
+            if (tab[monscons->EX][monscons->EY-1] != 1)
+            {
+                monscons->EY--;
+            }
+            else
+            {
+                monscons->ES='D';
+                monscons->EY++;
+            }
+        }
+        else if(monscons->ES=='D')
+        {
+            if (tab[monscons->EX][monscons->EY+1] != 1)
+            {
+                monscons->EY++;
+            }
+            else
+            {
+                monscons->ES='G';
+                monscons->EY--;
+            }
+        }
+    }
+
+    return monscons;
+}
+
 void follow_monster(t_enemy * monenemy, t_PacMan *PacMan, BITMAP*dbbuffer)
 {
     if(abs(monenemy->dposx - PacMan->posx) > abs(monenemy->dposy - PacMan->posy))

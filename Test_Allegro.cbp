@@ -37,7 +37,16 @@
 		<Unit filename="Monstres.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Sun.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="boucle de jeu.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="console.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="diamants.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.c">
