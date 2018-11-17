@@ -40,10 +40,10 @@ int main()
     char key = 'a';
     int compteurc = 0;
     int a = (rand() % 4) +1;
-    int vit = 80;
+    int vit = 100;
     char nom[30] = "map2.txt";
     int bord = 3;
-    int * stop;
+    int  stop = 5;
     int niveau = 0;
     int  compteur = 0;
     int dead_mons = 0;
@@ -64,7 +64,8 @@ int main()
     intialisationPacManConsole(&PacMan,tab);
 
 
-load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
+//load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
+boucle_totale(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
 
 
 

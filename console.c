@@ -2,7 +2,7 @@
 
 void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int * tab[20][50])
 {
-printf("%d", *a);
+
     if ( key == 'z' &&tab[PacMan->posx-1][PacMan->posy] != 1)
     {
         *a = 1;

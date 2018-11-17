@@ -155,15 +155,14 @@ void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,
     chargementMap(nom, tab, &bord);
     for(int i = 0; i < 5 ;i++)
     {
-        Diamant[i] = initialiserDiamants();
         gestionDiamantConsole(Diamant[i], &stop, tab );
-
     }
 
 
 
     while(PacMan->score < MAX && PacMan->score >= MIN && PacMan->vies != 0)
     {
+
 
 if(kbhit())
         {
@@ -195,7 +194,33 @@ if(kbhit())
 
 
     score(Diamant,PacMan,&compteur, niveau);
-    Sleep(50);
+    Sleep(vit);
     }
 
+}
+
+void boucle_totale(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN)
+{
+    for(int i = 0 ; i < 5; i++)
+    {
+        Diamant[i] = initialiserDiamants();
+    }
+    load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
+
+    system("cls");
+for(int i = 0 ; i < 5; i++)
+    {
+        Diamant[i] = initialiserDiamants();
+    }
+    //PacMan->score = 5;
+    char nom1[30] = "map3.txt";
+    /*int max = 10;
+    int min = 5;*/
+    *stop = 5;
+    /*compteur = 0;
+    int niveau1 = 1;*/
+    PacMan->score = 0;
+    printf("%d %d %d %d", PacMan->vies, MAX,MIN, PacMan->score);
+
+    load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
 }
