@@ -486,6 +486,16 @@ BITMAP* action_sprite_pacman(t_PacMan*PacMan, BITMAP*mabitmap[], int taille_max)
 
 }
 
+int collision_perso_mons_cons(t_PacMan *PacMan, t_enecons *monscons)
+{
+   if(PacMan->posx == monscons->EX && PacMan->posy == monscons->EY)
+   {
+       return 1;
+   }
+   return 0;
+
+}
+
 
 void intialisationPacMan(t_PacMan *PacMan)
 {

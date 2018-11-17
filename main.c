@@ -40,9 +40,13 @@ int main()
     int vit = 60;
     char nom[30] = "map2.txt";
     int bord = 3;
+
     int * stop;
     int niveau = 0;
     int  compteur = 0;
+
+    int dead_mons = 0;
+
 
     t_PacMan PacMan;
     t_enecons * monenecons;
@@ -119,6 +123,14 @@ gestionDiamantConsole(Diamant[i], &stop, tab );
         gotoligcol(monenecons->EX,monenecons->EY);
         printf("G");
 
+        gotoligcol(25,0);
+        dead_mons = collision_perso_mons_cons(&PacMan, monenecons);
+        if(dead_mons == 1)
+        {
+            printf("Le monstre vous attaque ,vous avez perdu une vie! \n");
+            dead_mons = 0;
+        }
+
         gotoligcol(PacMan.posx,PacMan.posy);
         printf(" ");
 
@@ -129,12 +141,17 @@ gestionDiamantConsole(Diamant[i], &stop, tab );
         gotoligcol(200,400);
 
 
+
         for(int i = 0; i < 5 ;i++)
     {
         suppressionDiamantConsole(Diamant[i], &PacMan);
 
 
+
     }
+
+
+
     score(Diamant,&PacMan,&compteur, niveau);
     }
 
