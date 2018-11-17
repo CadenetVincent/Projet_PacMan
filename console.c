@@ -1,21 +1,21 @@
 #include "prototypes.h"
 
-void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int * tab[20][50], float x)
+void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  *key, int bord,int * tab[20][50], float x)
 {
 
-    if ( key == 'z' &&tab[PacMan->posx-1][PacMan->posy] != 1)
+    if ( *key == 'z' &&tab[PacMan->posx-1][PacMan->posy] != 1)
     {
         *a = 1;
     }
-    else if (key == 's' && tab[PacMan->posx+1][PacMan->posy] != 1 )
+    else if (*key == 's' && tab[PacMan->posx+1][PacMan->posy] != 1 )
     {
         *a = 2;
     }
-    else if (key == 'd'&& tab[PacMan->posx][PacMan->posy+1] != 1 )
+    else if (*key == 'd'&& tab[PacMan->posx][PacMan->posy+1] != 1 )
     {
         *a = 3;
     }
-    else if (key == 'q'&& tab[PacMan->posx][PacMan->posy-1] != 1 )
+    else if (*key == 'q'&& tab[PacMan->posx][PacMan->posy-1] != 1 )
     {
         *a = 4;
     }

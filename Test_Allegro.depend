@@ -4,13 +4,13 @@
 	<stdlib.h>
 	<allegro.h>
 
-1542485520 source:c:\users\guill\documents\projet_pacman\main.c
+1542494524 source:c:\users\guill\documents\projet_pacman\main.c
 	"prototypes.h"
 
 1540833334 D
 	"prototypes.h"
 
-1542486385 c:\users\guill\documents\projet_pacman\prototypes.h
+1542495248 c:\users\guill\documents\projet_pacman\prototypes.h
 	<allegro.h>
 	<stdlib.h>
 	<stdio.h>
@@ -47,7 +47,7 @@
 1542299140 source:c:\users\guill\documents\projet_pacman\map.c
 	"prototypes.h"
 
-1542487601 source:c:\users\guill\documents\projet_pacman\boucle de jeu.c
+1542495003 source:c:\users\guill\documents\projet_pacman\boucle de jeu.c
 	"prototypes.h"
 
 1542455744 source:c:\users\guill\documents\projet_pacman\sauvegarde.c
@@ -59,7 +59,7 @@
 1542299140 source:c:\users\guill\documents\projet_pacman\sun.c
 	"prototypes.h"
 
-1542487044 source:c:\users\guill\documents\projet_pacman\console.c
+1542489953 source:c:\users\guill\documents\projet_pacman\console.c
 	"prototypes.h"
 
 1542478453 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\boucle de jeu.c

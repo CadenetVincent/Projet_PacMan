@@ -32,45 +32,9 @@ void lancerAllegro()
 int main()
 {
 
+ Console();
 
 
-    srand(time(NULL));
-    int x = 10,y = 25;
-    time_t start = time(NULL);
-
-    char key = 'a';
-    int compteurc = 0;
-    int a = (rand() % 4) +1;
-    float vit = 100;
-    char nom[30] = "map3.txt";
-    int bord = 1;
-    int  stop = 5;
-    int niveau = 0;
-    int  compteur = 0;
-    int dead_mons = 0;
-    int MAX = 5;
-    int MIN = 0;
-
-
-    t_PacMan PacMan;
-    t_PacMan * pt_PacMan;
-    pt_PacMan = &PacMan;
-
-    t_enecons * monenecons[4];
-    t_Diamant * Diamant[5];
-
-    PacMan.posx = 10;
-    PacMan.posy = 25;
-    PacMan.vies = 5;
-    int *tab[20][50];
-
-    intialisationPacManConsole(&PacMan,tab);
-
-
-
-
-//load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
-boucle_totale(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start);
 
 //load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons);
 
@@ -78,7 +42,7 @@ boucle_totale(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MA
 
 
 
-printf("%d" ,PacMan.score);
+
 
 
 
