@@ -150,7 +150,7 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int score_max,
     }
 }
 
-void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit)
+void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN)
 {
     chargementMap(nom, tab, &bord);
     for(int i = 0; i < 5 ;i++)
@@ -162,7 +162,7 @@ void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,
 
 
 
-    while(PacMan->score != 5)
+    while(PacMan->score < MAX && PacMan->score >= MIN && PacMan->vies != 0)
     {
 
 if(kbhit())
@@ -177,7 +177,7 @@ if(kbhit())
         gotoligcol(PacMan->posx,PacMan->posy);
         printf(" ");
 
-        consoleDeplacementPacMan(&a,PacMan, key,bord, tab);
+        consoleDeplacementPacMan(a,PacMan, key,bord, tab);
 
         gotoligcol(PacMan->posx,PacMan->posy);
         Color(5,0);

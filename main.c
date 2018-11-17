@@ -47,6 +47,8 @@ int main()
     int niveau = 0;
     int  compteur = 0;
     int dead_mons = 0;
+    int MAX = 5;
+    int MIN = 0;
 
 
     t_PacMan PacMan;
@@ -62,7 +64,7 @@ int main()
     intialisationPacManConsole(&PacMan,tab);
 
 
-load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit);
+load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
 
 
 
