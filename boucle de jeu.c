@@ -314,6 +314,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_
                      case 5:
 
                           break;
+
                      default:
                      choixMenu = affichageMenu();
                      break;
