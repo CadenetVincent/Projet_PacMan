@@ -26,66 +26,34 @@ void lancerAllegro()
 
 ///Keep the same function for each map
 
-void gotoligcol( int lig, int col )
-{
-//ressources
-COORD mycoord;
 
-mycoord.X = col;
-mycoord.Y = lig;
-SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
-}
 
 
 int main()
 {
+    srand(time(NULL));
     int x = 10,y = 25;
 
     char key = 'a';
     int compteurc = 0;
-    int a = 0;
-    int vit = 40;
-    FILE * fichier = NULL;
-    fichier = fopen("map1.txt", "r");
+    int a = (rand() % 4) +1;
+    int vit = 60;
+    char nom[30] = "map2.txt";
+    int bord = 3;
+
     t_PacMan PacMan;
 
     PacMan.posx = 10;
     PacMan.posy = 25;
-    int tab[20][50];
+    int *tab[20][50];
 
     intialisationPacManConsole(&PacMan);
-    //initialsiation
-    if(fichier != NULL)
-    {
-        for(int i = 0; i < 20; i++)
-        {
-            for(int j = 0; j < 50; j ++)
-            {
-                 fscanf(fichier,"%d", &tab[i][j]);
+    chargementMap(nom, tab, &bord);
 
-            }
-        }
-    }
-    else
-    {
-        printf("impossible d'ouvrir le fichier \n");
-    }
-for(int i = 0; i < 20; i++)
-        {
-            for(int j = 0; j < 50; j ++)
-            {
-                if(tab[i][j] == 0)
-                {
-                    printf(" ");
-                }
-                else
-                {
-                    printf("%d", tab[i][j]);
-                }
 
-            }
-            printf("\n");
-        }
+
+
+
 
     while(key != 'p')
     {
@@ -99,7 +67,7 @@ for(int i = 0; i < 20; i++)
 
 //printf("%d ceci est x", x);
 
-printf("P");
+printf("X");
 Sleep(vit);
 
 //system("cls");
@@ -116,8 +84,9 @@ x++;
  y++;*/
  gotoligcol(PacMan.posx,PacMan.posy);
  printf(" ");
-consoleDeplacementPacMan(&a,&PacMan, key);
+consoleDeplacementPacMan(&a,&PacMan, key, bord, tab);
  gotoligcol(PacMan.posx,PacMan.posy);
+ gotoligcol(200,400);
 
 
 

@@ -1,9 +1,10 @@
 #include "prototypes.h"
 
-void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key)
+void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int * tab[20][50])
 {
-
-     if (key == 'z' )
+//gotoligcol(PacMan->posx,PacManposy);
+printf("%d", tab[PacMan->posx-1][PacMan->posy]);
+     if (key == 'z' && tab[PacMan->posx-1][PacMan->posy] != 1 )
     {
         *a = 1;
 
@@ -21,44 +22,97 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key)
         *a = 4;
     }
 
-    if ( *a == 1 )
+    if ( *a == 1 && tab[PacMan->posx-1][PacMan->posy] != 1)
     {
         PacMan->posx -= 1;
-        if(PacMan->posx < 1)
+        if(bord == 1)
+        {
+            if(PacMan->posx < 1)
         {
             PacMan->posx= 1;
         }
+        }
+        else if( bord == 0)
+        {
+            if(PacMan->posx < 1)
+        {
+            PacMan->posx= 18;
+        }
+        }
+
 
 
     }
     else if (*a == 2  )
     {
        PacMan->posx+= 1;
-       if(PacMan->posx > 18)
+       if(bord == 1)
+       {
+           if(PacMan->posx > 18)
         {
             PacMan->posx = 18;
         }
+       }
+       else if(bord == 0)
+       {
+            if(PacMan->posx > 18)
+        {
+            PacMan->posx = 1;
+        }
+       }
+
     }
     else if (*a == 3  )
     {
        PacMan->posy += 1;
-       if(PacMan->posy > 48)
+       if(bord == 1)
+       {
+           if(PacMan->posy > 48)
         {
             PacMan->posy = 48;
         }
+       }
+       else if(bord == 0)
+       {
+            if(PacMan->posy > 48)
+        {
+            PacMan->posy = 1;
+        }
+       }
+
     }
     else if (*a == 4 )
     {
         PacMan->posy -= 1;
-        if(PacMan->posy< 1)
+        if(bord == 1)
+        {
+            if(PacMan->posy< 1)
         {
             PacMan->posy = 1;
         }
+        }
+        else if (bord == 0)
+        {
+             if(PacMan->posy< 1)
+        {
+            PacMan->posy = 48;
+        }
+        }
+
     }
     //printf("%d ceci est x", *x);
 //printf("%d xxxx " , (*x));
 }
 
+void gotoligcol( int lig, int col )
+{
+//ressources
+COORD mycoord;
+
+mycoord.X = col;
+mycoord.Y = lig;
+SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
+}
 
 void intialisationPacManConsole(t_PacMan *PacMan)
 {
@@ -77,45 +131,54 @@ void intialisationPacManConsole(t_PacMan *PacMan)
     PacMan->direction = 0;
     PacMan->last_direction = 0;
 
-    //Traitement image sprites
-    PacMan->compteur = 0;
-    PacMan->temporiseur = 8;
-    PacMan->image_actuelle = 0;
-
-    //Image bottom
-    /*for(i=0; i<2; i++)
-    {
-        sprintf(nomfichier,"pacman_sprites/pacman_bot_%d.bmp",i);
-        PacMan->pacman_bot[i]=load_bitmap(nomfichier,NULL);
-        if (!PacMan->pacman_bot[i])
-        {
-            allegro_message("PRB d'ouverture = %s",nomfichier);
-        }
-    }
-
-    //Image right
-    for(i=0; i<8; i++)
-    {
-        sprintf(nomfichier,"pacman_sprites/pacman_right_%d.bmp",i);
-        PacMan->pacman_right[i]=load_bitmap(nomfichier,NULL);
-        if (!PacMan->pacman_right[i])
-        {
-            allegro_message("PRB d'ouverture = %s",nomfichier);
-        }
-    }
-
-    //Image up
-    for(i=0; i<3; i++)
-    {
-        sprintf(nomfichier,"pacman_sprites/pacman_up_%d.bmp",i);
-        PacMan->pacman_up[i]=load_bitmap(nomfichier,NULL);
-        if (!PacMan->pacman_up[i])
-        {
-            allegro_message("PRB d'ouverture = %s",nomfichier);
-        }
-    }
-*/
-
     PacMan->score = 0;
+
+}
+
+
+void chargementMap(char nom[], int * tab[20][50], int * bord)
+{
+     FILE * fichier = NULL;
+    fichier = fopen(nom, "r");
+     if(fichier != NULL)
+    {
+
+        for(int i = 0; i < 20; i++)
+        {
+            for(int j = 0; j < 50; j ++)
+            {
+                 fscanf(fichier,"%d", &tab[i][j]);
+
+            }
+        }
+    }
+    else
+    {
+        printf("impossible d'ouvrir le fichier \n");
+    }
+
+     for(int i = 0; i < 20; i++)
+        {
+            for(int j = 0; j < 50; j ++)
+            {
+                if(tab[i][j] == 0)
+                {
+                    printf(" ");
+                }
+                else if(tab[0][j] == 1)
+                {
+                    printf("-");
+                    *bord = 1;
+                }
+                else if(tab[0][j] == 2)
+                {
+                    printf("|");
+                    *bord = 0;
+                }
+
+
+            }
+            printf("\n");
+        }
 
 }

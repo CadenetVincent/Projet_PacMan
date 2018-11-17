@@ -85,7 +85,7 @@ void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int *s
 
 void supressionDiamant(BITMAP * dbbuffer, t_Diamant * Diamant,t_PacMan * PacMan);
 void intialisationPacMan(t_PacMan *PacMan);
-void intialisationPacManConsole(t_PacMan *PacMan);
+
 t_Sun * initialiserSun();
 t_enemy * initialiserenemy();
 t_map * initialisermap();
@@ -108,7 +108,9 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 void load_map1(int i,int niveau, int choise_map, int score_limit , int score_max, int * a, int stop, int  compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan  PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[], int *fermeture);
 
 /// mode console
-void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key);
-
+void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord, int * tab[20][50]);
+void gotoligcol( int lig, int col );
+void intialisationPacManConsole(t_PacMan *PacMan);
+void chargementMap(char nom[], int * tab[20][50], int * bord);
 
 #endif // PROTOTYPES_H_INCLUDED
