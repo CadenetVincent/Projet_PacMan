@@ -59,13 +59,16 @@ int main()
     PacMan.posy = 25;
     int *tab[20][50];
 
-
-
     intialisationPacManConsole(&PacMan,tab);
 
 
+
+
 //load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
-boucle_totale(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
+boucle_totale(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons);
+
+//load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons);
+
 
 
 
