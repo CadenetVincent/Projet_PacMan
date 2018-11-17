@@ -3,21 +3,21 @@
 void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int * tab[20][50])
 {
 //gotoligcol(PacMan->posx,PacManposy);
-printf("%d", tab[PacMan->posx-1][PacMan->posy]);
+//printf("%d", tab[PacMan->posx-1][PacMan->posy]);
      if (key == 'z' && tab[PacMan->posx-1][PacMan->posy] != 1 )
     {
         *a = 1;
 
     }
-    else if (key == 's' )
+    else if (key == 's' && tab[PacMan->posx+1][PacMan->posy] != 1 )
     {
         *a = 2;
     }
-    else if (key == 'd' )
+    else if (key == 'd'&& tab[PacMan->posx][PacMan->posy+1] != 1 )
     {
         *a = 3;
     }
-    else if (key == 'q' )
+    else if (key == 'q'&& tab[PacMan->posx][PacMan->posy-1] != 1 )
     {
         *a = 4;
     }
@@ -43,7 +43,7 @@ printf("%d", tab[PacMan->posx-1][PacMan->posy]);
 
 
     }
-    else if (*a == 2  )
+    else if (*a == 2 && tab[PacMan->posx + 1][PacMan->posy] != 1 )
     {
        PacMan->posx+= 1;
        if(bord == 1)
@@ -62,7 +62,7 @@ printf("%d", tab[PacMan->posx-1][PacMan->posy]);
        }
 
     }
-    else if (*a == 3  )
+    else if (*a == 3 && tab[PacMan->posx][PacMan->posy+1] != 1 )
     {
        PacMan->posy += 1;
        if(bord == 1)
@@ -81,7 +81,7 @@ printf("%d", tab[PacMan->posx-1][PacMan->posy]);
        }
 
     }
-    else if (*a == 4 )
+    else if (*a == 4 && tab[PacMan->posx][PacMan->posy-1] != 1 )
     {
         PacMan->posy -= 1;
         if(bord == 1)
@@ -122,7 +122,7 @@ void intialisationPacManConsole(t_PacMan *PacMan)
     PacMan->tx = 15;
     PacMan->ty = 15;
     PacMan->posx = (rand() % 19) + 1;
-    PacMan->posy = (rand() % 48) + 1;
+    PacMan->posy = (rand() % 47) + 2;
     PacMan->deplacement = 7;
     PacMan->vies = 5;
     PacMan->turn_img = 0;
