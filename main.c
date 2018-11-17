@@ -36,6 +36,7 @@ int main()
 
     srand(time(NULL));
     int x = 10,y = 25;
+    time_t start = time(NULL);
 
     char key = 'a';
     int compteurc = 0;
@@ -52,11 +53,15 @@ int main()
 
 
     t_PacMan PacMan;
+    t_PacMan * pt_PacMan;
+    pt_PacMan = &PacMan;
+
     t_enecons * monenecons[4];
     t_Diamant * Diamant[5];
 
     PacMan.posx = 10;
     PacMan.posy = 25;
+    PacMan.vies = 5;
     int *tab[20][50];
 
     intialisationPacManConsole(&PacMan,tab);
@@ -65,7 +70,7 @@ int main()
 
 
 //load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
-boucle_totale(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons);
+boucle_totale(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start);
 
 //load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons);
 

@@ -21,7 +21,7 @@ t_enemy * initialiserenemy()
     return mmonstre;
 }
 
-void init_table_mons(t_enecons * monenecons[4], int * tab[20][50],int dead_mons, t_PacMan PacMan)
+void init_table_mons(t_enecons * monenecons[4], int * tab[20][50],int dead_mons, t_PacMan * PacMan)
 {
     for(int i=0; i<4; i++)
         {
@@ -49,13 +49,16 @@ void init_table_mons(t_enecons * monenecons[4], int * tab[20][50],int dead_mons,
         printf("G");
 
         gotoligcol(25,0);
-        dead_mons = collision_perso_mons_cons(&PacMan, monenecons[i]);
+        dead_mons = collision_perso_mons_cons(PacMan, monenecons[i]);
         if(dead_mons == 1)
         {
             printf("Le monstre vous attaque ,vous avez perdu une vie! \n");
+            PacMan->vies = PacMan->vies - 1;
             dead_mons = 0;
         }
+
         }
+
 }
 
 
