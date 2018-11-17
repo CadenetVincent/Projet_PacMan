@@ -318,8 +318,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_
                      choixMenu = affichageMenu();
                      break;
     }
-
-  system("PAUSE");
+ system("cls");
   //FIN CHOIX MENU
 
     start = time(NULL);
