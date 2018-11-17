@@ -332,6 +332,6 @@ if(bord == 1)
 
 
      niveau1 = 2;
-acc = 1.1;
+    acc = 1.1;
     load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,key,a,&compteur,niveau1,vit,max,min,monenecons,dead_mons,start,acc);
 }
