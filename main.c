@@ -40,6 +40,7 @@ int main()
     int vit = 60;
     char nom[30] = "map2.txt";
     int bord = 3;
+    int dead_mons = 0;
 
     t_PacMan PacMan;
     t_enecons * monenecons;
@@ -108,6 +109,14 @@ int main()
         gotoligcol(monenecons->EX,monenecons->EY);
         printf("G");
 
+        gotoligcol(25,0);
+        dead_mons = collision_perso_mons_cons(&PacMan, monenecons);
+        if(dead_mons == 1)
+        {
+            printf("Le monstre vous attaque ,vous avez perdu une vie! \n");
+            dead_mons = 0;
+        }
+
         gotoligcol(PacMan.posx,PacMan.posy);
         printf(" ");
 
@@ -116,6 +125,8 @@ int main()
         gotoligcol(PacMan.posx,PacMan.posy);
         printf("X");
         gotoligcol(200,400);
+
+
 
 
     }

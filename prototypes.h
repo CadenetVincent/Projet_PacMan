@@ -127,7 +127,7 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord, in
 void gotoligcol( int lig, int col );
 void intialisationPacManConsole(t_PacMan *PacMan);
 void chargementMap(char nom[], int * tab[20][50], int * bord);
-
+int collision_perso_mons_cons(t_PacMan *PacMan, t_enecons *monscons);
 void sauvegardeConsole(t_PacMan * PacMan);
 void recuperationConsole(t_PacMan * PacMan);
 
