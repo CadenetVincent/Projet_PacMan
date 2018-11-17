@@ -31,20 +31,21 @@ void lancerAllegro()
 
 int main()
 {
+
+
+
     srand(time(NULL));
     int x = 10,y = 25;
 
     char key = 'a';
     int compteurc = 0;
     int a = (rand() % 4) +1;
-    int vit = 60;
+    int vit = 80;
     char nom[30] = "map2.txt";
     int bord = 3;
-
     int * stop;
     int niveau = 0;
     int  compteur = 0;
-
     int dead_mons = 0;
 
 
@@ -57,6 +58,7 @@ int main()
     int *tab[20][50];
 
 
+
     intialisationPacManConsole(&PacMan);
 
     chargementMap(nom, tab, &bord);
@@ -67,15 +69,9 @@ gestionDiamantConsole(Diamant[i], &stop, tab );
 
     }
 
-
-
-
     monenecons = initEnCons();
 
-
-
-
-    while(key != 'p')
+    while(PacMan.score != 5)
     {
 
         if(kbhit())
@@ -84,7 +80,7 @@ gestionDiamantConsole(Diamant[i], &stop, tab );
         }
 
 
-        Sleep(vit);
+
 
         gotoligcol(monenecons->EX,monenecons->EY);
         if(monenecons->ED == 'V' && monenecons->ES=='G')
@@ -121,6 +117,7 @@ gestionDiamantConsole(Diamant[i], &stop, tab );
             printf(" ",tab[monenecons->AX][monenecons->AY+1]);
         }*/
         gotoligcol(monenecons->EX,monenecons->EY);
+        Color(5,0);
         printf("G");
 
         gotoligcol(25,0);
@@ -137,7 +134,9 @@ gestionDiamantConsole(Diamant[i], &stop, tab );
         consoleDeplacementPacMan(&a,&PacMan, key,bord, tab);
 
         gotoligcol(PacMan.posx,PacMan.posy);
+        Color(4,0);
         printf("X");
+        Color(15,0);
         gotoligcol(200,400);
 
 
@@ -146,13 +145,12 @@ gestionDiamantConsole(Diamant[i], &stop, tab );
     {
         suppressionDiamantConsole(Diamant[i], &PacMan);
 
-
-
     }
 
 
 
     score(Diamant,&PacMan,&compteur, niveau);
+    Sleep(vit);
     }
 
 

@@ -167,12 +167,14 @@ void chargementMap(char nom[], int * tab[20][50], int * bord)
             }
             else if(tab[0][j] == 1)
             {
-                printf("-");
+                Color(1,0);
+                printf("%c", 220);
                 *bord = 1;
             }
             else if(tab[0][j] == 2)
             {
-                printf("|");
+                Color(8,0);
+                printf("%c", 220);
                 *bord = 0;
             }
 
@@ -238,7 +240,9 @@ void gestionDiamantConsole(t_Diamant* Diamant, int * stop,int * tab[20][50])
             compteur = 0;
             (*stop)++;
             gotoligcol(Diamant->posx, Diamant->posy);
+            Color(2,0);
             printf("D");
+            Color(11,0);
 
         }
     }
@@ -249,7 +253,13 @@ void suppressionDiamantConsole( t_Diamant * Diamant, t_PacMan * PacMan)
     if(PacMan->posx == Diamant->posx && PacMan->posy == Diamant->posy)
     {
         Diamant->boolean = 1;
-        //PacMan->score = PacMan->score + 1;
     }
 
+}
+
+
+void Color(int t,int f)
+{
+    HANDLE H=GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(H,f*16+t);
 }
