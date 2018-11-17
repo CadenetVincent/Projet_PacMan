@@ -152,7 +152,7 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int score_max,
 
 void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons)
 {
-    int crash = 0;
+
     chargementMap(nom, tab, &bord);
     for(int i = 0; i < 5 ;i++)
     {
@@ -179,12 +179,7 @@ if(kbhit())
 
         init_table_mons(monenecons,tab,dead_mons,PacMan);
         //collision_perso_mons_cons(PacMan, monenecons);
-crash = collision_perso_mons_cons(PacMan, monenecons);
-if(crash == 0)
-{
-    PacMan->vies--;
-    crash =1;
-}
+
         gotoligcol(PacMan->posx,PacMan->posy);
         printf(" ");
 
@@ -195,7 +190,7 @@ if(crash == 0)
         printf("X");
        Color(15,0);
 
-    printf("%d", PacMan->score);
+    //printf("%d", PacMan->score);
 
 
 
@@ -220,7 +215,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_
     {
         Diamant[i] = initialiserDiamants();
     }
-    //load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
+
     load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,key,a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons);
 
     system("cls");
@@ -228,15 +223,15 @@ for(int i = 0 ; i < 5; i++)
     {
         Diamant[i] = initialiserDiamants();
     }
-    //PacMan->score = 5;
-    char nom1[30] = "map3.txt";
+
+    char nom1[30] = "map2.txt";
     int max = 10;
     int min = 5;
     *stop = 5;
 
     int niveau1 = 1;
-    PacMan->score = 5;
-    printf("%d %d %d %d", PacMan->vies, MAX,MIN, PacMan->score);
+
+
 load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,key,a,&compteur,niveau1,vit,max,min,monenecons,dead_mons);
-    //load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
+
 }

@@ -41,7 +41,7 @@ int main()
     int compteurc = 0;
     int a = (rand() % 4) +1;
     int vit = 100;
-    char nom[30] = "map2.txt";
+    char nom[30] = "map1.txt";
     int bord = 3;
     int  stop = 5;
     int niveau = 0;

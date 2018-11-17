@@ -4,7 +4,7 @@
 	<stdlib.h>
 	<allegro.h>
 
-1542474927 source:c:\users\guill\documents\projet_pacman\main.c
+1542476975 source:c:\users\guill\documents\projet_pacman\main.c
 	"prototypes.h"
 
 1540833334 D
@@ -47,7 +47,7 @@
 1542299140 source:c:\users\guill\documents\projet_pacman\map.c
 	"prototypes.h"
 
-1542475247 source:c:\users\guill\documents\projet_pacman\boucle de jeu.c
+1542477056 source:c:\users\guill\documents\projet_pacman\boucle de jeu.c
 	"prototypes.h"
 
 1542455744 source:c:\users\guill\documents\projet_pacman\sauvegarde.c
