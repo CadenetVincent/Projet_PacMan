@@ -26,16 +26,35 @@ void lancerAllegro()
 
 ///Keep the same function for each map
 
+void gotoligcol( int lig, int col )
+{
+//ressources
+COORD mycoord;
+
+mycoord.X = col;
+mycoord.Y = lig;
+SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
+}
 
 
 int main()
 {
+    int x = 10,y = 25;
 
+    char key = 'a';
+    int compteurc = 0;
+    int a = 0;
+    int vit = 40;
     FILE * fichier = NULL;
     fichier = fopen("map1.txt", "r");
+    t_PacMan PacMan;
 
+    PacMan.posx = 10;
+    PacMan.posy = 25;
     int tab[20][50];
 
+    intialisationPacManConsole(&PacMan);
+    //initialsiation
     if(fichier != NULL)
     {
         for(int i = 0; i < 20; i++)
@@ -51,8 +70,7 @@ int main()
     {
         printf("impossible d'ouvrir le fichier \n");
     }
-
-     for(int i = 0; i < 20; i++)
+for(int i = 0; i < 20; i++)
         {
             for(int j = 0; j < 50; j ++)
             {
@@ -68,6 +86,51 @@ int main()
             }
             printf("\n");
         }
+
+    while(key != 'p')
+    {
+        if(kbhit())
+        {
+            key = getch();
+        }
+
+
+
+
+//printf("%d ceci est x", x);
+
+printf("P");
+Sleep(vit);
+
+//system("cls");
+/*if(compteurc < 100000000000)
+{
+
+    compteurc++;
+}
+else
+{
+    compteurc = 0;
+}
+x++;
+ y++;*/
+ gotoligcol(PacMan.posx,PacMan.posy);
+ printf(" ");
+consoleDeplacementPacMan(&a,&PacMan, key);
+ gotoligcol(PacMan.posx,PacMan.posy);
+
+
+
+    }
+
+printf("%d %d %d", a, x ,y);
+
+
+
+
+
+
+
     /*int pos_enemy[2][4]= {{255,497,255,497},{283,283,640,640}};
     int i = 0;
 
