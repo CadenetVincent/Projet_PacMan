@@ -79,6 +79,8 @@ typedef struct enecons
     int AX;
     int AY;
     char ES;
+    int dep;
+    int intervalle;
 
 } t_enecons;
 

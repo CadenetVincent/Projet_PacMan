@@ -49,7 +49,7 @@ int main()
 
 
     t_PacMan PacMan;
-    t_enecons * monenecons;
+    t_enecons * monenecons[4];
     t_Diamant * Diamant[5];
 
     PacMan.posx = 10;
@@ -62,15 +62,16 @@ int main()
     chargementMap(nom, tab, &bord);
     for(int i = 0; i < 5 ;i++)
     {
-        Diamant[i] = initialiserDiamants();
-gestionDiamantConsole(Diamant[i], &stop, tab );
-
+    Diamant[i] = initialiserDiamants();
+    gestionDiamantConsole(Diamant[i], &stop, tab );
     }
 
 
 
-
-    monenecons = initEnCons();
+    for(int i = 0; i<4; i++)
+    {
+    monenecons[i] = initEnCons(tab);
+    }
 
 
 
@@ -86,50 +87,8 @@ gestionDiamantConsole(Diamant[i], &stop, tab );
 
         Sleep(vit);
 
-        gotoligcol(monenecons->EX,monenecons->EY);
-        if(monenecons->ED == 'V' && monenecons->ES=='G')
-        {
-            printf(" ",tab[monenecons->AX-1][monenecons->AY]);
-        }
-        else if(monenecons->ED == 'V' && monenecons->ES=='D')
-        {
-            printf(" ",tab[monenecons->AX+1][monenecons->AY]);
-        }
-        else if(monenecons->ED == 'H' && monenecons->ES=='G')
-        {
-            printf(" ",tab[monenecons->AX][monenecons->AY-1]);
-        }
-        else if(monenecons->ED == 'H' && monenecons->ES=='D')
-        {
-            printf(" ",tab[monenecons->AX][monenecons->AY+1]);
-        }
-        monenecons = mouvementEnnemi(tab,monenecons);
-        /*if(monenecons->ED == 'V' && monenecons->ES=='G')
-        {
-            printf(" ",tab[monenecons->AX-1][monenecons->AY]);
-        }
-        else if(monenecons->ED == 'V' && monenecons->ES=='D')
-        {
-            printf(" ",tab[monenecons->AX+1][monenecons->AY]);
-        }
-        else if(monenecons->ED == 'H' && monenecons->ES=='G')
-        {
-            printf(" ",tab[monenecons->AX][monenecons->AY-1]);
-        }
-        else if(monenecons->ED == 'H' && monenecons->ES=='D')
-        {
-            printf(" ",tab[monenecons->AX][monenecons->AY+1]);
-        }*/
-        gotoligcol(monenecons->EX,monenecons->EY);
-        printf("G");
-
-        gotoligcol(25,0);
-        dead_mons = collision_perso_mons_cons(&PacMan, monenecons);
-        if(dead_mons == 1)
-        {
-            printf("Le monstre vous attaque ,vous avez perdu une vie! \n");
-            dead_mons = 0;
-        }
+        // UNE SEULE FONCTION D'APPEl
+        init_table_mons(monenecons,tab,dead_mons,PacMan);
 
         gotoligcol(PacMan.posx,PacMan.posy);
         printf(" ");

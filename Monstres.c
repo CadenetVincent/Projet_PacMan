@@ -21,19 +21,64 @@ t_enemy * initialiserenemy()
     return mmonstre;
 }
 
+void init_table_mons(t_enecons * monenecons[4], int * tab[20][50],int dead_mons, t_PacMan PacMan)
+{
+    for(int i=0; i<4; i++)
+        {
+        change_dep_mons(monenecons[i]);
 
-t_enecons * initEnCons()
+        gotoligcol(monenecons[i]->EX,monenecons[i]->EY);
+        if(monenecons[i]->ED == 'V' && monenecons[i]->ES=='G')
+        {
+            printf(" ",tab[monenecons[i]->AX-1][monenecons[i]->AY]);
+        }
+        else if(monenecons[i]->ED == 'V' && monenecons[i]->ES=='D')
+        {
+            printf(" ",tab[monenecons[i]->AX+1][monenecons[i]->AY]);
+        }
+        else if(monenecons[i]->ED == 'H' && monenecons[i]->ES=='G')
+        {
+            printf(" ",tab[monenecons[i]->AX][monenecons[i]->AY-1]);
+        }
+        else if(monenecons[i]->ED == 'H' && monenecons[i]->ES=='D')
+        {
+            printf(" ",tab[monenecons[i]->AX][monenecons[i]->AY+1]);
+        }
+        monenecons[i] = mouvementEnnemi(tab,monenecons[i]);
+        gotoligcol(monenecons[i]->EX,monenecons[i]->EY);
+        printf("G");
+
+        gotoligcol(25,0);
+        dead_mons = collision_perso_mons_cons(&PacMan, monenecons[i]);
+        if(dead_mons == 1)
+        {
+            printf("Le monstre vous attaque ,vous avez perdu une vie! \n");
+            dead_mons = 0;
+        }
+        }
+}
+
+
+t_enecons * initEnCons(int * tab[20][50])
 {
     t_enecons * monscons;
     monscons = (t_enecons*) malloc(1 * sizeof(t_enecons));
 
     monscons->ED = 'H';
     monscons->ECASE = 'a';
-    monscons->EX = 9;
-    monscons->EY = 10;
+
+    do
+    {
+    monscons->EX = (rand() % 19) + 1;
+    monscons->EY = (rand() % 47) + 2;
+
+    }while(tab[monscons->EX][monscons->EY] == 1);
+
     monscons->AX = -10;
     monscons->AY = -10;
     monscons->ES = 'G';
+    monscons->dep = 3;
+    monscons->intervalle = 0;
 
     return monscons;
 }
@@ -58,6 +103,11 @@ t_enecons * mouvementEnnemi(int * tab[][50],t_enecons * monscons)
 
     monscons->AY = monscons->EY;
     monscons->AX = monscons->EX;
+
+    if(monscons->intervalle >= 20)
+    {
+
+    monscons->intervalle = 0;
 
     if(monscons->ED == 'V')
     {
@@ -113,8 +163,17 @@ t_enecons * mouvementEnnemi(int * tab[][50],t_enecons * monscons)
             }
         }
     }
+    }
 
     return monscons;
+
+
+}
+
+void change_dep_mons(t_enecons * monscons)
+{
+monscons->intervalle = monscons->intervalle + monscons->dep;
+
 }
 
 void follow_monster(t_enemy * monenemy, t_PacMan *PacMan, BITMAP*dbbuffer)
