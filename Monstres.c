@@ -48,7 +48,8 @@ void mouvementEnnemi(int tab[0][50],t_enecons * monscons)
         if(monscons->ED == 'V')
         {
             monscons->ED = 'H';
-        }else
+        }
+        else
         {
             monscons->ED = 'V';
         }

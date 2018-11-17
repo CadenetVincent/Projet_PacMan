@@ -4,7 +4,7 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
 {
 //gotoligcol(PacMan->posx,PacManposy);
 //printf("%d", tab[PacMan->posx-1][PacMan->posy]);
-     if (key == 'z' && tab[PacMan->posx-1][PacMan->posy] != 1 )
+    if (key == 'z' && tab[PacMan->posx-1][PacMan->posy] != 1 )
     {
         *a = 1;
 
@@ -28,16 +28,16 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
         if(bord == 1)
         {
             if(PacMan->posx < 1)
-        {
-            PacMan->posx= 1;
-        }
+            {
+                PacMan->posx= 1;
+            }
         }
         else if( bord == 0)
         {
             if(PacMan->posx < 1)
-        {
-            PacMan->posx= 18;
-        }
+            {
+                PacMan->posx= 18;
+            }
         }
 
 
@@ -45,40 +45,40 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
     }
     else if (*a == 2 && tab[PacMan->posx + 1][PacMan->posy] != 1 )
     {
-       PacMan->posx+= 1;
-       if(bord == 1)
-       {
-           if(PacMan->posx > 18)
+        PacMan->posx+= 1;
+        if(bord == 1)
         {
-            PacMan->posx = 18;
-        }
-       }
-       else if(bord == 0)
-       {
             if(PacMan->posx > 18)
-        {
-            PacMan->posx = 1;
+            {
+                PacMan->posx = 18;
+            }
         }
-       }
+        else if(bord == 0)
+        {
+            if(PacMan->posx > 18)
+            {
+                PacMan->posx = 1;
+            }
+        }
 
     }
     else if (*a == 3 && tab[PacMan->posx][PacMan->posy+1] != 1 )
     {
-       PacMan->posy += 1;
-       if(bord == 1)
-       {
-           if(PacMan->posy > 48)
+        PacMan->posy += 1;
+        if(bord == 1)
         {
-            PacMan->posy = 48;
-        }
-       }
-       else if(bord == 0)
-       {
             if(PacMan->posy > 48)
-        {
-            PacMan->posy = 1;
+            {
+                PacMan->posy = 48;
+            }
         }
-       }
+        else if(bord == 0)
+        {
+            if(PacMan->posy > 48)
+            {
+                PacMan->posy = 1;
+            }
+        }
 
     }
     else if (*a == 4 && tab[PacMan->posx][PacMan->posy-1] != 1 )
@@ -87,16 +87,16 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
         if(bord == 1)
         {
             if(PacMan->posy< 1)
-        {
-            PacMan->posy = 1;
-        }
+            {
+                PacMan->posy = 1;
+            }
         }
         else if (bord == 0)
         {
-             if(PacMan->posy< 1)
-        {
-            PacMan->posy = 48;
-        }
+            if(PacMan->posy< 1)
+            {
+                PacMan->posy = 48;
+            }
         }
 
     }
@@ -107,11 +107,11 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
 void gotoligcol( int lig, int col )
 {
 //ressources
-COORD mycoord;
+    COORD mycoord;
 
-mycoord.X = col;
-mycoord.Y = lig;
-SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
+    mycoord.X = col;
+    mycoord.Y = lig;
+    SetConsoleCursorPosition( GetStdHandle( STD_OUTPUT_HANDLE ), mycoord );
 }
 
 void intialisationPacManConsole(t_PacMan *PacMan)
@@ -138,16 +138,16 @@ void intialisationPacManConsole(t_PacMan *PacMan)
 
 void chargementMap(char nom[], int * tab[20][50], int * bord)
 {
-     FILE * fichier = NULL;
+    FILE * fichier = NULL;
     fichier = fopen(nom, "r");
-     if(fichier != NULL)
+    if(fichier != NULL)
     {
 
         for(int i = 0; i < 20; i++)
         {
             for(int j = 0; j < 50; j ++)
             {
-                 fscanf(fichier,"%d", &tab[i][j]);
+                fscanf(fichier,"%d", &tab[i][j]);
 
             }
         }
@@ -157,28 +157,57 @@ void chargementMap(char nom[], int * tab[20][50], int * bord)
         printf("impossible d'ouvrir le fichier \n");
     }
 
-     for(int i = 0; i < 20; i++)
+    for(int i = 0; i < 20; i++)
+    {
+        for(int j = 0; j < 50; j ++)
         {
-            for(int j = 0; j < 50; j ++)
+            if(tab[i][j] == 0)
             {
-                if(tab[i][j] == 0)
-                {
-                    printf(" ");
-                }
-                else if(tab[0][j] == 1)
-                {
-                    printf("-");
-                    *bord = 1;
-                }
-                else if(tab[0][j] == 2)
-                {
-                    printf("|");
-                    *bord = 0;
-                }
-
-
+                printf(" ");
             }
-            printf("\n");
-        }
+            else if(tab[0][j] == 1)
+            {
+                printf("-");
+                *bord = 1;
+            }
+            else if(tab[0][j] == 2)
+            {
+                printf("|");
+                *bord = 0;
+            }
 
+
+        }
+        printf("\n");
+    }
+
+}
+
+void sauvegardeConsole(t_PacMan * PacMan)
+{
+    //printf("reussite\n");
+    FILE * fichier = NULL;
+    fichier = fopen("sauvegardes.txt", "w");
+
+    if (fichier != NULL)
+    {
+
+
+        fprintf(fichier, "%d %d %d %d",PacMan->posx, PacMan->posy, PacMan->vies,PacMan->score );
+        fclose(fichier);
+    }
+}
+
+void recuperationConsole(t_PacMan * PacMan)
+{
+    FILE * fichier = NULL;
+    fichier = fopen("sauvegardes.txt", "r");
+
+
+    if (fichier != NULL)
+    {
+
+        fscanf(fichier, "%d %d %d %d ", &PacMan->posx, &PacMan->posy,&PacMan->vies, &PacMan->score);
+        fclose(fichier);
+    }
 }

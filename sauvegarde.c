@@ -2,7 +2,7 @@
 
 void sauvegarde1(t_enemy *monenemy[], t_PacMan * PacMan, t_map * gestion_map)
 {
-    printf("reussite\n");
+    //printf("reussite\n");
     FILE * fichier = NULL;
     fichier = fopen("sauvegardes.txt", "w");
 
@@ -18,7 +18,7 @@ void sauvegarde1(t_enemy *monenemy[], t_PacMan * PacMan, t_map * gestion_map)
     }
     if(fichier1 != NULL)
     {
-        printf("reussite1\n");
+        //printf("reussite1\n");
         for(int i = 0; i < 4; i++)
         {
             fprintf(fichier1, "%d %d\n ",monenemy[i]->dposx, monenemy[i]->dposy);

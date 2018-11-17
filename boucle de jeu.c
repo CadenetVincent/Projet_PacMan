@@ -81,7 +81,7 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int score_max,
 
     while(PacMan.score < score_limit && PacMan.score >= score_max && PacMan.vies != 0 && *fermeture != 1)
     {
-       // printf("'(-è_");
+        // printf("'(-è_");
         gestion_map->choix = choise_map;
 
         gestion_map = choix_map(gestion_map);
