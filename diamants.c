@@ -71,15 +71,15 @@ void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur, int niveau)
     }
     else if(niveau == 1)
     {
-        *compteur = 4;
+        *compteur = 5;
     }
     else if(niveau == 2)
     {
-        *compteur = 8;
+        *compteur = 10;
     }
     else if(niveau == 3)
     {
-        *compteur = 14;
+        *compteur = 15;
     }
 
     //printf("%d",PacMan->get_Sun);

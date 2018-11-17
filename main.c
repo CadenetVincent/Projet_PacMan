@@ -40,17 +40,28 @@ int main()
     int vit = 60;
     char nom[30] = "map2.txt";
     int bord = 3;
+    int * stop;
+    int niveau = 0;
+    int  compteur = 0;
 
     t_PacMan PacMan;
     t_enecons * monenecons;
+    t_Diamant * Diamant[5];
 
     PacMan.posx = 10;
     PacMan.posy = 25;
     int *tab[20][50];
 
+
     intialisationPacManConsole(&PacMan);
 
     chargementMap(nom, tab, &bord);
+    for(int i = 0; i < 5 ;i++)
+    {
+        Diamant[i] = initialiserDiamants();
+gestionDiamantConsole(Diamant[i], &stop, tab );
+
+    }
 
 
 
@@ -118,10 +129,17 @@ int main()
         gotoligcol(200,400);
 
 
+        for(int i = 0; i < 5 ;i++)
+    {
+        suppressionDiamantConsole(Diamant[i], &PacMan);
+
+
+    }
+    score(Diamant,&PacMan,&compteur, niveau);
     }
 
 
-
+printf("%d" ,PacMan.score);
 
 
 

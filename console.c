@@ -211,3 +211,45 @@ void recuperationConsole(t_PacMan * PacMan)
         fclose(fichier);
     }
 }
+
+void gestionDiamantConsole(t_Diamant* Diamant, int * stop,int * tab[20][50])
+{
+    int compteur = 1;
+    int compteur2 = 0;
+
+
+
+    while(Diamant->posx == 0 || Diamant->posy == 0 || compteur == 1 && *stop != 5)
+    {
+
+        compteur2 = 0;
+        Diamant->posx = (rand() % 19) + 1;
+        Diamant->posy = (rand() % 47) + 2;
+
+        if(tab[Diamant->posx][Diamant->posy] == 1)
+        {
+            compteur2++;
+        }
+
+
+        if(compteur2 == 0)
+        {
+
+            compteur = 0;
+            (*stop)++;
+            gotoligcol(Diamant->posx, Diamant->posy);
+            printf("D");
+
+        }
+    }
+}
+
+void suppressionDiamantConsole( t_Diamant * Diamant, t_PacMan * PacMan)
+{
+    if(PacMan->posx == Diamant->posx && PacMan->posy == Diamant->posy)
+    {
+        Diamant->boolean = 1;
+        //PacMan->score = PacMan->score + 1;
+    }
+
+}
