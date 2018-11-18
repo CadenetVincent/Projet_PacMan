@@ -124,8 +124,8 @@ void intialisationPacManConsole(t_PacMan *PacMan, int * tab[20][50])
     {
 
 
-    PacMan->posx = (rand() % 19) + 1;
-    PacMan->posy = (rand() % 47) + 2;
+        PacMan->posx = (rand() % 19) + 1;
+        PacMan->posy = (rand() % 47) + 2;
 
         if(tab[PacMan->posx][PacMan->posy] != 1)
         {
