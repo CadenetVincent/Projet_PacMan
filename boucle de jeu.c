@@ -159,7 +159,7 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int * a, int s
             *fermeture = 1;
         }
         rest(20);
-        printf("vies : %d\n score : %d\n", PacMan->vies, PacMan->score);
+        //printf("vies : %d\n score : %d\n", PacMan->vies, PacMan->score);
     }
 }
 
@@ -256,7 +256,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
             *fermeture = 1;
         }
         rest(20);
-        printf("vies : %d\n score : %d\n", PacMan->vies, PacMan->score);
+        //printf("vies : %d\n score : %d\n", PacMan->vies, PacMan->score);
     }
 }
 
@@ -1124,7 +1124,7 @@ MAX = 20;
         int voice;
         SAMPLE*sound;
 
-        /*allegro_init();
+        allegro_init();
         install_sound(DIGI_AUTODETECT, MIDI_NONE, NULL);
         install_timer();
 
@@ -1151,7 +1151,7 @@ MAX = 20;
         voice_start(voice);
         release_voice(voice);
 
-*/
+
         t_PacMan PacMan;
         t_PacMan * pt_PacMan;
         pt_PacMan = &PacMan;
@@ -1626,7 +1626,7 @@ PacMan.score = 20;
                 key2 = getch();
             }
 
-            printf("voulez vous jouer en : \n 1) console \n 2) allegro\n 3) sortir");
+            printf("voulez vous jouer en : \n 1) console \n 2) allegro\n 3) sortir\n");
             scanf("%d", &choix);
             if(choix == 1)
             {
