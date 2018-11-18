@@ -10,7 +10,7 @@
 1540833334 D
 	"prototypes.h"
 
-1542573764 c:\users\guill\documents\projet_pacman\prototypes.h
+1542577896 c:\users\guill\documents\projet_pacman\prototypes.h
 	<allegro.h>
 	<stdlib.h>
 	<stdio.h>
@@ -59,7 +59,7 @@
 1542557969 source:c:\users\guill\documents\projet_pacman\sun.c
 	"prototypes.h"
 
-1542557969 source:c:\users\guill\documents\projet_pacman\console.c
+1542577876 source:c:\users\guill\documents\projet_pacman\console.c
 	"prototypes.h"
 
 1542572571 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\boucle de jeu.c

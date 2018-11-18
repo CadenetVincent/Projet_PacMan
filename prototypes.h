@@ -147,8 +147,8 @@ void suppressionDiamantConsole( t_Diamant * Diamant, t_PacMan * PacMan);
 
 int collision_perso_mons_cons(t_PacMan *PacMan, t_enecons *monscons);
 
-void sauvegardeConsole(t_PacMan * PacMan);
-void recuperationConsole(t_PacMan * PacMan);
+void sauvegardeConsole(t_PacMan * PacMan,int * bord);
+void recuperationConsole(t_PacMan * PacMan, int * bord);
 void gestionDiamantConsole(t_Diamant* Diamant, int * stop,int * tab[20][50]);
 
 t_enecons * mouvementEnnemi(int * tab[][50],t_enecons * monscons);
@@ -158,8 +158,8 @@ void Color(int t,int f);
 //void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN);
 void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int *vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, char * key1, t_chen * Chenille[30]);
 
-void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc, t_chen * Chenille[30]);
-void load_mapConsole1(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc);
+void load_mapConsole(char  nom[30], int * tab[20][50], int * bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc, t_chen * Chenille[30]);
+void load_mapConsole1(char  nom[30], int * tab[20][50], int * bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc);
 
 void Console();
 void Menu1();

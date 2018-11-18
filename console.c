@@ -325,7 +325,7 @@ void chargementMap(char nom[], int * tab[20][50], int * bord)
 
 }
 
-void sauvegardeConsole(t_PacMan * PacMan)
+void sauvegardeConsole(t_PacMan * PacMan, int * bord)
 {
     //printf("reussite\n");
     FILE * fichier = NULL;
@@ -335,12 +335,12 @@ void sauvegardeConsole(t_PacMan * PacMan)
     {
 
 
-        fprintf(fichier, "%d %d %d %d",PacMan->posx, PacMan->posy, PacMan->vies,PacMan->score );
+        fprintf(fichier, "%d %d %d %d %d",PacMan->posx, PacMan->posy, PacMan->vies,PacMan->score, *bord );
         fclose(fichier);
     }
 }
 
-void recuperationConsole(t_PacMan * PacMan)
+void recuperationConsole(t_PacMan * PacMan, int * bord)
 {
     FILE * fichier = NULL;
     fichier = fopen("sauvegardes.txt", "r");
@@ -349,7 +349,7 @@ void recuperationConsole(t_PacMan * PacMan)
     if (fichier != NULL)
     {
 
-        fscanf(fichier, "%d %d %d %d ", &PacMan->posx, &PacMan->posy,&PacMan->vies, &PacMan->score);
+        fscanf(fichier, "%d %d %d %d ", &PacMan->posx, &PacMan->posy,&PacMan->vies, &PacMan->score, &bord);
         fclose(fichier);
     }
 }

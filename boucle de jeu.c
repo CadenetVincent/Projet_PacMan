@@ -260,7 +260,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
     }
 }
 
-    void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc, t_chen * Chenille[30])
+    void load_mapConsole(char  nom[30], int * tab[20][50], int  * bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc, t_chen * Chenille[30])
  {
         int compt_time = 0;
         int scorep;
@@ -270,7 +270,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
         float y = 1;
         int v = 1;
         int boolean = 0;
-        chargementMap(nom, tab, &bord);
+        chargementMap(nom, tab, bord);
         for(int i = 0; i < 5 ; i++)
         {
             gestionDiamantConsole(Diamant[i], &stop, tab );
@@ -308,7 +308,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
             result_score = PacMan->score - 15;
 
-            consoleDeplacementPacMan(a,PacMan, key,bord, tab,x, Chenille, result_score);
+            consoleDeplacementPacMan(a,PacMan, key,*bord, tab,x, Chenille, result_score);
 
             gotoligcol(PacMan->posx,PacMan->posy);
             Color(5,0);
@@ -392,7 +392,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
             if(*key == 'c' )
             {
-                sauvegardeConsole(PacMan);
+                sauvegardeConsole(PacMan, &bord);
                 *key = 'n';
             }
 
@@ -424,7 +424,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
     }
 
-    void load_mapConsole1(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc)
+    void load_mapConsole1(char  nom[30], int * tab[20][50], int  * bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc)
     {
         int compt_time = 0;
         int scorep;
@@ -433,7 +433,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
         float y = 1;
         int v = 1;
         int boolean = 0;
-        chargementMap(nom, tab, &bord);
+        chargementMap(nom, tab, bord);
         for(int i = 0; i < 5 ; i++)
         {
             gestionDiamantConsole(Diamant[i], &stop, tab );
@@ -468,7 +468,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
             gotoligcol(PacMan->posx,PacMan->posy);
             printf(" ");
 
-            consoleDeplacementPacMan1(a,PacMan, key,bord, tab,x);
+            consoleDeplacementPacMan1(a,PacMan, key,*bord, tab,x);
 
             gotoligcol(PacMan->posx,PacMan->posy);
             Color(5,0);
@@ -514,7 +514,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
             if(*key == 'c' )
             {
-                sauvegardeConsole(PacMan);
+                sauvegardeConsole(PacMan, &bord);
                 *key = 'n';
             }
 
@@ -698,7 +698,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
             break;
         case 2:
             system("cls");
-            recuperationConsole(PacMan);
+            recuperationConsole(PacMan, &bord);
             printf("%d", PacMan->score);
             int compteur = 0;
 
