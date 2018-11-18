@@ -19,7 +19,7 @@ void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int * 
 
 
 
-    while(Diamant->posx == 0 || Diamant->posy == 0 || compteur == 1 && *stop != 4)
+    while(Diamant->posx == 0 || Diamant->posy == 0 || compteur == 1 && *stop != 5)
     {
 
         compteur2 = 0;
@@ -37,17 +37,11 @@ void gestionDiamant(BITMAP * dbbuffer, t_Diamant* Diamant,BITMAP * front, int * 
         {
             compteur = 0;
             (*stop)++;
-            //printf("423456787654\n");
+
         }
-        /*else
-        {
-            compteur = 1;
-        }*/
 
 
     }
-
-    //printf("%d \n", *stop);
 
 
 
@@ -105,4 +99,5 @@ void score(t_Diamant *Diamant[], t_PacMan *PacMan, int * compteur, int niveau)
     //printf("%d\n\n", *compteur);
 
 }
+
 

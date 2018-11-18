@@ -24,7 +24,7 @@ t_enemy * initialiserenemy()
 void init_table_mons(t_enecons * monenecons[4], int * tab[20][50],int dead_mons, t_PacMan * PacMan)
 {
     for(int i=0; i<4; i++)
-        {
+    {
         change_dep_mons(monenecons[i]);
 
         gotoligcol(monenecons[i]->EX,monenecons[i]->EY);
@@ -57,7 +57,7 @@ void init_table_mons(t_enecons * monenecons[4], int * tab[20][50],int dead_mons,
             dead_mons = 0;
         }
 
-        }
+    }
 
 }
 
@@ -72,10 +72,11 @@ t_enecons * initEnCons(int * tab[20][50])
 
     do
     {
-    monscons->EX = (rand() % 19) + 1;
-    monscons->EY = (rand() % 47) + 2;
+        monscons->EX = (rand() % 19) + 1;
+        monscons->EY = (rand() % 47) + 2;
 
-    }while(tab[monscons->EX][monscons->EY] == 1);
+    }
+    while(tab[monscons->EX][monscons->EY] == 1);
 
     monscons->AX = -10;
     monscons->AY = -10;
@@ -110,62 +111,62 @@ t_enecons * mouvementEnnemi(int * tab[][50],t_enecons * monscons)
     if(monscons->intervalle >= 20)
     {
 
-    monscons->intervalle = 0;
+        monscons->intervalle = 0;
 
-    if(monscons->ED == 'V')
-    {
-        if(monscons->ES=='G')
+        if(monscons->ED == 'V')
         {
-            if (tab[monscons->EX-1][monscons->EY] != 1)
+            if(monscons->ES=='G')
             {
-                monscons->EX--;
+                if (tab[monscons->EX-1][monscons->EY] != 1)
+                {
+                    monscons->EX--;
+                }
+                else
+                {
+                    monscons->ES='D';
+                    monscons->EX++;
+                }
             }
-            else
+            else if(monscons->ES=='D')
             {
-                monscons->ES='D';
-                monscons->EX++;
+                if (tab[monscons->EX+1][monscons->EY] != 1)
+                {
+                    monscons->EX++;
+                }
+                else
+                {
+                    monscons->ES='G';
+                    monscons->EX--;
+                }
             }
         }
-        else if(monscons->ES=='D')
+        else if(monscons->ED=='H')
         {
-            if (tab[monscons->EX+1][monscons->EY] != 1)
+            if(monscons->ES=='G')
             {
-                monscons->EX++;
+                if (tab[monscons->EX][monscons->EY-1] != 1)
+                {
+                    monscons->EY--;
+                }
+                else
+                {
+                    monscons->ES='D';
+                    monscons->EY++;
+                }
             }
-            else
+            else if(monscons->ES=='D')
             {
-                monscons->ES='G';
-                monscons->EX--;
+                if (tab[monscons->EX][monscons->EY+1] != 1)
+                {
+                    monscons->EY++;
+                }
+                else
+                {
+                    monscons->ES='G';
+                    monscons->EY--;
+                }
             }
         }
-    }
-    else if(monscons->ED=='H')
-    {
-        if(monscons->ES=='G')
-        {
-            if (tab[monscons->EX][monscons->EY-1] != 1)
-            {
-                monscons->EY--;
-            }
-            else
-            {
-                monscons->ES='D';
-                monscons->EY++;
-            }
-        }
-        else if(monscons->ES=='D')
-        {
-            if (tab[monscons->EX][monscons->EY+1] != 1)
-            {
-                monscons->EY++;
-            }
-            else
-            {
-                monscons->ES='G';
-                monscons->EY--;
-            }
-        }
-    }
     }
 
     return monscons;
@@ -175,7 +176,7 @@ t_enecons * mouvementEnnemi(int * tab[][50],t_enecons * monscons)
 
 void change_dep_mons(t_enecons * monscons)
 {
-monscons->intervalle = monscons->intervalle + monscons->dep;
+    monscons->intervalle = monscons->intervalle + monscons->dep;
 
 }
 
@@ -455,19 +456,19 @@ BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
     //printf("%d\n %d\n sdfghjklm", PacMan->posx, PacMan->posy);
 
 
-    if (key[KEY_UP] && getpixel(dbbuffer,PacMan->posx -2,PacMan->posy-PacMan->deplacement -7 ) != makecol(255,0,0) && getpixel(dbbuffer,PacMan->posx+25,PacMan->posy-PacMan->deplacement - 7 ) != makecol(255,0,0) && getpixel(dbbuffer,PacMan->posx + 10,PacMan->posy-PacMan->deplacement -7 ) != makecol(255,0,0) )
+    if (key[KEY_UP] && getpixel(dbbuffer,PacMan->posx -2,PacMan->posy-PacMan->deplacement -7 ) != makecol(255,0,0) && getpixel(dbbuffer,PacMan->posx+25,PacMan->posy-PacMan->deplacement - 7 ) != makecol(255,0,0) )//&& getpixel(dbbuffer,PacMan->posx + 10,PacMan->posy-PacMan->deplacement -7 ) != makecol(255,0,0) )
     {
         *a = 1;
         PacMan->direction=1;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_up, 3);
     }
-    if (key[KEY_DOWN] && getpixel(dbbuffer,PacMan->posx -2,PacMan->posy+PacMan->ty+PacMan->deplacement + 7 ) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx + 25,PacMan->posy+PacMan->ty+PacMan->deplacement+7 ) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx + 10,PacMan->posy-PacMan->deplacement +7 ) != makecol(255,0,0))
+    if (key[KEY_DOWN] && getpixel(dbbuffer,PacMan->posx -2,PacMan->posy+PacMan->ty+PacMan->deplacement + 7 ) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx + 25,PacMan->posy+PacMan->ty+PacMan->deplacement+7 ) != makecol(255,00,00))//&& getpixel(dbbuffer,PacMan->posx + 10,PacMan->posy-PacMan->deplacement +7 ) != makecol(255,0,0))
     {
         *a = 2;
         PacMan->direction=2;
         sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
     }
-    if (key[KEY_LEFT] && getpixel(dbbuffer,PacMan->posx-PacMan->deplacement -20,PacMan->posy -2) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx-PacMan->deplacement - 20,PacMan->posy + 22) != makecol(255,00,00) && getpixel(dbbuffer,PacMan->posx-PacMan->deplacement -20,PacMan->posy + 10) != makecol(255,00,00))
+    if (key[KEY_LEFT] && getpixel(dbbuffer,PacMan->posx-PacMan->deplacement -20,PacMan->posy -2) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx-PacMan->deplacement - 20,PacMan->posy + 22) != makecol(255,00,00) )//&& getpixel(dbbuffer,PacMan->posx-PacMan->deplacement -20,PacMan->posy + 10) != makecol(255,00,00))
     {
         *a = 3;
         PacMan->direction=3;
@@ -550,11 +551,11 @@ BITMAP* action_sprite_pacman(t_PacMan*PacMan, BITMAP*mabitmap[], int taille_max)
 
 int collision_perso_mons_cons(t_PacMan *PacMan, t_enecons *monscons)
 {
-   if(PacMan->posx == monscons->EX && PacMan->posy == monscons->EY)
-   {
-       return 1;
-   }
-   return 0;
+    if(PacMan->posx == monscons->EX && PacMan->posy == monscons->EY)
+    {
+        return 1;
+    }
+    return 0;
 
 }
 
