@@ -2,71 +2,58 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
+	<File name="Sun.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="713" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Map.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3249" topLine="116" />
+		</Cursor>
+	</File>
 	<File name="diamants.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2199" topLine="43" />
+			<Cursor1 position="1925" topLine="15" />
 		</Cursor>
 		<Folding>
 			<Collapse line="3" />
 			<Collapse line="15" />
 		</Folding>
 	</File>
-	<File name="Sun.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Monstres.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="55" />
+			<Cursor1 position="22504" topLine="619" />
 		</Cursor>
 	</File>
-	<File name="prototypes.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="console.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2895" topLine="121" />
+			<Cursor1 position="6913" topLine="322" />
+		</Cursor>
+	</File>
+	<File name="boucle de jeu.c" open="1" top="1" tabpos="9" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2179" topLine="44" />
+		</Cursor>
+	</File>
+	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="40" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="allegro.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
+			<Cursor1 position="167" topLine="3" />
 		</Cursor>
 	</File>
-	<File name="Map.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="prototypes.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="69" topLine="26" />
+			<Cursor1 position="6127" topLine="153" />
 		</Cursor>
 	</File>
 	<File name="sauvegarde.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1223" topLine="35" />
-		</Cursor>
-	</File>
-	<File name="console.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4336" topLine="373" />
-		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-		</Folding>
-	</File>
-	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="92" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="boucle de jeu.c" open="1" top="1" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="32656" topLine="254" />
-		</Cursor>
-		<Folding>
-			<Collapse line="3" />
-			<Collapse line="412" />
-			<Collapse line="533" />
-			<Collapse line="555" />
-			<Collapse line="1157" />
-			<Collapse line="1529" />
-			<Collapse line="1537" />
-			<Collapse line="1576" />
-		</Folding>
-	</File>
-	<File name="Monstres.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="18282" topLine="33" />
+			<Cursor1 position="1404" topLine="39" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
