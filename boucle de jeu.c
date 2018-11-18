@@ -63,13 +63,13 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
         }
 
-        blit(dbbuffer, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
+        blit(map, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
 
         score(Diamant,PacMan,&compteur_score, niveau);
 
 
         compteur_death++;
-        compteur_death = death(monenemy, &PacMan, compteur_death,dbbuffer);
+        compteur_death = death(monenemy, PacMan, compteur_death,dbbuffer);
 
         if(key[KEY_S])
         {
@@ -203,7 +203,7 @@ void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,
         //IMPORTANT
         //pour afficher ou non la chenille on utilise result_score
 
-        result_score = PacMan->score - 16;
+        result_score = PacMan->score - 15;
 
         consoleDeplacementPacMan(a,PacMan, key,bord, tab,x, Chenille, result_score);
 
@@ -1365,7 +1365,9 @@ void Allegro()
 
         }
         else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(128,128,128))
-            exit(0);
+            {
+                key[KEY_ESC] = 1;
+            }
 
         /// NE PAS OUBLIER DE MODIFIER LES DIAMANTS POUR EN METTRE 5 !!!!!!
 
