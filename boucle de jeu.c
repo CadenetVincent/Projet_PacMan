@@ -993,6 +993,38 @@ void Console()
 
     t_map * Chenille[30];
 
+    char soundtrack[100]= "starwars.wav";
+    int volume=128;
+    int voice;
+    SAMPLE*sound;
+
+    allegro_init();
+    install_sound(DIGI_AUTODETECT, MIDI_NONE, NULL);
+    install_timer();
+
+    set_color_depth(desktop_color_depth());
+    if (install_sound(DIGI_AUTODETECT, MIDI_NONE, 0) != 0)
+    {
+        printf("Error initialising sound: %s\n", allegro_error);
+    }
+      printf("test");
+
+    //voice_set_playmode(voice,PLAYMODE_LOOP);
+
+    //START MAIN
+    sound=load_wav(soundtrack);
+    if (!sound)
+    {
+        printf("Erreur de chargement de %s\n", sound);
+        return 1;
+    }
+        //START GAME
+    voice=allocate_voice(sound);
+    voice_set_volume(voice,volume);
+    voice_set_priority(voice,255);
+    voice_start(voice);
+    release_voice(voice);
+
 
     t_PacMan PacMan;
     t_PacMan * pt_PacMan;
@@ -1019,9 +1051,18 @@ void Console()
 //load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
     while(key1 != 'b')
     {
+            //BOUCLER LA MUSIQUE
+    if(voice_check(voice==NULL))
+    {
+        voice_set_position(voice,0);
+        voice_start(voice);
+        release_voice(voice);
+    }
+
         boucle_totale(nom,tab,&bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,&vit,MAX,MIN,monenecons,dead_mons,start, &key1,Chenille);
 
     }
+    destroy_sample(sound);
 }
 
 
@@ -1402,6 +1443,7 @@ void Menu1()
             system("cls");
             Allegro();
         }
+
 
 
     }
