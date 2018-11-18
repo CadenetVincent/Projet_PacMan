@@ -4,20 +4,20 @@
 	<stdlib.h>
 	<allegro.h>
 
-1542537284 source:c:\users\guill\documents\projet_pacman\main.c
+1542557969 source:c:\users\guill\documents\projet_pacman\main.c
 	"prototypes.h"
 
 1540833334 D
 	"prototypes.h"
 
-1542546303 c:\users\guill\documents\projet_pacman\prototypes.h
+1542558802 c:\users\guill\documents\projet_pacman\prototypes.h
 	<allegro.h>
 	<stdlib.h>
 	<stdio.h>
 	<time.h>
 	<winalleg.h>
 
-1542537283 source:c:\users\guill\documents\projet_pacman\monstres.c
+1542558802 source:c:\users\guill\documents\projet_pacman\monstres.c
 	"prototypes.h"
 
 1542556246 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\monstres.c
@@ -44,22 +44,22 @@
 1541102330 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\map.c
 	"prototypes.h"
 
-1542299140 source:c:\users\guill\documents\projet_pacman\map.c
+1542557969 source:c:\users\guill\documents\projet_pacman\map.c
 	"prototypes.h"
 
-1542548253 source:c:\users\guill\documents\projet_pacman\boucle de jeu.c
+1542560521 source:c:\users\guill\documents\projet_pacman\boucle de jeu.c
 	"prototypes.h"
 
-1542455744 source:c:\users\guill\documents\projet_pacman\sauvegarde.c
+1542557969 source:c:\users\guill\documents\projet_pacman\sauvegarde.c
 	"prototypes.h"
 
-1542537284 source:c:\users\guill\documents\projet_pacman\diamants.c
+1542557969 source:c:\users\guill\documents\projet_pacman\diamants.c
 	"prototypes.h"
 
-1542299140 source:c:\users\guill\documents\projet_pacman\sun.c
+1542557969 source:c:\users\guill\documents\projet_pacman\sun.c
 	"prototypes.h"
 
-1542545823 source:c:\users\guill\documents\projet_pacman\console.c
+1542557969 source:c:\users\guill\documents\projet_pacman\console.c
 	"prototypes.h"
 
 1542556159 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\boucle de jeu.c
@@ -77,7 +77,7 @@
 1542449834 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\sun.c
 	"prototypes.h"
 
-1542538271 source:c:\users\guill\documents\projet_pacman\allegro.c
+1542557969 source:c:\users\guill\documents\projet_pacman\allegro.c
 	"prototypes.h"
 
 1542537681 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\allegro.c

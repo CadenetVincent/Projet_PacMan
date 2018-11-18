@@ -541,6 +541,87 @@ BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a, t_PacMan 
 
 }
 
+BITMAP * deplacementPacMan1(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
+{
+    BITMAP * sprite_pacman = load_bitmap("pacman_sprites/pacman_right_0.bmp",NULL);
+
+    //printf("%d\n %d\n sdfghjklm", PacMan->posx, PacMan->posy);
+
+
+    if (key[KEY_UP] && getpixel(dbbuffer,PacMan->posx -2,PacMan->posy-PacMan->deplacement -7 ) != makecol(255,0,0) && getpixel(dbbuffer,PacMan->posx+25,PacMan->posy-PacMan->deplacement - 7 ) != makecol(255,0,0) )//&& getpixel(dbbuffer,PacMan->posx + 10,PacMan->posy-PacMan->deplacement -7 ) != makecol(255,0,0) )
+    {
+        *a = 1;
+        PacMan->direction=1;
+        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_up, 3);
+    }
+    if (key[KEY_DOWN] && getpixel(dbbuffer,PacMan->posx -2,PacMan->posy+PacMan->ty+PacMan->deplacement + 7 ) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx + 25,PacMan->posy+PacMan->ty+PacMan->deplacement+7 ) != makecol(255,00,00))//&& getpixel(dbbuffer,PacMan->posx + 10,PacMan->posy-PacMan->deplacement +7 ) != makecol(255,0,0))
+    {
+        *a = 2;
+        PacMan->direction=2;
+        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
+    }
+    if (key[KEY_LEFT] && getpixel(dbbuffer,PacMan->posx-PacMan->deplacement -20,PacMan->posy -2) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx-PacMan->deplacement - 20,PacMan->posy + 22) != makecol(255,00,00) )//&& getpixel(dbbuffer,PacMan->posx-PacMan->deplacement -20,PacMan->posy + 10) != makecol(255,00,00))
+    {
+        *a = 3;
+        PacMan->direction=3;
+        PacMan->turn_img = 1;
+        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
+    }
+    if (key[KEY_RIGHT] && getpixel(dbbuffer,PacMan->posx+PacMan->tx+PacMan->deplacement +25,PacMan->posy -2 ) != makecol(255,00,00)&& getpixel(dbbuffer,PacMan->posx+PacMan->tx+PacMan->deplacement + 25,PacMan->posy + 22) != makecol(255,00,00))//&& getpixel(dbbuffer,PacMan->posx-PacMan->deplacement -20,PacMan->posy +10) != makecol(255,00,00))
+    {
+        *a = 4;
+        PacMan->direction=4;
+        PacMan->turn_img = 0;
+        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
+    }
+
+    if ( *a == 1 && getpixel(dbbuffer,PacMan->posx,PacMan->posy-PacMan->deplacement  ) != makecol(255,00,00))
+    {
+        PacMan->direction=1;
+        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_up, 3);
+        PacMan->posy = PacMan->posy-PacMan->deplacement;// mouvement négatif en ordonnées
+        //printf("%d \n", a);
+    }
+    else if (*a == 2 && getpixel(dbbuffer,PacMan->posx,PacMan->posy+PacMan->ty+PacMan->deplacement + 7 ) != makecol(255,0,0))
+    {
+        PacMan->direction=2;
+        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
+        PacMan->posy = PacMan->posy+PacMan->deplacement;// mouvement positif en ordonnées
+    }
+    else if (*a == 3 && getpixel(dbbuffer,PacMan->posx-PacMan->deplacement,PacMan->posy) != makecol(255,00,00))
+    {
+        PacMan->direction= 3;
+        PacMan->turn_img = 1;
+        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_bot, 2);
+        PacMan->posx = PacMan->posx-PacMan->deplacement; // mouvement négatif en abscisses
+    }
+    else if (*a == 4 && getpixel(dbbuffer,PacMan->posx+PacMan->tx+PacMan->deplacement + 25,PacMan->posy  ) != makecol(255,00,00))
+    {
+        PacMan->direction= 4;
+        PacMan->turn_img = 0;
+        sprite_pacman = action_sprite_pacman(PacMan, PacMan->pacman_right, 8);
+        PacMan->posx = PacMan->posx+PacMan->deplacement; // mouvement positif en abscisses
+    }
+    else
+    {
+        PacMan->direction= 0;
+    }
+
+    // contrôle des bords
+    if (PacMan->posx+PacMan->tx<0)
+        PacMan->posx = SCREEN_W+PacMan->posx+PacMan->tx;
+    if (PacMan->posx>=SCREEN_W)
+        PacMan->posx = PacMan->posx-SCREEN_W-PacMan->tx;
+    if (PacMan->posy+PacMan->ty<0)
+        PacMan->posy = SCREEN_H+PacMan->posy+PacMan->ty;
+    if (PacMan->posy>=SCREEN_H)
+        PacMan->posy = PacMan->posy-SCREEN_H-PacMan->ty;
+
+    return sprite_pacman;
+
+
+}
+
 BITMAP* action_sprite_pacman(t_PacMan*PacMan, BITMAP*mabitmap[], int taille_max)
 {
 
