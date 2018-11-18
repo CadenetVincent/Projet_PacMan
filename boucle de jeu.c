@@ -1626,7 +1626,7 @@ PacMan.score = 20;
                 key2 = getch();
             }
 
-            printf("voulez vous jouer en : \n 1) console \n 2) allegro\n");
+            printf("voulez vous jouer en : \n 1) console \n 2) allegro\n 3) sortir");
             scanf("%d", &choix);
             if(choix == 1)
             {
@@ -1637,6 +1637,11 @@ PacMan.score = 20;
             {
                 system("cls");
                 Allegro();
+            }
+            else if(choix == 3)
+            {
+                system("cls");
+               exit(0);
             }
 
 
