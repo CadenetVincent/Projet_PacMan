@@ -449,8 +449,19 @@ BITMAP * call_monster(BITMAP*dbbuffer,t_enemy * monenemy, t_PacMan *PacMan)
 }
 
 
-BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a)
+BITMAP * deplacementPacMan(BITMAP *dbbuffer, t_PacMan *PacMan, int *a, t_PacMan * SubPac[20], int score_diff)
 {
+
+    for (int i = 0; i<score_diff; i++)
+    {
+    SubPac[i]->last_posx = SubPac[i]->posx;
+    SubPac[i]->last_posy = SubPac[i]->posy;
+    }
+
+    PacMan->last_posx = PacMan->posx;
+    PacMan->last_posy = PacMan->posy;
+    PacMan->last_direction = PacMan->direction;
+
     BITMAP * sprite_pacman = load_bitmap("pacman_sprites/pacman_right_0.bmp",NULL);
 
     //printf("%d\n %d\n sdfghjklm", PacMan->posx, PacMan->posy);
