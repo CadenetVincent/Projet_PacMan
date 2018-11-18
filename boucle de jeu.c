@@ -61,7 +61,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
         }
 
-        blit(map, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
+        blit(dbbuffer, screen, 0,0,0,0,SCREEN_W,SCREEN_H);
 
         score(Diamant,PacMan,&compteur_score, niveau);
 
@@ -767,8 +767,8 @@ void Allegro()
 
     }
 
-    PacMan.posx = SCREEN_W/2-PacMan.tx/2-10;
-    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-10;
+    PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
     /// NE PAS OUBLIER DE MODIFIER LES DIAMANTS POUR EN METTRE 5 !!!!!!
     while(!key[KEY_ESC])
@@ -808,8 +808,8 @@ printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
                     Diamant[i] = initialiserDiamants();
 
                 }
-                PacMan.posx = SCREEN_W/2-PacMan.tx/2;
-                PacMan.posy = SCREEN_H/2-PacMan.ty/2;
+                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
 
                 niveau = 1;
@@ -825,8 +825,8 @@ printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
                     Diamant[i] = initialiserDiamants();
 
                 }
-                PacMan.posx = SCREEN_W/2-PacMan.tx/2;
-                PacMan.posy = SCREEN_H/2-PacMan.ty/2;
+                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
                 niveau = 2;
                 choise_map = 2;
@@ -841,8 +841,8 @@ printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
                     Diamant[i] = initialiserDiamants();
 
                 }
-                PacMan.posx = SCREEN_W/2-PacMan.tx/2;
-                PacMan.posy = SCREEN_H/2-PacMan.ty/2;
+                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
                 start = time(NULL);
                 PacMan.get_Sun=0;
@@ -891,9 +891,8 @@ printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
                     Diamant[i] = initialiserDiamants();
 
                 }
-                PacMan.posx = SCREEN_W/2-PacMan.tx/2;
-                PacMan.posy = SCREEN_H/2-PacMan.ty/2;
-
+                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
                 niveau = 1;
                 choise_map = 1;
@@ -908,8 +907,8 @@ printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
                     Diamant[i] = initialiserDiamants();
 
                 }
-                PacMan.posx = SCREEN_W/2-PacMan.tx/2;
-                PacMan.posy = SCREEN_H/2-PacMan.ty/2;
+                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
                 niveau = 2;
                 choise_map = 2;
@@ -933,8 +932,8 @@ else if(PacMan.score < 10 && PacMan.score >= 5)
                     Diamant[i] = initialiserDiamants();
 
                 }
-                PacMan.posx = SCREEN_W/2-PacMan.tx/2;
-                PacMan.posy = SCREEN_H/2-PacMan.ty/2;
+                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
 
                 niveau = 1;
@@ -950,8 +949,8 @@ else if(PacMan.score < 10 && PacMan.score >= 5)
                     Diamant[i] = initialiserDiamants();
 
                 }
-                PacMan.posx = SCREEN_W/2-PacMan.tx/2;
-                PacMan.posy = SCREEN_H/2-PacMan.ty/2;
+                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
                 niveau = 2;
                 choise_map = 2;
@@ -972,8 +971,8 @@ else if(PacMan.score < 10 && PacMan.score >= 5)
                     Diamant[i] = initialiserDiamants();
 
                 }
-                PacMan.posx = SCREEN_W/2-PacMan.tx/2;
-                PacMan.posy = SCREEN_H/2-PacMan.ty/2;
+                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
                 niveau = 2;
                 choise_map = 2;
