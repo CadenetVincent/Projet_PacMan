@@ -2,6 +2,8 @@
 
 void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int stop, int * compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan  PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[], int *fermeture)
 {
+    int result_score = 0;
+    int diff_score = 0;
 
     while(PacMan.score != score_limit && PacMan.vies != 0 && *fermeture != 1)
     {
@@ -150,11 +152,12 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int score_max,
     }
 }
 
-void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc)
+void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc, t_chen * Chenille[30])
 {
     int compt_time = 0;
     int scorep;
     int stockage;
+    int result_score = 0;
     float x = 1;
     float y = 1;
     int v = 1;
@@ -189,17 +192,58 @@ void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,
         }
 
 
-
-
         gotoligcol(PacMan->posx,PacMan->posy);
         printf(" ");
 
-        consoleDeplacementPacMan(a,PacMan, key,bord, tab,x);
+        //IMPORTANT
+        //pour afficher ou non la chenille on utilise result_score
+
+        result_score = PacMan->score - 1;
+
+        consoleDeplacementPacMan(a,PacMan, key,bord, tab,x, Chenille, result_score);
 
         gotoligcol(PacMan->posx,PacMan->posy);
         Color(5,0);
         printf("X");
         Color(15,0);
+
+           if(Chenille[0]->coordX > 0 && Chenille[0]->coordY >0)
+        {
+            for(int i = 0; i<result_score; i++)
+            {
+                gotoligcol(Chenille[i]->coordX,Chenille[i]->coordY);
+                printf(" ");
+            }
+        }
+
+                if(result_score > 0)
+                {
+                    for (int i = 0; i<result_score; i++)
+                    {
+                        if(i == 0)
+                        {
+                                Chenille[i]->coordX = PacMan->last_posx;
+                                Chenille[i]->coordY = PacMan->last_posy;
+                        }
+                        else
+                        {
+
+                           Chenille[i]->coordX = Chenille[i-1]->ancienX;
+                           Chenille[i]->coordY = Chenille[i-1]->ancienY;
+                        }
+
+                    }
+                }
+
+        if(Chenille[0]->coordX != 0 && Chenille[0]->coordY !=0)
+        {
+            for(int i = 0; i<result_score; i++)
+            {
+                gotoligcol(Chenille[i]->coordX,Chenille[i]->coordY);
+                printf("A");
+
+            }
+        }
 
         gotoligcol(26,0);
         printf("Vous avez %d nombres de vies !",PacMan->vies);
@@ -294,7 +338,7 @@ int affichageMenu()
 
 
 
-void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int *vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, char * key1)
+void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int *vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, char * key1, t_chen * Chenille[30])
 {
     float acc = 1.0;
 
@@ -337,7 +381,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
             MAX = MAX + 5;
              MIN = MIN + 5;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
 
             system("cls");
             for(int i = 0 ; i < 5; i++)
@@ -366,7 +410,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
             int niveau1 = 1;
 
 
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
             system("cls");
             for(int i = 0 ; i < 5; i++)
             {
@@ -388,7 +432,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
             niveau1 = 2;
             acc = 1.1;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
             key = 'n';
         }
 
@@ -427,7 +471,7 @@ system("cls");
 
             MAX =  5;
             MIN = 0 ;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
 
             compteur ++;
 
@@ -454,7 +498,7 @@ system("cls");
             int niveau1 = 1;
 
 
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
             compteur ++;
             system("cls");
             for(int i = 0 ; i < 5; i++)
@@ -477,7 +521,7 @@ system("cls");
 
             niveau1 = 2;
             acc = 1.1;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
             compteur ++;
             key = 'n';
             }
@@ -515,7 +559,7 @@ system("cls");
             int niveau1 = 1;
 
 
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
             compteur ++;
             system("cls");
             for(int i = 0 ; i < 5; i++)
@@ -538,7 +582,7 @@ system("cls");
 
             niveau1 = 2;
             acc = 1.1;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
             compteur ++;
             key = 'n';
             }
@@ -574,7 +618,7 @@ system("cls");
 
             int niveau1 = 2;
             acc = 1.1;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
             compteur ++;
             key = 'n';
             }
@@ -655,6 +699,8 @@ void Console()
     int MAX = 0;
     int MIN = -5;
 
+    t_map * Chenille[30];
+
 
     t_PacMan PacMan;
     t_PacMan * pt_PacMan;
@@ -670,13 +716,18 @@ void Console()
 
     intialisationPacManConsole(&PacMan,tab);
 
+    for(int i=0; i<30; i++)
+    {
+        Chenille[i] = init_chenille(i);
+    }
+
 
 
 
 //load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
 while(key1 != 'b')
 {
-   boucle_totale(nom,tab,&bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,&vit,MAX,MIN,monenecons,dead_mons,start, &key1);
+   boucle_totale(nom,tab,&bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,&vit,MAX,MIN,monenecons,dead_mons,start, &key1, Chenille);
 
 }
 }

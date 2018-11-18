@@ -1,7 +1,33 @@
 #include "prototypes.h"
 
-void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  *key, int bord,int * tab[20][50], float x)
+t_chen * init_chenille(int place)
 {
+    t_chen *chenille;
+    chenille=(t_chen*) malloc(1 * sizeof(t_chen));
+
+    chenille->coordX = 0;
+    chenille->coordY = 0;
+    chenille->ancienX = 0;
+    chenille->ancienY = 0;
+    chenille->position = place;
+    chenille->Adir = 0;
+    chenille->dir = 0;
+
+    return chenille;
+}
+
+
+void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  *key, int bord,int * tab[20][50], float x, t_chen * Chenille[30],int diff_score)
+{
+    for (int i = 0; i<diff_score; i++)
+    {
+    Chenille[i]->ancienX =Chenille[i]->coordX;
+    Chenille[i]->ancienY =Chenille[i]->coordY;
+    }
+
+    PacMan->last_posx = PacMan->posx;
+    PacMan->last_posy = PacMan->posy;
+    PacMan->last_direction = PacMan->direction;
 
     if ( *key == 'z' &&tab[PacMan->posx-1][PacMan->posy] != 1)
     {

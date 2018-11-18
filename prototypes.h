@@ -7,8 +7,16 @@
 #include <time.h>
 #include <winalleg.h>
 
-
-
+typedef struct Chenille
+{
+    int coordX;
+    int coordY;
+    int ancienX;
+    int ancienY;
+    int position;
+    int Adir;
+    int dir;
+}t_chen;
 typedef struct gestion_map
 {
     BITMAP * buffer_pc[4];
@@ -125,7 +133,7 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int score_max,
 //void load_map1(int i,int niveau, int choise_map, int score_limit , int score_max, int * a, int stop, int  compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan  PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[], int *fermeture);
 
 /// mode console
-void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  *key, int bord, int * tab[20][50], float x);
+void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  *key, int bord, int * tab[20][50], float x, t_chen * Chenille[30], int diff_score);
 void gotoligcol( int lig, int col );
 void intialisationPacManConsole(t_PacMan *PacMan, int * tab[20][50]);
 void chargementMap(char nom[], int * tab[20][50], int * bord);
@@ -143,9 +151,9 @@ t_enecons * initEnCons();
 void Color(int t,int f);
 
 //void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN);
-void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int *vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, char * key1);
+void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t_PacMan *PacMan, int * stop, char key, int * a, int * compteur, int niveau, int *vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, char * key1, t_chen * Chenille[30]);
 
-void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc);
+void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc, t_chen * Chenille[30]);
 
 void Console();
 
