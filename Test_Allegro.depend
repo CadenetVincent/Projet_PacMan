@@ -4,20 +4,20 @@
 	<stdlib.h>
 	<allegro.h>
 
-1542535716 source:c:\users\guill\documents\projet_pacman\main.c
+1542537284 source:c:\users\guill\documents\projet_pacman\main.c
 	"prototypes.h"
 
 1540833334 D
 	"prototypes.h"
 
-1542534572 c:\users\guill\documents\projet_pacman\prototypes.h
+1542538281 c:\users\guill\documents\projet_pacman\prototypes.h
 	<allegro.h>
 	<stdlib.h>
 	<stdio.h>
 	<time.h>
 	<winalleg.h>
 
-1542530387 source:c:\users\guill\documents\projet_pacman\monstres.c
+1542537283 source:c:\users\guill\documents\projet_pacman\monstres.c
 	"prototypes.h"
 
 1542478482 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\monstres.c
@@ -47,19 +47,19 @@
 1542299140 source:c:\users\guill\documents\projet_pacman\map.c
 	"prototypes.h"
 
-1542534362 source:c:\users\guill\documents\projet_pacman\boucle de jeu.c
+1542538751 source:c:\users\guill\documents\projet_pacman\boucle de jeu.c
 	"prototypes.h"
 
 1542455744 source:c:\users\guill\documents\projet_pacman\sauvegarde.c
 	"prototypes.h"
 
-1542530331 source:c:\users\guill\documents\projet_pacman\diamants.c
+1542537284 source:c:\users\guill\documents\projet_pacman\diamants.c
 	"prototypes.h"
 
 1542299140 source:c:\users\guill\documents\projet_pacman\sun.c
 	"prototypes.h"
 
-1542530387 source:c:\users\guill\documents\projet_pacman\console.c
+1542538221 source:c:\users\guill\documents\projet_pacman\console.c
 	"prototypes.h"
 
 1542478453 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\boucle de jeu.c
@@ -77,6 +77,6 @@
 1542449834 source:c:\users\cadenet vincent\desktop\codeblocks\alleggg\projet_pacman\sun.c
 	"prototypes.h"
 
-1542534130 source:c:\users\guill\documents\projet_pacman\allegro.c
+1542538271 source:c:\users\guill\documents\projet_pacman\allegro.c
 	"prototypes.h"
 
