@@ -1,27 +1,63 @@
 #include "prototypes.h"
 
-void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int * tab[20][50], float x)
-{
 
+
+t_chen * init_chenille(int place)
+{
+    t_chen *chenille;
+    chenille=(t_chen*) malloc(1 * sizeof(t_chen));
+
+    chenille->coordX = 0;
+    chenille->coordY = 0;
+    chenille->ancienX = 0;
+    chenille->ancienY = 0;
+    chenille->position = place;
+    chenille->Adir = 0;
+    chenille->dir = 0;
+
+    return chenille;
+}
+
+void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int * tab[20][50], float x, t_chen * Chenille[30], int diff_score)
+{
+    for (int i = 0; i<diff_score; i++)
+    {
+    Chenille[i]->ancienX =Chenille[i]->coordX;
+    Chenille[i]->ancienY =Chenille[i]->coordY;
+    }
+
+    PacMan->last_posx = PacMan->posx;
+    PacMan->last_posy = PacMan->posy;
+    PacMan->last_direction = PacMan->direction;
+
+    //LEFT
     if ( key == 'z' &&tab[PacMan->posx-1][PacMan->posy] != 1)
     {
+        PacMan->direction = 1;
         *a = 1;
     }
+    //RIGHT
     else if (key == 's' && tab[PacMan->posx+1][PacMan->posy] != 1 )
     {
+        PacMan->direction = 2;
         *a = 2;
     }
+    //DOWN
     else if (key == 'd'&& tab[PacMan->posx][PacMan->posy+1] != 1 )
     {
+        PacMan->direction = 3;
         *a = 3;
     }
+    //UP
     else if (key == 'q'&& tab[PacMan->posx][PacMan->posy-1] != 1 )
     {
+        PacMan->direction = 4;
         *a = 4;
     }
-
+    //LEFT
     if ( *a == 1 && tab[PacMan->posx-1][PacMan->posy] != 1)
     {
+        PacMan->direction = 1;
         PacMan->posx -= x;
         if(bord == 1)
         {
@@ -41,8 +77,10 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
 
 
     }
+    //RIGHT
     else if (*a == 2 && tab[PacMan->posx + 1][PacMan->posy] != 1 )
     {
+        PacMan->direction = 2;
         PacMan->posx+= x;
         if(bord == 1)
         {
@@ -60,8 +98,10 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
         }
 
     }
+    //DOWN
     else if (*a == 3 && tab[PacMan->posx][PacMan->posy+1] != 1 )
     {
+        PacMan->direction = 3;
         PacMan->posy += x;
         if(bord == 1)
         {
@@ -79,8 +119,10 @@ void consoleDeplacementPacMan(int *a, t_PacMan * PacMan, char  key, int bord,int
         }
 
     }
+    //UP
     else if (*a == 4 && tab[PacMan->posx][PacMan->posy-1] != 1 )
     {
+        PacMan->direction = 4;
         PacMan->posy -= x;
         if(bord == 1)
         {

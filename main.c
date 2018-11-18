@@ -51,7 +51,7 @@ int main()
     int MAX = 5;
     int MIN = 0;
 
-
+    t_chen * Chenille[30];
     t_PacMan PacMan;
     t_PacMan * pt_PacMan;
     pt_PacMan = &PacMan;
@@ -66,11 +66,13 @@ int main()
 
     intialisationPacManConsole(&PacMan,tab);
 
-
-
+    for(int i=0; i<30; i++)
+    {
+        Chenille[i] = init_chenille(i);
+    }
 
 //load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
-boucle_totale(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start);
+boucle_totale(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start,Chenille);
 
 //load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons);
 
