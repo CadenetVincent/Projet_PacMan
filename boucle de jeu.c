@@ -212,7 +212,7 @@ void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,
         printf("X");
         Color(15,0);
 
-           if(Chenille[0]->coordX > 0 && Chenille[0]->coordY >0)
+        if(Chenille[0]->coordX > 0 && Chenille[0]->coordY >0)
         {
             for(int i = 0; i<result_score; i++)
             {
@@ -221,24 +221,24 @@ void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,
             }
         }
 
-                if(result_score > 0)
+        if(result_score > 0)
+        {
+            for (int i = 0; i<result_score; i++)
+            {
+                if(i == 0)
                 {
-                    for (int i = 0; i<result_score; i++)
-                    {
-                        if(i == 0)
-                        {
-                                Chenille[i]->coordX = PacMan->last_posx;
-                                Chenille[i]->coordY = PacMan->last_posy;
-                        }
-                        else
-                        {
-
-                           Chenille[i]->coordX = Chenille[i-1]->ancienX;
-                           Chenille[i]->coordY = Chenille[i-1]->ancienY;
-                        }
-
-                    }
+                    Chenille[i]->coordX = PacMan->last_posx;
+                    Chenille[i]->coordY = PacMan->last_posy;
                 }
+                else
+                {
+
+                    Chenille[i]->coordX = Chenille[i-1]->ancienX;
+                    Chenille[i]->coordY = Chenille[i-1]->ancienY;
+                }
+
+            }
+        }
 
         if(Chenille[0]->coordX != 0 && Chenille[0]->coordY !=0)
         {
@@ -321,6 +321,127 @@ void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,
 
 }
 
+void load_mapConsole1(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc)
+{
+    int compt_time = 0;
+    int scorep;
+    int stockage;
+    float x = 1;
+    float y = 1;
+    int v = 1;
+    int boolean = 0;
+    chargementMap(nom, tab, &bord);
+    for(int i = 0; i < 5 ; i++)
+    {
+        gestionDiamantConsole(Diamant[i], &stop, tab );
+    }
+
+    for(int i = 0; i<4; i++)
+    {
+        monenecons[i] = initEnCons();
+    }
+
+    PacMan->score = MIN;
+    stockage = PacMan->score;
+
+    while(PacMan->score < MAX && PacMan->score >= MIN && PacMan->vies != 0 && *key != 'n')
+    {
+
+
+        if(kbhit())
+        {
+            *key = getch();
+        }
+
+        gotoligcol(25,0);
+        if(PacMan->score >= 5)
+        {
+            //init_table_mons(monenecons,tab,dead_mons,PacMan);
+        }
+
+
+
+
+        gotoligcol(PacMan->posx,PacMan->posy);
+        printf(" ");
+
+        consoleDeplacementPacMan1(a,PacMan, key,bord, tab,x);
+
+        gotoligcol(PacMan->posx,PacMan->posy);
+        Color(5,0);
+        printf("X");
+        Color(15,0);
+
+        gotoligcol(26,0);
+        printf("Vous avez %d nombres de vies !",PacMan->vies);
+
+        compt_time = (int)(time(NULL) - start);
+        compt_time = 120 - compt_time;
+        if(compt_time <= 0)
+        {
+            PacMan->vies = 0;
+        }
+        gotoligcol(27,0);
+        printf("Il vous reste %d secondes !",compt_time);
+
+        gotoligcol(28,0);
+        scorep = PacMan->score * 10;
+        printf("Votre score est de : %d !",scorep);
+
+
+
+
+
+
+        for(int i = 0; i < 5 ; i++)
+        {
+            suppressionDiamantConsole(Diamant[i], PacMan);
+
+        }
+
+
+
+        score(Diamant,PacMan,&compteur, niveau);
+
+        if(PacMan->score > stockage)
+        {
+            x = x * acc;
+            stockage = PacMan->score;
+        }
+
+        if(*key == 'c' )
+        {
+            sauvegardeConsole(PacMan);
+            *key = 'n';
+        }
+
+        if(*key == 'p' && boolean == 0)
+        {
+            y = x;
+            x = 0;
+            boolean = 1;
+
+            for(int i = 0; i < 4; i++)
+            {
+                monenecons[i]->dep = 0;
+            }
+        }
+
+        if(*key == 'o' && boolean == 1)
+        {
+            x = y;
+            boolean = 0;
+            for(int i = 0; i < 4; i++)
+            {
+                monenecons[i]->dep = 4;
+            }
+        }
+
+
+        Sleep(vit);
+    }
+
+}
 int affichageMenu()
 {
     int choixMenu = 0;
@@ -383,11 +504,11 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
             MAX = MAX + 5;
 
-             MIN = MIN + 5;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+            MIN = MIN + 5;
+            load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
 
-         //   MIN = MIN + 5;
-    //        load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            //   MIN = MIN + 5;
+            //        load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
 
 
             system("cls");
@@ -417,7 +538,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
             int niveau1 = 1;
 
 
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+            load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
             system("cls");
             for(int i = 0 ; i < 5; i++)
             {
@@ -438,8 +559,32 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
 
             niveau1 = 2;
-            acc = 1.1;
+            acc = 1;
+            load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+            system("cls");
+            for(int i = 0 ; i < 5; i++)
+            {
+                Diamant[i] = initialiserDiamants();
+            }
+            if(*bord == 1)
+            {
+                nom = "map4.txt";
+
+            }
+            else if(*bord == 0)
+            {
+                nom = "map4sb.txt";
+            }
+            MAX = MAX + 5;
+            MIN = MIN + 5;
+            *stop = 5;
+            niveau1 = 3;
+            acc = 1;
             load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+
+
+
+
             key = 'n';
         }
 
@@ -453,82 +598,105 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
         recuperationConsole(PacMan);
         printf("%d", PacMan->score);
         int compteur = 0;
- /*       while(key != 'n')
+
+
+        if(PacMan->score <5 && PacMan->score >= 0)
+
         {
-<<<<<<< HEAD
             while(key != 'n')
             {
                 if(*bord == 1)
-            {
-                nom = "map1.txt";
+                {
+                    nom = "map1.txt";
 
-            }
-            else if(*bord == 0)
-            {
-                nom = "map1sb.txt";
-            }
+                }
+                else if(*bord == 0)
+                {
+                    nom = "map1sb.txt";
+                }
 
-            for(int i = 0 ; i < 5; i++)
-            {
-                Diamant[i] = initialiserDiamants();
-            }
-            *stop = 5;
+                for(int i = 0 ; i < 5; i++)
+                {
+                    Diamant[i] = initialiserDiamants();
+                }
+                *stop = 5;
 
-            MAX =  5;
-            MIN = 0 ;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+                MAX =  5;
+                MIN = 0 ;
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start,acc);
 
-            compteur ++;
-
-
-            system("cls");
-            for(int i = 0 ; i < 5; i++)
-            {
-                Diamant[i] = initialiserDiamants();
-            }
-            if(*bord == 1)
-            {
-                nom = "map2.txt";
-
-            }
-            else if(*bord == 0)
-            {
-                nom = "map2sb.txt";
-            }
-
-             MAX = MAX + 5;
-             MIN = MIN + 5;
-            *stop = 5;
-
-            int niveau1 = 1;
+                compteur ++;
 
 
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-            compteur ++;
-            system("cls");
-            for(int i = 0 ; i < 5; i++)
-            {
-                Diamant[i] = initialiserDiamants();
-            }
-            if(*bord == 1)
-            {
-                nom = "map3.txt";
+                system("cls");
+                for(int i = 0 ; i < 5; i++)
+                {
+                    Diamant[i] = initialiserDiamants();
+                }
+                if(*bord == 1)
+                {
+                    nom = "map2.txt";
 
-            }
-            else if(*bord == 0)
-            {
-                nom = "map3sb.txt";
-            }
-            MAX = MAX + 5;
-            MIN = MIN + 5;
-            *stop = 5;
+                }
+                else if(*bord == 0)
+                {
+                    nom = "map2sb.txt";
+                }
+
+                MAX = MAX + 5;
+                MIN = MIN + 5;
+                *stop = 5;
+
+                int niveau1 = 1;
 
 
-            niveau1 = 2;
-            acc = 1.1;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-            compteur ++;
-            key = 'n';
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                compteur ++;
+                system("cls");
+                for(int i = 0 ; i < 5; i++)
+                {
+                    Diamant[i] = initialiserDiamants();
+                }
+                if(*bord == 1)
+                {
+                    nom = "map3.txt";
+
+                }
+                else if(*bord == 0)
+                {
+                    nom = "map3sb.txt";
+                }
+                MAX = MAX + 5;
+                MIN = MIN + 5;
+                *stop = 5;
+
+
+                niveau1 = 2;
+                acc = 1.1;
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                compteur ++;
+                system("cls");
+                for(int i = 0 ; i < 5; i++)
+                {
+                    Diamant[i] = initialiserDiamants();
+                }
+                if(*bord == 1)
+                {
+                    nom = "map4.txt";
+
+                }
+                else if(*bord == 0)
+                {
+                    nom = "map4sb.txt";
+                }
+                MAX = MAX + 5;
+                MIN = MIN + 5;
+                *stop = 5;
+                niveau1 = 3;
+                acc = 1;
+                load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+
+                key = 'n';
             }
 
 
@@ -536,53 +704,88 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
         else  if(PacMan->score <10 && PacMan->score >= 5)
         {
             while(key != 'n')
-=======*/
-
-            if(PacMan->score <5 && PacMan->score >= 0)
-
             {
-                while(key != 'n')
+
+                MAX = 5;
+                MIN = 0;
+
+
+                system("cls");
+                for(int i = 0 ; i < 5; i++)
                 {
-                    if(*bord == 1)
-                    {
-                        nom = "map1.txt";
+                    Diamant[i] = initialiserDiamants();
+                }
+                if(*bord == 1)
+                {
+                    nom = "map2.txt";
 
-                    }
-                    else if(*bord == 0)
-                    {
-                        nom = "map1sb.txt";
-                    }
+                }
+                else if(*bord == 0)
+                {
+                    nom = "map2sb.txt";
+                }
 
-                    for(int i = 0 ; i < 5; i++)
-                    {
-                        Diamant[i] = initialiserDiamants();
-                    }
-                    *stop = 5;
+                MAX = MAX + 5;
+                MIN = MIN + 5;
+                *stop = 5;
 
-                    MAX =  5;
-                    MIN = 0 ;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-
-                    compteur ++;
+                int niveau1 = 1;
 
 
-                    system("cls");
-                    for(int i = 0 ; i < 5; i++)
-                    {
-                        Diamant[i] = initialiserDiamants();
-                    }
-                    if(*bord == 1)
-                    {
-                        nom = "map2.txt";
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                compteur ++;
+                system("cls");
+                for(int i = 0 ; i < 5; i++)
+                {
+                    Diamant[i] = initialiserDiamants();
+                }
+                if(*bord == 1)
+                {
+                    nom = "map3.txt";
 
-                    }
-                    else if(*bord == 0)
-                    {
-                        nom = "map2sb.txt";
-                    }
+                }
+                else if(*bord == 0)
+                {
+                    nom = "map3sb.txt";
+                }
+                MAX = MAX + 5;
+                MIN = MIN + 5;
+                *stop = 5;
 
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
+
+                niveau1 = 2;
+                acc = 1.1;
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                compteur ++;
+
+                system("cls");
+                for(int i = 0 ; i < 5; i++)
+                {
+                    Diamant[i] = initialiserDiamants();
+                }
+                if(*bord == 1)
+                {
+                    nom = "map4.txt";
+
+                }
+                else if(*bord == 0)
+                {
+                    nom = "map4sb.txt";
+                }
+                MAX = MAX + 5;
+                MIN = MIN + 5;
+                *stop = 5;
+                niveau1 = 3;
+                acc = 1;
+                load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+
+                key = 'n';
+            }
+        }
+        /*<<<<<<< HEAD
+
+                     MAX = MAX + 5;
+                     MIN = MIN + 5;
                     *stop = 5;
 
                     int niveau1 = 1;
@@ -592,201 +795,124 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
                     compteur ++;
                     system("cls");
                     for(int i = 0 ; i < 5; i++)
-                    {
-                        Diamant[i] = initialiserDiamants();
-                    }
-                    if(*bord == 1)
-                    {
-                        nom = "map3.txt";
+        =======*/
+        else  if(PacMan->score < 15 && PacMan->score >= 10)
 
-                    }
-                    else if(*bord == 0)
-                    {
-                        nom = "map3sb.txt";
-                    }
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
-                    *stop = 5;
-
-
-                    niveau1 = 2;
-                    acc = 1.1;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-                    compteur ++;
-                    key = 'n';
-                }
-
-
-            }
-            else  if(PacMan->score <10 && PacMan->score >= 5)
+        {
+            while(key != 'n')
             {
-                while(key != 'n')
+
+                MAX = 10;
+                MIN = 5;
+
+
+
+                system("cls");
+                for(int i = 0 ; i < 5; i++)
                 {
-
-                    MAX = 5;
-                    MIN = 0;
-
-
-                    system("cls");
-                    for(int i = 0 ; i < 5; i++)
-                    {
-                        Diamant[i] = initialiserDiamants();
-                    }
-                    if(*bord == 1)
-                    {
-                        nom = "map2.txt";
-
-                    }
-                    else if(*bord == 0)
-                    {
-                        nom = "map2sb.txt";
-                    }
-
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
-                    *stop = 5;
-
-                    int niveau1 = 1;
-
-
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-                    compteur ++;
-                    system("cls");
-                    for(int i = 0 ; i < 5; i++)
-                    {
-                        Diamant[i] = initialiserDiamants();
-                    }
-                    if(*bord == 1)
-                    {
-                        nom = "map3.txt";
-
-                    }
-                    else if(*bord == 0)
-                    {
-                        nom = "map3sb.txt";
-                    }
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
-                    *stop = 5;
-
-
-                    niveau1 = 2;
-                    acc = 1.1;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-                    compteur ++;
-                    key = 'n';
+                    Diamant[i] = initialiserDiamants();
                 }
-            }
-/*<<<<<<< HEAD
-
-             MAX = MAX + 5;
-             MIN = MIN + 5;
-            *stop = 5;
-
-            int niveau1 = 1;
-
-
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-            compteur ++;
-            system("cls");
-            for(int i = 0 ; i < 5; i++)
-=======*/
-            else  if(PacMan->score < 15 && PacMan->score >= 10)
-
-            {
-                while(key != 'n')
+                if(*bord == 1)
                 {
+                    nom = "map3.txt";
 
-                    MAX = 10;
-                    MIN = 5;
-
-
-
-                    system("cls");
-                    for(int i = 0 ; i < 5; i++)
-                    {
-                        Diamant[i] = initialiserDiamants();
-                    }
-                    if(*bord == 1)
-                    {
-                        nom = "map3.txt";
-
-                    }
-                    else if(*bord == 0)
-                    {
-                        nom = "map3sb.txt";
-                    }
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
-                    *stop = 5;
+                }
+                else if(*bord == 0)
+                {
+                    nom = "map3sb.txt";
+                }
+                MAX = MAX + 5;
+                MIN = MIN + 5;
+                *stop = 5;
 
 
-                    int niveau1 = 2;
-                    acc = 1.1;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-                    compteur ++;
-                    key = 'n';
+                int niveau1 = 2;
+                acc = 1.1;
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                compteur ++;
+                system("cls");
+                for(int i = 0 ; i < 5; i++)
+                {
+                    Diamant[i] = initialiserDiamants();
+                }
+                if(*bord == 1)
+                {
+                    nom = "map4.txt";
+
+                }
+                else if(*bord == 0)
+                {
+                    nom = "map4sb.txt";
+                }
+                MAX = MAX + 5;
+                MIN = MIN + 5;
+                *stop = 5;
+                niveau1 = 3;
+                acc = 1;
+                load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+
+                key = 'n';
 
 
 
-            if(*bord == 1)
+                if(*bord == 1)
+                {
+                    nom = "map3.txt";
+
+                }
+                else if(*bord == 0)
+                {
+                    nom = "map3sb.txt";
+                }
+                MAX = MAX + 5;
+                MIN = MIN + 5;
+                *stop = 5;
+
+
+                niveau1 = 2;
+                acc = 1.1;
+                load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+                compteur ++;
+                key = 'n';
+            }
+
+        }
+        else  if(PacMan->score < 15 && PacMan->score >= 10)
+        {
+            while(key != 'n')
             {
-                nom = "map3.txt";
 
+                MAX = 10;
+                MIN = 5;
+
+
+
+                system("cls");
+                for(int i = 0 ; i < 5; i++)
+                {
+                    Diamant[i] = initialiserDiamants();
+                }
+                if(*bord == 1)
+                {
+                    nom = "map3.txt";
+
+                }
+                else if(*bord == 0)
+                {
+                    nom = "map3sb.txt";
+                }
+                MAX = MAX + 5;
+                MIN = MIN + 5;
+                *stop = 5;
+
+
+                int niveau1 = 2;
+                acc = 1.1;
+                load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+                compteur ++;
+                key = 'n';
             }
-            else if(*bord == 0)
-            {
-                nom = "map3sb.txt";
-            }
-            MAX = MAX + 5;
-            MIN = MIN + 5;
-            *stop = 5;
-
-
-            niveau1 = 2;
-            acc = 1.1;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-            compteur ++;
-            key = 'n';
-            }
-
-            }
-         else  if(PacMan->score < 15 && PacMan->score >= 10)
-         {
-             while(key != 'n')
-            {
-
-            MAX = 10;
-            MIN = 5;
-
-
-
-            system("cls");
-            for(int i = 0 ; i < 5; i++)
-            {
-                Diamant[i] = initialiserDiamants();
-            }
-            if(*bord == 1)
-            {
-                nom = "map3.txt";
-
-            }
-            else if(*bord == 0)
-            {
-                nom = "map3sb.txt";
-            }
-            MAX = MAX + 5;
-            MIN = MIN + 5;
-            *stop = 5;
-
-
-            int niveau1 = 2;
-            acc = 1.1;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-            compteur ++;
-            key = 'n';
-            }
-         }
+        }
 
 
 
@@ -1015,7 +1141,7 @@ void Allegro()
 
                 load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);
 
-printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
+                printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
 
                 stop = 0;
                 for(i=0; i<5; i++)
@@ -1023,8 +1149,8 @@ printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
                     Diamant[i] = initialiserDiamants();
 
                 }
-                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
-    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
+                PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+                PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
 
                 niveau = 1;
@@ -1040,8 +1166,8 @@ printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
                     Diamant[i] = initialiserDiamants();
 
                 }
-                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
-    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
+                PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+                PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
                 niveau = 2;
                 choise_map = 2;
@@ -1056,8 +1182,8 @@ printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
                     Diamant[i] = initialiserDiamants();
 
                 }
-                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
-    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
+                PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+                PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
 
                 start = time(NULL);
                 PacMan.get_Sun=0;
@@ -1076,134 +1202,136 @@ printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
             stop = 0;
             fermeture = 0;
             PacMan.vies = 5;
-printf("%d\n", PacMan.score);
+            printf("%d\n", PacMan.score);
 
-if(PacMan.score < 5 && PacMan.score >= 0)
-{
-
-   //boucle_totale(nom,tab,&bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,&vit,MAX,MIN,monenecons,dead_mons,start, &key1, Chenille);
-
-    score_limit = 0;
-   while(PacMan.vies > 0 && fermeture != 1 && PacMan.score != 15)
+            if(PacMan.score < 5 && PacMan.score >= 0)
             {
 
-                stop = 0;
-                niveau = 0;
-               score_limit = score_limit + 5;
-                choise_map = 0;
+                //boucle_totale(nom,tab,&bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,&vit,MAX,MIN,monenecons,dead_mons,start, &key1, Chenille);
 
-                for(i=0; i<5; i++)
+                score_limit = 0;
+                while(PacMan.vies > 0 && fermeture != 1 && PacMan.score != 15)
                 {
-                    Diamant[i] = initialiserDiamants();
+
+                    stop = 0;
+                    niveau = 0;
+                    score_limit = score_limit + 5;
+                    choise_map = 0;
+
+                    for(i=0; i<5; i++)
+                    {
+                        Diamant[i] = initialiserDiamants();
+                    }
+
+
+
+
+                    load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);
+
+                    printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
+
+                    stop = 0;
+                    for(i=0; i<5; i++)
+                    {
+                        Diamant[i] = initialiserDiamants();
+
+                    }
+                    PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+                    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
+
+                    niveau = 1;
+                    choise_map = 1;
+
+                    printf("%d\n", PacMan.vies);
+                    score_limit = score_limit + 5;
+                    load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);                            //void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int stop, int * compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan  PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[]);
+
+                    stop = 0;
+                    for(i=0; i<5; i++)
+                    {
+                        Diamant[i] = initialiserDiamants();
+
+                    }
+                    PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+                    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
+
+                    niveau = 2;
+                    choise_map = 2;
+                    score_limit = score_limit + 5;
+
+                    load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);
+
+
+
+
                 }
+            }
 
-
-
-
-                load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);
-
-printf("vies1 : %d\n score1 : %d\n", PacMan.vies, PacMan.score);
-
-                stop = 0;
-                for(i=0; i<5; i++)
+            else if(PacMan.score < 10 && PacMan.score >= 5)
+            {
+                score_limit = 5;
+                while(PacMan.vies > 0 && fermeture != 1 && PacMan.score != 15)
                 {
-                    Diamant[i] = initialiserDiamants();
+                    stop = 0;
+                    for(i=0; i<5; i++)
+                    {
+                        Diamant[i] = initialiserDiamants();
+
+                    }
+                    PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+                    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
+
+
+                    niveau = 1;
+                    choise_map = 1;
+
+                    printf("%d\n", PacMan.vies);
+                    score_limit = score_limit + 5;
+                    load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);                            //void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int stop, int * compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan  PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[]);
+
+                    stop = 0;
+                    for(i=0; i<5; i++)
+                    {
+                        Diamant[i] = initialiserDiamants();
+
+                    }
+                    PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+                    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
+
+                    niveau = 2;
+                    choise_map = 2;
+                    score_limit = score_limit + 5;
+
+                    load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);
+
 
                 }
-                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
-    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
-
-                niveau = 1;
-                choise_map = 1;
-
-                printf("%d\n", PacMan.vies);
-                score_limit = score_limit + 5;
-                load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);                            //void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int stop, int * compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan  PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[]);
-
-                stop = 0;
-                for(i=0; i<5; i++)
+            }
+            else if(PacMan.score < 15 && PacMan.score >= 10)
+            {
+                score_limit = 10;
+                while(PacMan.vies > 0 && fermeture != 1 && PacMan.score != 15)
                 {
-                    Diamant[i] = initialiserDiamants();
+                    stop = 0;
+                    for(i=0; i<5; i++)
+                    {
+                        Diamant[i] = initialiserDiamants();
+
+                    }
+                    PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
+                    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
+
+                    niveau = 2;
+                    choise_map = 2;
+                    score_limit = score_limit + 5;
+
+                    load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);
+
 
                 }
-                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
-    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
-
-                niveau = 2;
-                choise_map = 2;
-                score_limit = score_limit + 5;
-
-                load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);
-
-
 
 
             }
-}
-
-else if(PacMan.score < 10 && PacMan.score >= 5)
-{ score_limit = 5;
-    while(PacMan.vies > 0 && fermeture != 1 && PacMan.score != 15)
-{
-     stop = 0;
-                for(i=0; i<5; i++)
-                {
-                    Diamant[i] = initialiserDiamants();
-
-                }
-                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
-    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
-
-
-                niveau = 1;
-                choise_map = 1;
-
-                printf("%d\n", PacMan.vies);
-                score_limit = score_limit + 5;
-                load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);                            //void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int stop, int * compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan  PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[]);
-
-                stop = 0;
-                for(i=0; i<5; i++)
-                {
-                    Diamant[i] = initialiserDiamants();
-
-                }
-                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
-    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
-
-                niveau = 2;
-                choise_map = 2;
-                score_limit = score_limit + 5;
-
-                load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);
-
-
-}
-    }
-    else if(PacMan.score < 15 && PacMan.score >= 10)
-    {score_limit = 10;
-        while(PacMan.vies > 0 && fermeture != 1 && PacMan.score != 15)
-        {
-             stop = 0;
-                for(i=0; i<5; i++)
-                {
-                    Diamant[i] = initialiserDiamants();
-
-                }
-                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
-    PacMan.posy =  SCREEN_H/2-PacMan.ty/2-8;
-
-                niveau = 2;
-                choise_map = 2;
-                score_limit = score_limit + 5;
-
-                load_map( i, niveau,  choise_map,  score_limit,  &a,  stop,  &compteur_score,  compteur_death, Diamants, front,  enemy,  dbbuffer,  map,  perso_img, &PacMan, monenemy, gestion_map, &Diamant,&fermeture);
-
-
-        }
-
-
-    }
 
         }
         else if(mouse_b&1 == 1 && getpixel(dbbuffer, mouse_x,mouse_y) == makecol(0,38,255))
@@ -1246,33 +1374,33 @@ else if(PacMan.score < 10 && PacMan.score >= 5)
 
     }
 
-    }
+}
 
-    void Menu1()
-    {
-        char key2;
-int choix;
+void Menu1()
+{
+    char key2;
+    int choix;
 
     while(key2 != 'k')
     {
         if(kbhit())
-            {
-                key2 = getch();
-            }
+        {
+            key2 = getch();
+        }
 
-            printf("voulez vous jouer en : \n 1) console \n 2) allegro\n");
-            scanf("%d", &choix);
-            if(choix == 1)
-            {
-                system("cls");
-                Console();
-            }
-            else if(choix == 2)
-            {
-                system("cls");
-                Allegro();
-            }
+        printf("voulez vous jouer en : \n 1) console \n 2) allegro\n");
+        scanf("%d", &choix);
+        if(choix == 1)
+        {
+            system("cls");
+            Console();
+        }
+        else if(choix == 2)
+        {
+            system("cls");
+            Allegro();
+        }
 
 
     }
-    }
+}
