@@ -40,6 +40,9 @@
 		<Unit filename="Sun.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="allegro.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="boucle de jeu.c">
 			<Option compilerVar="CC" />
 		</Unit>

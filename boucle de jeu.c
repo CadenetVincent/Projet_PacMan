@@ -246,7 +246,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 }
 
     void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc, t_chen * Chenille[30])
-    {
+ {
         int compt_time = 0;
         int scorep;
         int stockage;
@@ -444,7 +444,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
             gotoligcol(25,0);
             if(PacMan->score >= 5)
             {
-                //init_table_mons(monenecons,tab,dead_mons,PacMan);
+                init_table_mons(monenecons,tab,dead_mons,PacMan);
             }
 
 
@@ -689,10 +689,12 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
 
             if(PacMan->score <5 && PacMan->score >= 0)
+            { key = 'r';
 
-            {
                 while(key != 'n')
                 {
+                    PacMan->posx = 10;
+                PacMan->posy = 25;
                     if(*bord == 1)
                     {
                         nom = "map1.txt";
@@ -711,7 +713,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
                     MAX =  5;
                     MIN = 0 ;
-                    load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
 
                     compteur ++;
 
@@ -738,7 +740,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
                     int niveau1 = 1;
 
 
-                    load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
                     compteur ++;
                     system("cls");
                     for(int i = 0 ; i < 5; i++)
@@ -760,9 +762,12 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
 
                     niveau1 = 2;
-                    acc = 1.1;
-                    load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
-                    compteur ++;
+                    acc = 1;
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+
+                    MAX = 20;
+                    MIN = 15;
+
                     system("cls");
                     for(int i = 0 ; i < 5; i++)
                     {
@@ -777,12 +782,14 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
                     {
                         nom = "map4sb.txt";
                     }
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
+                   // MAX = MAX + 5;
+                   // MIN = MIN + 5;
                     *stop = 5;
-                    niveau1 = 3;
+
+
+                     niveau1 = 3;
                     acc = 1;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+                load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
 
                     key = 'n';
                 }
@@ -790,10 +797,11 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
             }
             else  if(PacMan->score <10 && PacMan->score >= 5)
-            {
+            { key = 'r';
                 while(key != 'n')
                 {
-
+PacMan->posx = 10;
+                PacMan->posy = 25;
                     MAX = 5;
                     MIN = 0;
 
@@ -820,7 +828,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
                     int niveau1 = 1;
 
 
-                    load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
                     compteur ++;
                     system("cls");
                     for(int i = 0 ; i < 5; i++)
@@ -842,9 +850,12 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
 
                     niveau1 = 2;
-                    acc = 1.1;
-                    load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                    acc = 1;
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
                     compteur ++;
+
+                    MAX = 20;
+                    MIN = 15;
 
                     system("cls");
                     for(int i = 0 ; i < 5; i++)
@@ -860,12 +871,14 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
                     {
                         nom = "map4sb.txt";
                     }
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
+                   // MAX = MAX + 5;
+                   // MIN = MIN + 5;
                     *stop = 5;
-                    niveau1 = 3;
+
+
+                     niveau1 = 3;
                     acc = 1;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+                load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
 
                     key = 'n';
                 }
@@ -885,11 +898,11 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
                         for(int i = 0 ; i < 5; i++)
             =======*/
             else  if(PacMan->score < 15 && PacMan->score >= 10)
-
-            {
+            { key = 'r';
                 while(key != 'n')
                 {
-
+PacMan->posx = 10;
+                PacMan->posy = 25;
                     MAX = 10;
                     MIN = 5;
 
@@ -915,9 +928,34 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
 
                     int niveau1 = 2;
-                    acc = 1.1;
-                    load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
-                    compteur ++;
+                    acc = 1;
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+
+
+
+
+
+                   /* if(*bord == 1)
+                    {
+                        nom = "map4.txt";
+
+                    }
+                    else if(*bord == 0)
+                    {
+                        nom = "map4sb.txt";
+                    }
+                    MAX = MAX + 5;
+                    MIN = MIN + 5;
+                    *stop = 5;
+
+
+                    niveau1 = 2;
+                    acc = 1;
+                    load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+                    compteur ++;*/
+                    MAX = 20;
+                    MIN = 15;
+
                     system("cls");
                     for(int i = 0 ; i < 5; i++)
                     {
@@ -932,48 +970,33 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
                     {
                         nom = "map4sb.txt";
                     }
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
+                   // MAX = MAX + 5;
+                   // MIN = MIN + 5;
                     *stop = 5;
-                    niveau1 = 3;
+
+
+                     niveau1 = 3;
                     acc = 1;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+                load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
 
-                    key = 'n';
-
-
-
-                    if(*bord == 1)
-                    {
-                        nom = "map3.txt";
-
-                    }
-                    else if(*bord == 0)
-                    {
-                        nom = "map3sb.txt";
-                    }
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
-                    *stop = 5;
-
-
-                    niveau1 = 2;
-                    acc = 1.1;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-                    compteur ++;
                     key = 'n';
                 }
 
+
+
             }
-            else  if(PacMan->score < 15 && PacMan->score >= 10)
+
+            else  if(PacMan->score < 20 && PacMan->score >= 15)
             {
+                key = 'r';
                 while(key != 'n')
                 {
 
-                    MAX = 10;
-                    MIN = 5;
 
-
+ PacMan->posx = 10;
+                PacMan->posy = 25;
+MAX = 20;
+                    MIN = 15;
 
                     system("cls");
                     for(int i = 0 ; i < 5; i++)
@@ -982,22 +1005,22 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
                     }
                     if(*bord == 1)
                     {
-                        nom = "map3.txt";
+                        nom = "map4.txt";
 
                     }
                     else if(*bord == 0)
                     {
-                        nom = "map3sb.txt";
+                        nom = "map4sb.txt";
                     }
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
+                   // MAX = MAX + 5;
+                   // MIN = MIN + 5;
                     *stop = 5;
 
 
-                    int niveau1 = 2;
-                    acc = 1.1;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-                    compteur ++;
+                    int niveau1 = 3;
+                    acc = 1;
+                load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
+
                     key = 'n';
                 }
             }
@@ -1086,7 +1109,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
         int voice;
         SAMPLE*sound;
 
-        allegro_init();
+        /*allegro_init();
         install_sound(DIGI_AUTODETECT, MIDI_NONE, NULL);
         install_timer();
 
@@ -1113,7 +1136,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
         voice_start(voice);
         release_voice(voice);
 
-
+*/
         t_PacMan PacMan;
         t_PacMan * pt_PacMan;
         pt_PacMan = &PacMan;
@@ -1255,7 +1278,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
                 fermeture = 0;
                 PacMan.vies = 5;
                 PacMan.score = 0;
-                while(PacMan.vies > 0 && fermeture != 1 && PacMan.score != 25)
+                while(PacMan.vies > 0 && fermeture != 1 && PacMan.score != 20)
                 {
 
                 PacMan.posx = SCREEN_W/2-PacMan.tx/2-8;
