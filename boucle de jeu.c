@@ -382,13 +382,13 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
 
             MAX = MAX + 5;
-<<<<<<< HEAD
+
              MIN = MIN + 5;
             load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
-=======
-            MIN = MIN + 5;
-            load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
->>>>>>> ec6f633b64f267a17f2e628136eee63a611b28fd
+
+         //   MIN = MIN + 5;
+    //        load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+
 
             system("cls");
             for(int i = 0 ; i < 5; i++)
@@ -453,7 +453,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
         recuperationConsole(PacMan);
         printf("%d", PacMan->score);
         int compteur = 0;
-        while(key != 'n')
+ /*       while(key != 'n')
         {
 <<<<<<< HEAD
             while(key != 'n')
@@ -536,10 +536,10 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
         else  if(PacMan->score <10 && PacMan->score >= 5)
         {
             while(key != 'n')
-=======
+=======*/
 
             if(PacMan->score <5 && PacMan->score >= 0)
->>>>>>> ec6f633b64f267a17f2e628136eee63a611b28fd
+
             {
                 while(key != 'n')
                 {
@@ -561,7 +561,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
                     MAX =  5;
                     MIN = 0 ;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
 
                     compteur ++;
 
@@ -588,7 +588,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
                     int niveau1 = 1;
 
 
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
                     compteur ++;
                     system("cls");
                     for(int i = 0 ; i < 5; i++)
@@ -611,7 +611,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
                     niveau1 = 2;
                     acc = 1.1;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
                     compteur ++;
                     key = 'n';
                 }
@@ -649,7 +649,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
                     int niveau1 = 1;
 
 
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
                     compteur ++;
                     system("cls");
                     for(int i = 0 ; i < 5; i++)
@@ -672,12 +672,12 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
                     niveau1 = 2;
                     acc = 1.1;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
                     compteur ++;
                     key = 'n';
                 }
             }
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 
              MAX = MAX + 5;
              MIN = MIN + 5;
@@ -690,9 +690,9 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
             compteur ++;
             system("cls");
             for(int i = 0 ; i < 5; i++)
-=======
+=======*/
             else  if(PacMan->score < 15 && PacMan->score >= 10)
->>>>>>> ec6f633b64f267a17f2e628136eee63a611b28fd
+
             {
                 while(key != 'n')
                 {
@@ -723,12 +723,12 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
                     int niveau1 = 2;
                     acc = 1.1;
-                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                    load_mapConsole(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,vit,MAX,MIN,monenecons,dead_mons,start,acc,Chenille);
                     compteur ++;
                     key = 'n';
-                }
-            }
-<<<<<<< HEAD
+
+
+
             if(*bord == 1)
             {
                 nom = "map3.txt";
@@ -749,7 +749,8 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
             compteur ++;
             key = 'n';
             }
-        }
+
+            }
          else  if(PacMan->score < 15 && PacMan->score >= 10)
          {
              while(key != 'n')
@@ -786,12 +787,12 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
             key = 'n';
             }
          }
-=======
->>>>>>> ec6f633b64f267a17f2e628136eee63a611b28fd
 
 
 
-        }
+
+
+
         system("cls");
         break;
     case 3:
@@ -892,7 +893,7 @@ void Console()
 //load_mapConsole(nom,tab,bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,vit,MAX,MIN);
     while(key1 != 'b')
     {
-        boucle_totale(nom,tab,&bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,&vit,MAX,MIN,monenecons,dead_mons,start, &key1);
+        boucle_totale(nom,tab,&bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,&vit,MAX,MIN,monenecons,dead_mons,start, &key1,Chenille);
 
     }
 }
@@ -1079,9 +1080,9 @@ printf("%d\n", PacMan.score);
 
 if(PacMan.score < 5 && PacMan.score >= 0)
 {
-<<<<<<< HEAD
-   boucle_totale(nom,tab,&bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,&vit,MAX,MIN,monenecons,dead_mons,start, &key1, Chenille);
-=======
+
+   //boucle_totale(nom,tab,&bord, Diamant,&PacMan,&stop,key,&a,&compteur,niveau,&vit,MAX,MIN,monenecons,dead_mons,start, &key1, Chenille);
+
     score_limit = 0;
    while(PacMan.vies > 0 && fermeture != 1 && PacMan.score != 15)
             {
@@ -1095,7 +1096,7 @@ if(PacMan.score < 5 && PacMan.score >= 0)
                 {
                     Diamant[i] = initialiserDiamants();
                 }
->>>>>>> ec6f633b64f267a17f2e628136eee63a611b28fd
+
 
 
 
