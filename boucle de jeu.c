@@ -31,9 +31,8 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int * a, int s
 
         if(niveau == 3)
         {
-
             PacMan->deplacement = 10;
-            score_diff = PacMan->score - 16;
+            score_diff = PacMan->score - 15;
         }
 
         printf("Score diff : %d",score_diff);
