@@ -222,8 +222,8 @@ void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,
                         else
                         {
 
-                           Chenille[i]->coordX= Chenille[i-1]->ancienX;
-                           Chenille[i]->coordY=Chenille[i-1]->ancienY;
+                           Chenille[i]->coordX = Chenille[i-1]->ancienX;
+                           Chenille[i]->coordY = Chenille[i-1]->ancienY;
                         }
 
                     }
