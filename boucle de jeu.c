@@ -1336,7 +1336,7 @@ PacMan.score = 20;
                 stop = 0;
                 fermeture = 0;
                 PacMan.vies = 5;
-                printf("%d\n", PacMan.score);
+
 
                 if(PacMan.score < 5 && PacMan.score >= 0)
                 {

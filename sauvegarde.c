@@ -44,6 +44,7 @@ void recuperation(t_enemy *enemy[], t_PacMan * PacMan, t_map * gestion_map, int 
 
         fscanf(fichier, "%d %d %d %d %d %d ", &PacMan->posx, &PacMan->posy,&PacMan->vies, &PacMan->score, &choise_map,&gestion_map->border);
         fclose(fichier);
+        printf("%d\n", PacMan->score);
     }
 
     if(fichier1 != NULL)
