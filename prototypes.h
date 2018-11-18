@@ -148,5 +148,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,t_PacMan *PacMan, int * stop, char *key, int * a, int * compteur, int niveau, int vit, int MAX, int MIN, t_enecons * monenecons[4], int dead_mons, time_t start, float acc);
 
 void Console();
-
+void Menu1();
+/// allegro
+void lancerAllegro();
 #endif // PROTOTYPES_H_INCLUDED

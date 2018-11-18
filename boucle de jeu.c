@@ -318,10 +318,7 @@ void boucle_totale(char  nom[30], int * tab[20][50], int  *bord, int * Diamant,t
 
         while(key != 'n')
         {
-            /*if(kbhit())
-            {
-                key = getch();
-            }*/
+
 
             if(*bord == 1)
             {
@@ -1031,4 +1028,33 @@ else if(PacMan.score < 10 && PacMan.score >= 5)
 
     }
 
+    }
+
+    void Menu1()
+    {
+        char key2;
+int choix;
+
+    while(key2 != 'k')
+    {
+        if(kbhit())
+            {
+                key2 = getch();
+            }
+
+            printf("voulez vous jouer en : \n 1) console \n 2) allegro\n");
+            scanf("%d", &choix);
+            if(choix == 1)
+            {
+                system("cls");
+                Console();
+            }
+            else if(choix == 2)
+            {
+                system("cls");
+                Allegro();
+            }
+
+
+    }
     }
