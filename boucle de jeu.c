@@ -203,7 +203,7 @@ void load_mapConsole(char  nom[30], int * tab[20][50], int  bord, int * Diamant,
         //IMPORTANT
         //pour afficher ou non la chenille on utilise result_score
 
-        result_score = PacMan->score - 1;
+        result_score = PacMan->score - 16;
 
         consoleDeplacementPacMan(a,PacMan, key,bord, tab,x, Chenille, result_score);
 
