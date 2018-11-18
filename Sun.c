@@ -34,13 +34,13 @@ time_t gestionSun(BITMAP* map,BITMAP * dbbuffer, t_Sun* Sun, t_PacMan* PacMan, B
     {
         compteur = (int)(time(NULL) - start);
     }
-    printf("start : %d \n",start);
+
     printf("compteur : %d \n",compteur);
 
     if(compteur > 5 && compteur < 15 && Sun->boolean == 0)
     {
 
-        while((Sun->posx == 0) || (Sun->posy == 0))
+        if((Sun->posx == 0) || (Sun->posy == 0))
         {
             Sun->posx = (rand() % (760 - 20 + 1)) + 20;
             Sun->posy = (rand() % (560 - 20 + 1)) + 20;
@@ -56,11 +56,9 @@ time_t gestionSun(BITMAP* map,BITMAP * dbbuffer, t_Sun* Sun, t_PacMan* PacMan, B
         printf("L");
     }
 
-
-    if((compteur > 20))
+    if(compteur > 20)
     {
         start = time(NULL);
-        compteur = 0;
         Sun->boolean = 0;
         Sun->posx=0;
         Sun->posy=0;
