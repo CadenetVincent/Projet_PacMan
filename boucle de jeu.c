@@ -1079,6 +1079,19 @@ MAX = 20;
             system("cls");
             break;
         case 3:
+            system("cls");
+            printf("//////////////////////////////////////////////////////////////////////// \n \n");
+            printf("Bonjour voici les instructions pour jouer au jeu PacMan :-) \n");
+            printf("Les lettres 'D' sont les diamants.\n");
+            printf("Les blocs en bleu, sont les murs.\n");
+            printf("Les lettres 'G' sont vos ennemis.\n");
+            printf("Les lettres 'A' sont le corps du Snake.\n");
+            printf("En dessous du jeu, vous retrouverez le temps restant, les vies et vos points.\n");
+            printf("Bon divertissement !! \n");
+            printf("///////////////////////////////////////////////////////////////////////// \n \n");
+
+            affichageMenu();
+
 
             break;
         case 4:
