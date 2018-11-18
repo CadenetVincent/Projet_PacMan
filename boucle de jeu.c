@@ -50,30 +50,45 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
                 }
                 else
                 {
+                    if(PacMan->direction == 0)
+                    {
+                       Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                       Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                    }else
+                    {
 
                     Sub_Pac[i]->posx = Sub_Pac[i-1]->last_posx;
                     Sub_Pac[i]->posy = Sub_Pac[i-1]->last_posy;
+
+                    }
                 }
                 printf("ok");
 
                 if(PacMan->direction == 2)
                 {
                     Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
+                    //draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy+20);
+
                 }
                 if(PacMan->direction == 4)
                 {
                     Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                    //draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy+20);
                 }
                 if(PacMan->direction == 3)
                 {
                     Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                   // draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx-20,Sub_Pac[i]->posy);
                 }
                 if(PacMan->direction == 1)
                 {
                     Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
+                    //draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy-20);
+                    //draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx+20,Sub_Pac[i]->posy);
                 }
+            draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy);
 
-                draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy);
+
 
             }
         }
