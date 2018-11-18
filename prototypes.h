@@ -57,6 +57,7 @@ typedef struct PacMan
     int last_posx;
     int last_posy;
     int vies;
+    int tempo_aff;
 
     //Sprites change
     int compteur;

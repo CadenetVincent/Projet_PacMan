@@ -6,9 +6,18 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int * a, int s
     int diff_score = 0;
     int score_diff = 0;
     BITMAP * Sub_map[20];
+    BITMAP * coeur;
+    coeur = load_bitmap("coeur.bmp", NULL);
+    time_t temps = time(NULL);
+    int temps_restant = 0;
+    int temps_final = 60;
 
     while(PacMan->score != score_limit && PacMan->vies != 0 && *fermeture != 1)
     {
+        temps_restant = (int)(time(NULL) - temps); //compt_time = (int)(time(NULL) - start);
+        temps_final = 60 - temps_restant;
+        printf("%d",temps_final);
+
         gestion_map->choix = choise_map;
 
         gestion_map = choix_map(gestion_map);
@@ -22,6 +31,7 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int * a, int s
 
         if(niveau == 3)
         {
+            PacMan->deplacement = 10;
             score_diff = PacMan->score - (score_limit+10);
         }
 
@@ -38,6 +48,19 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int * a, int s
         {
             draw_sprite_h_flip(map,perso_img,PacMan->posx,PacMan->posy);
         }
+
+        for(int i= 0; i< PacMan->vies; i++)
+        {
+            draw_sprite_h_flip(map,coeur,20 + 20*i,570);
+        }
+
+        textprintf(map, font, 3, 3, makecol(100, 255, 100), "%d",temps_final);
+
+        if(temps_final == 0)
+        {
+            PacMan->vies = 0;
+        }
+
         printf("Scorediff : %d",score_diff);
         if(score_diff > 0)
         {
@@ -50,31 +73,43 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int * a, int s
                 }
                 else
                 {
+                    if(PacMan->direction == 0)
+                    {
+                       Sub_Pac[i]->posx = Sub_Pac[i]->posx;
+                       Sub_Pac[i]->posy = Sub_Pac[i]->posy;
+                    }else
+                    {
 
                     Sub_Pac[i]->posx = Sub_Pac[i-1]->last_posx;
                     Sub_Pac[i]->posy = Sub_Pac[i-1]->last_posy;
+
+                    }
                 }
                 printf("ok");
 
                 if(PacMan->direction == 2)
                 {
                     Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_up, 3);
+                    //draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy+20);
+
                 }
                 if(PacMan->direction == 4)
                 {
                     Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                    //draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy+20);
                 }
                 if(PacMan->direction == 3)
                 {
                     Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_right, 8);
+                   // draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx-20,Sub_Pac[i]->posy);
                 }
                 if(PacMan->direction == 1)
                 {
                     Sub_map[i] = action_sprite_pacman(Sub_Pac[i], Sub_Pac[i]->pacman_bot, 2);
+                    //draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy-20);
+                    //draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx+20,Sub_Pac[i]->posy);
                 }
-
-                draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy);
-
+            draw_sprite(map,Sub_map[i],Sub_Pac[i]->posx,Sub_Pac[i]->posy);
             }
         }
 
