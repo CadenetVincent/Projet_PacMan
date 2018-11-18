@@ -165,3 +165,4 @@ void Menu1();
 /// allegro
 void lancerAllegro();
 #endif // PROTOTYPES_H_INCLUDED
+
