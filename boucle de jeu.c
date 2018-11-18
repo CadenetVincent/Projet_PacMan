@@ -2,15 +2,24 @@
 
 void load_map1(int i,int niveau, int choise_map, int score_limit, int * a, int stop, int * compteur_score, int compteur_death, BITMAP * Diamants, BITMAP * front, BITMAP * enemy, BITMAP * dbbuffer, BITMAP * map, BITMAP * perso_img, t_PacMan * PacMan, t_enemy *monenemy[], t_map * gestion_map, t_Diamant * Diamant[], int *fermeture, t_PacMan * Sub_Pac[20])
 {
-    int result_score = 0;
+      int result_score = 0;
     int diff_score = 0;
     int score_diff = 0;
     BITMAP * Sub_map[20];
     BITMAP * coeur;
     coeur = load_bitmap("coeur.bmp", NULL);
     time_t temps = time(NULL);
+    time_t start = time(NULL);
     int temps_restant = 0;
     int temps_final = 60;
+    t_Sun * Monsun;
+    int compteursun = 0;
+    int imagesun =0;
+    int temporiseursun = 10;
+
+    start = time(NULL);
+
+    Monsun = initialiserSun();
 
     while(PacMan->score != score_limit && PacMan->vies != 0 && *fermeture != 1)
     {
@@ -34,6 +43,28 @@ void load_map1(int i,int niveau, int choise_map, int score_limit, int * a, int s
             PacMan->deplacement = 10;
             score_diff = PacMan->score - 15;
         }
+
+       start = gestionSun(map,dbbuffer,Monsun,PacMan,front,start);
+
+       if(Monsun->posx - PacMan->posx <10 && Monsun->posx - PacMan->posx > -10 && Monsun->posy - PacMan->posy <10 && Monsun->posy - PacMan->posy >-10)
+       {
+           Monsun->boolean = 0;
+           PacMan->get_Sun = 3;
+       }
+
+
+    if(compteursun >= temporiseursun)
+    {
+       imagesun++;
+       compteursun=0;
+    }
+    if(imagesun >= 6)
+    {
+        imagesun = 0;
+    }
+
+    draw_sprite(map,Monsun->SOLEIL[imagesun],Monsun->posx,Monsun->posy);
+
 
         printf("Score diff : %d",score_diff);
 
