@@ -199,7 +199,7 @@ void consoleDeplacementPacMan1(int *a, t_PacMan * PacMan, char  *key, int bord,i
         }
         else if(bord == 0)
         {
-            if(PacMan->posy > 48)
+            if(PacMan->posy > 47)
             {
                 PacMan->posy = 1;
             }
@@ -349,7 +349,7 @@ void recuperationConsole(t_PacMan * PacMan, int * bord)
     if (fichier != NULL)
     {
 
-        fscanf(fichier, "%d %d %d %d ", &PacMan->posx, &PacMan->posy,&PacMan->vies, &PacMan->score, &bord);
+        fscanf(fichier, "%d %d %d %d ", &PacMan->posx, &PacMan->posy,&PacMan->vies, &PacMan->score, bord);
         fclose(fichier);
     }
 }

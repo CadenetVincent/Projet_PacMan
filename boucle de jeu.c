@@ -731,7 +731,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
             system("cls");
             recuperationConsole(PacMan, &bord);
             printf("%d", PacMan->score);
-            int compteur = 0;
+            //int compteur = 0;
 
 
             if(PacMan->score <5 && PacMan->score >= 0)
@@ -761,7 +761,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
                     MIN = 0 ;
                 load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
 
-                    compteur ++;
+                    //compteur ++;
 
 
                     system("cls");
@@ -786,8 +786,8 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
                     int niveau1 = 1;
 
 
-                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
-                    compteur ++;
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                    //compteur ++;
                     system("cls");
                     for(int i = 0 ; i < 5; i++)
                     {
@@ -809,7 +809,7 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
 
                     niveau1 = 2;
                     acc = 1;
-                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
 
                     MAX = 20;
                     MIN = 15;
@@ -844,12 +844,13 @@ void load_map(int i,int niveau, int choise_map, int score_limit, int * a, int st
             }
             else  if(PacMan->score <10 && PacMan->score >= 5)
             { key = 'r';
+            //printf("%d", PacMan->score);
                 while(key != 'n')
                 {
 PacMan->posx = 10;
                 PacMan->posy = 25;
-                    MAX = 5;
-                    MIN = 0;
+                    MAX = 10;
+                    MIN = 5;
 
 
                     system("cls");
@@ -867,15 +868,15 @@ PacMan->posx = 10;
                         nom = "map2sb.txt";
                     }
 
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
+                    //MAX = MAX + 5;
+                    //MIN = MIN + 5;
                     *stop = 5;
 
                     int niveau1 = 1;
 
 
-                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
-                    compteur ++;
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                    //compteur ++;
                     system("cls");
                     for(int i = 0 ; i < 5; i++)
                     {
@@ -897,8 +898,8 @@ PacMan->posx = 10;
 
                     niveau1 = 2;
                     acc = 1;
-                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
-                    compteur ++;
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                    //compteur ++;
 
                     MAX = 20;
                     MIN = 15;
@@ -949,8 +950,8 @@ PacMan->posx = 10;
                 {
 PacMan->posx = 10;
                 PacMan->posy = 25;
-                    MAX = 10;
-                    MIN = 5;
+                    MAX = 15;
+                    MIN = 10;
 
 
 
@@ -968,14 +969,14 @@ PacMan->posx = 10;
                     {
                         nom = "map3sb.txt";
                     }
-                    MAX = MAX + 5;
-                    MIN = MIN + 5;
+                    //MAX = MAX + 5;
+                    //MIN = MIN + 5;
                     *stop = 5;
 
 
                     int niveau1 = 2;
                     acc = 1;
-                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
+                load_mapConsole1(nom,tab,bord, Diamant,PacMan,&stop,&key,a,&compteur,niveau1,*vit,MAX,MIN,monenecons,dead_mons,start,acc);
 
 
 
